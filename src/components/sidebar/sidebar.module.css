@@ -1,0 +1,9 @@
+.main_sidebar { box-sizing: border-box; position: fixed; left: 0; top: 0; width: 260px; height: 100vh; z-index: 999; overflow: hidden; overflow-y: auto; background: #fff; transition: .3s; }
+.main_logo { height: 80px; display: flex; align-items: center; justify-content: flex-start; padding: 0 20px; border-bottom: 1px solid #E4E7ED; margin-bottom: 20px;}
+.main_logo img { width: 100%;  height: auto;}
+.menu_list { padding: 20px;}
+.menu_list li {   border-radius: 16px; cursor: pointer;}
+.menu_list li a { display: flex; align-items: center; gap: 15px; width: 100%; font: 400 16px/24px 'Inter', sans-serif;  color: #333333; padding: 15px;}
+.menu_list li:hover { color: #696CFF;}
+.menu_list li.active  { background-color: #e7e7ff;}
+.menu_list li.active a { font-weight: 600; color: #696CFF;  }
