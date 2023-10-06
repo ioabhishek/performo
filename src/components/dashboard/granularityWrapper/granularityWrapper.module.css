@@ -1,0 +1,2 @@
+.top_strip { display: flex; justify-content: flex-start; align-items: center; margin-bottom: 30px;}
+.top_strip span { font: 400 16px/24px 'Inter', sans-serif; margin-right: 15px;}

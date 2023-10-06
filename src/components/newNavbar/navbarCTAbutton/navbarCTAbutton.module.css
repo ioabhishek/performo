@@ -1,0 +1,3 @@
+.nav_tools { display: flex; align-items: center; gap: 20px; margin-left: auto;}
+.nav_tool { display: flex; justify-content: center; align-items: center; width: 35px; height: 35px; background-color: #e7e7ff; color: #696CFF; border-radius: 10px; cursor: pointer;}
+.nav_tool:hover { color: #333333;}

@@ -1,0 +1,2 @@
+.select_options { font: 400 16px/24px 'Inter', sans-serif; padding: 10px; width: 200px; outline: none; border-radius: 10px; border: none; background-color: #ffffff; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);}
+.select_options option { padding: 5px;}
