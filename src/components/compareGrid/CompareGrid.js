@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './compareGrid.module.css'
-import CompareWrap from './components/compareWrap/CompareWrap'
+import CompareWrap from './CompareWrap'
 
 function CompareGrid() {
    return (

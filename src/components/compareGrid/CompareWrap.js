@@ -1,11 +1,12 @@
 import React from 'react'
-import styles from './compareWrap.styles.css'
-import CompareCard from '../compareCard/compareCard'
+import styles from './compareGrid.module.css'
+import CompareCard from './CompareCard'
+import CompareLabel from './CompareLabel'
 
 function CompareWrap() {
    return (
       <div className={styles.compare_wrap}>
-         <span class={styles.compare_tabn}>Mfg 1</span>
+         <CompareLabel name="Mfg 1"/>
          <CompareCard/>
          <CompareCard/>
       </div>
