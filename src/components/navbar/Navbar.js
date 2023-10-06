@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import styles from './navbar.module.css'
 
-function Navbar() {
+const Navbar = () => {
    return (
       <nav className={styles.main_navbar}>
          <div className={styles.nav_search}>
