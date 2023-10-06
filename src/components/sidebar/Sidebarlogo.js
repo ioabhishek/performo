@@ -1,7 +1,8 @@
 import React from 'react'
-import styles from './sidebarlogo.module.css'
+import styles from './sidebar.module.css';
 import Image from 'next/image'
-function Sidebarlogo() {
+
+const Sidebarlogo = () => {
   return (
     <div>
       <a className={styles.main_logo} href="">

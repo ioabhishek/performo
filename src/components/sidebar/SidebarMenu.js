@@ -1,7 +1,8 @@
 import React from 'react'
-import MenuItem from '../menuItem/MenuItem'
-import styles from './sidebarMenu.module.css'
-function SidebarMenu() {
+import MenuItem from './MenuItem'
+import styles from './sidebar.module.css';
+
+const SidebarMenu = () => {
   return (
     <div>
       <ul className={styles.menu_list}>

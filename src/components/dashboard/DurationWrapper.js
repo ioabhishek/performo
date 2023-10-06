@@ -1,14 +1,13 @@
 import React from 'react'
-import DurationButton from '../durationButton/DurationButton'
-import styles from './durationWrapper.module.css'
+import DurationButton from './DurationButton'
+import styles from './dashboard.module.css'
+
 function DurationWrapper() {
   return (
-    <div>
-        <div className={styles.period_strip}>
+    <div className={styles.period_strip}>
       <DurationButton lable="Day"  />
       <DurationButton lable="Week"  />
       <DurationButton lable="Month"  />
-      </div>
     </div>
   )
 }

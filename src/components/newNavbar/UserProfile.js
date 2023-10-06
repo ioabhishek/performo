@@ -1,7 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-import styles from './userProfile.module.css'
-function UserProfile() {
+import styles from './navbar.module.css'
+
+const UserProfile = () => {
   return (
    
       <div className={styles.nav_user}>

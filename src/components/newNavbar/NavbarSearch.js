@@ -1,6 +1,7 @@
 import React from 'react'
-import styles from './navbarSearch.module.css'
-function NavbarSearch() {
+import styles from './navbar.module.css'
+
+const NavbarSearch = () => {
   return (
     <div>
        <div className={styles.nav_search}>

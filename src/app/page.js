@@ -1,14 +1,11 @@
-import styles from './page.module.css'
-import Sidebar from '@/components/sidebar/Sidebar'
-import Main from '@/components/mainContainer/Main'
-import DashboardMainWrap from '@/components/dashboard/dashboardMainWrap/DashboardMainWrap'
-import CompleteSidebar from '@/components/newsidebar/completeSidebar/CompleteSidebar'
+import DashboardMainWrap from '@/components/dashboard/DashboardMainWrap'
+import Sidebar from '@/components/sideBar/Sidebar'
 
 export default function Home() {
   return (
     <main>
       <DashboardMainWrap/>
-      <CompleteSidebar/>
+      <Sidebar/>
     </main>
   )
 }

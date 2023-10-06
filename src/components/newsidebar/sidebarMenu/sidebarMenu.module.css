@@ -1,6 +1,0 @@
-.menu_list { padding: 20px;}
-.menu_list li {   border-radius: 16px; cursor: pointer;}
-.menu_list li a { display: flex; align-items: center; gap: 15px; width: 100%; font: 400 16px/24px 'Inter', sans-serif;  color: #333333; padding: 15px;}
-.menu_list li:hover { color: #696CFF;}
-.menu_list li.active  { background-color: #e7e7ff;}
-.menu_list li.active a { font-weight: 600; color: #696CFF;  }
