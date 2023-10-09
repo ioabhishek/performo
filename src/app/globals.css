@@ -25,3 +25,7 @@ li {
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:#e7e7ff; border-radius: 100px; }
 ::-webkit-scrollbar-thumb:hover{background:#dbdbfb}
+
+.menu_link.active  { background-color: #e7e7ff;}
+.menu_link.active a { font-weight: 600; color: #696CFF;  }
+.menu_link a:hover { background-color: #f5f5ff; color: #696CFF; border-radius: 16px; }

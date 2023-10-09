@@ -1,11 +1,11 @@
-import DashboardMainWrap from '@/components/dashboard/DashboardMainWrap'
 import Sidebar from '@/components/sideBar/Sidebar'
+import Main from '@/components/mainContainer/Main'
 
 export default function Home() {
   return (
     <main>
-      <DashboardMainWrap/>
       <Sidebar/>
+      <Main/>
     </main>
   )
 }

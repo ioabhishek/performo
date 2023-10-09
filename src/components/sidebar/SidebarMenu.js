@@ -1,19 +1,50 @@
 import React from 'react'
-import MenuItem from './MenuItem'
+import MenuItem from './MenuItem';
 import styles from './sidebar.module.css';
 
+
 const SidebarMenu = () => {
+  const menuItem=[
+    {
+      path:"/",
+      name:"Dashboard",
+    },
+    {
+      path:"/latest",
+      name:"Latest",
+    },
+    {
+      path:"/sports",
+      name:"Sports",
+    },
+    {
+      path:"/technology",
+      name:"Technology",
+    },
+    {
+      path:"/business",
+      name:"Business",
+    },
+    {
+      path:"/finance",
+      name:"Finance",
+    },
+    {
+      path:"/worldcup",
+      name:"WorldCup",
+    }
+  ]
+
   return (
     <div>
       <ul className={styles.menu_list}>
-        <MenuItem category="Dashboard" />
-        <MenuItem category="Campaigns" />
-        <MenuItem category="Audience" />
-        <MenuItem category="Creatives" />
-        <MenuItem category="Reports" />
-        <MenuItem category="Settings" />
-        <MenuItem category="Help" />
-        <MenuItem category="Logout" />
+
+        {
+          menuItem.map((item, index) => (
+            <MenuItem key={index} path={item.path} name={item.name} />
+          ))
+        }
+        
       </ul>
     </div>
   )

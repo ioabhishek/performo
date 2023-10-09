@@ -6,13 +6,13 @@ import NavbarMain from '@/components/newNavbar/NavbarMain'
 
 function DashboardMainWrap() {
   return (
-    <div className={styles.main_content}>
+    <>
       <NavbarMain/>
       <div className={styles.main_wrap}>
         <GranularityWrapper />
         <DashboardGrid/>
       </div>
-    </div>
+    </>
   )
 }
 
