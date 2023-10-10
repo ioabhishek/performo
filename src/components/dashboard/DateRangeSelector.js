@@ -17,44 +17,44 @@ function DateRangeSelector() {
   const toggleRangePicker = () => {
     setShowRangePicker(!showRangePicker);
   };
-  const today = () => {
-    const date = new Date().toLocaleDateString();
-    setDate(date);
-  };
-  const Tomorrow = () => {
-    const date = new Date();
-    const nextday = new Date(date);
-    nextday.setDate(date.getDate() + 1);
-    setDate(nextday.toLocaleDateString());
-  };
-  const week = () => {
-    const date = new Date();
-    const nextday = new Date(date);
-    nextday.setDate(date.getDate() + 7);
-    setDate(
-      "from" +
-        " " +
-        date.toLocaleDateString() +
-        " " +
-        "to" +
-        " " +
-        nextday.toLocaleDateString()
-    );
-  };
-  const month = () => {
-    const date = new Date();
-    const nextday = new Date(date);
-    nextday.setDate(date.getDate() + 30);
-    setDate(
-      "from" +
-        " " +
-        date.toLocaleDateString() +
-        " " +
-        "to" +
-        " " +
-        nextday.toLocaleDateString()
-    );
-  };
+  // const today = () => {
+  //   const date = new Date().toLocaleDateString();
+  //   setDate(date);
+  // };
+  // const Tomorrow = () => {
+  //   const date = new Date();
+  //   const nextday = new Date(date);
+  //   nextday.setDate(date.getDate() + 1);
+  //   setDate(nextday.toLocaleDateString());
+  // };
+  // const week = () => {
+  //   const date = new Date();
+  //   const nextday = new Date(date);
+  //   nextday.setDate(date.getDate() + 7);
+  //   setDate(
+  //     "from" +
+  //       " " +
+  //       date.toLocaleDateString() +
+  //       " " +
+  //       "to" +
+  //       " " +
+  //       nextday.toLocaleDateString()
+  //   );
+  // };
+  // const month = () => {
+  //   const date = new Date();
+  //   const nextday = new Date(date);
+  //   nextday.setDate(date.getDate() + 30);
+  //   setDate(
+  //     "from" +
+  //       " " +
+  //       date.toLocaleDateString() +
+  //       " " +
+  //       "to" +
+  //       " " +
+  //       nextday.toLocaleDateString()
+  //   );
+  // };
   const clear = () => {
     setDate(new Date().toLocaleDateString());
   };
@@ -111,7 +111,7 @@ function DateRangeSelector() {
         </div>
         {showRangePicker && (
           <div className={styles.datepicker}>
-            <div className={styles.buttoncontainer}>
+            {/* <div className={styles.buttoncontainer}>
               {showRangePicker && (
                 <button className={styles.button} onClick={today}>
                   today{" "}
@@ -132,7 +132,7 @@ function DateRangeSelector() {
                   this month{" "}
                 </button>
               )}
-            </div>
+            </div> */}
             {showRangePicker && (
               <RangePicker
                 allowclear={true}
