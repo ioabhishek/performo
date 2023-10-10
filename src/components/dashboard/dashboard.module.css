@@ -118,3 +118,7 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
+  .ant-calendar-picker-clear {
+    opacity: 1;
+  }

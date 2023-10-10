@@ -1,5 +1,6 @@
 "use client";
 import Head from "next/head";
+import moment from "moment";
 import Image from "next/image";
 import { Inter, Tomorrow } from "next/font/google";
 import styles from "./dashboard.module.css";
@@ -13,7 +14,8 @@ function DateRangeSelector() {
   const [size, setSize] = useState("middle");
   const [showRangePicker, setShowRangePicker] = useState(false);
   const [date, setDate] = useState(new Date().toLocaleDateString());
-
+  var moment1=moment(date, "YYYY/MM/DD");
+  
   const toggleRangePicker = () => {
     setShowRangePicker(!showRangePicker);
   };
@@ -57,8 +59,11 @@ function DateRangeSelector() {
   // };
   const clear = () => {
     setDate(new Date().toLocaleDateString());
+    moment1=null;
+   
   };
   const apply = () => {
+    
     setShowRangePicker(false);
   };
   return (
@@ -135,6 +140,7 @@ function DateRangeSelector() {
             </div> */}
             {showRangePicker && (
               <RangePicker
+              value={moment1}
                 allowclear={true}
                 onChange={(values) => {
                   if (values && values.length > 1) {
