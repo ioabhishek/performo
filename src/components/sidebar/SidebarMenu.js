@@ -36,17 +36,15 @@ const SidebarMenu = () => {
   ]
 
   return (
-    <div>
+    <>
       <ul className={styles.menu_list}>
-
         {
           menuItem.map((item, index) => (
             <MenuItem key={index} path={item.path} name={item.name} />
           ))
         }
-        
       </ul>
-    </div>
+    </>
   )
 }
 

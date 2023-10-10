@@ -29,3 +29,6 @@ li {
 .menu_link.active  { background-color: #e7e7ff;}
 .menu_link.active a { font-weight: 600; color: #696CFF;  }
 .menu_link a:hover { background-color: #f5f5ff; color: #696CFF; border-radius: 16px; }
+
+.main_content { padding-left: 260px; padding-top: 0!important; transition: .5s; position: relative; min-height: 100vh; overflow: hidden; }
+.main_wrap { padding: 20px 20px; }

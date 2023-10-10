@@ -3,3 +3,4 @@
 .sel_btn { box-sizing: border-box; font: 400 16px/24px 'Inter', sans-serif; color: #333333; padding: 4px 20px; cursor: pointer; border-radius: 8px; border: 1px solid #d9d9fd;}
 .sel_btn:hover { color: #696CFF;}
 .sel_btn.active { font-weight: 600; background-color: #e7e7ff; color: #696CFF; border-radius: 8px; }
+.sel_btn.selected { font-weight: 600; background-color: #e7e7ff; color: #696CFF; border-radius: 8px; }
