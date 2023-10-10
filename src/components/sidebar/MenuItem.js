@@ -1,16 +1,13 @@
+'use client'
 import React from 'react'
 import Link from 'next/link';
-import styles from './sidebar.module.css';
-// import { useRouter } from 'next/router';
-
-// const router = useRouter();
-
-// Function to determine if a menu item is active
-// const isMenuItemActive = (href) => router.pathname === href;
+import { usePathname } from 'next/navigation'
 
 const MenuItem = (props) => {
+  const pathname = usePathname()
+
   return (
-    <li className='menu_link'>
+    <li className={pathname === props.path ? 'menu_link active' : 'menu_link'}>
       <Link href={props.path}>{props.name}</Link>
     </li> 
   )
