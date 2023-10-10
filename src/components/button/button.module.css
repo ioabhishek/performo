@@ -4,3 +4,6 @@
 .sel_btn:hover { color: #696CFF;}
 .sel_btn.active { font-weight: 600; background-color: #e7e7ff; color: #696CFF; border-radius: 8px; }
 .sel_btn.selected { font-weight: 600; background-color: #e7e7ff; color: #696CFF; border-radius: 8px; }
+
+.compare_btn { font: 400 14px/14px 'Inter', sans-serif; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; background-color: #ffffff; color: #333333; border: 1px solid #d9d9fd; border-radius: 8px; cursor: pointer; } 
+.compare_btn.active { background-color: #e7e7ff; color: #696CFF; font-weight: 600;}

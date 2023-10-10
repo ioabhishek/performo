@@ -11,7 +11,7 @@
 .compare_card_img { width: 100%; height: auto; aspect-ratio: 16/8; object-fit: cover; vertical-align: middle; border-radius: 12px; margin-bottom: 8px;}
 .compare_card_sttl { font: 400 14px/16px 'Inter', sans-serif; min-height: calc(1*16px); max-height: calc(3*16px); overflow: hidden; color: rgb(51, 51, 51, 0.9); margin-bottom: 8px;}
 .compare_card_ttl { font: 700 16px/19px 'Inter', sans-serif; min-height: calc(1*19px); max-height: calc(2*19px); overflow: hidden; color: #333333; margin-bottom: 5px;}
-.compare_icns { display: flex; align-items: center; gap: 10px;}
+.compare_icns { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .compare_icn { width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; background-color: #e7e7ff; color: #696CFF ; border-radius: 8px; cursor: pointer;}
 .compare_icn:hover { color: #333333;}
 .compare_tab_itm { display: none; padding: 10px; margin-top: 20px; border: 1px solid #696CFF; border-radius: 10px;}
@@ -19,3 +19,4 @@
 .compare_tab_itm h4 { font: 700 16px/24px 'Inter', sans-serif; margin-bottom: 5px;}
 .compare_tab_itm span, .compare_tab_itm p { display: block; font: 400 14px/20px 'Inter', sans-serif; }
 .rank_no { position: absolute; top: -5px; right: -5px; display: flex; justify-content: center; align-items: center; width: 20px; height: 20px; background-color: #696CFF; color: #ffffff; font: 600 14px/18px 'Inter', sans-serif; border-radius: 50px; } 
+.compare_tab_wrp { width: 100%; }
