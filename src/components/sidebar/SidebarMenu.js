@@ -1,9 +1,12 @@
-import React from 'react'
+'use client';
+import React, { useEffect, useState } from 'react';
 import MenuItem from './MenuItem';
 import styles from './sidebar.module.css';
-
+import { PUB_CATEGORY } from "../../utils/constants";
 
 const SidebarMenu = () => {
+  const [resInfo, setResInfo] = useState(null)
+
   const menuItem=[
     {
       path:"/",
@@ -34,6 +37,17 @@ const SidebarMenu = () => {
       name:"WorldCup",
     }
   ]
+
+  useEffect(() => {
+    fetchCategory();
+  }, [])
+
+  const fetchCategory = async () => {
+    const data = await fetch(PUB_CATEGORY);
+    const json = await data.json();
+    // setResInfo(json.data);
+    console.log(json)
+  }
 
   return (
     <>
