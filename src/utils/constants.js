@@ -1,0 +1,1 @@
+export const PUB_CATEGORY = "https://localhost/poc/api/publisher_category.php?token_key=@123abcd1366&key=publisher_category_publisher";
