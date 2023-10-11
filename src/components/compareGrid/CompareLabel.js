@@ -3,7 +3,7 @@ import styles from './compareGrid.module.css'
 
 const CompareLabel = (props) => {
    return (
-      <span class={styles.compare_tabn}>{props.name}</span>
+      <span className={styles.compare_tabn}>{props.name}</span>
    )
 }
 
