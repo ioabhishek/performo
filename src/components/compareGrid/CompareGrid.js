@@ -14,8 +14,7 @@ const cards = [
    { id: 8, isVisible: false },
 ];
 
-function CompareGrid() {
-   const [selectedButtons, handleButtonSelect] = useButtonSelection([]);
+const CompareGrid = ({selectedButtons}) => {
 
    return (
       <div className={styles.compare_grid}>
