@@ -25,7 +25,7 @@ const SidebarMenu = () => {
         return null;
       } else {
         renderedCategories.push(category.category_name);
-        return <MenuItem key={index} path={'/' + category.category_name} name={category.category_name} />;
+        return <MenuItem key={index} path={'/tesr/' + category.category_name} name={category.category_name} />;
       }
     });
   };

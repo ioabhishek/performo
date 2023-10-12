@@ -75,8 +75,8 @@ function DateRangeSelector() {
           </h1>
           <svg
             fill="#000000"
-            width="50px"
-            height="50px"
+            width="40px"
+            height="40px"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             className="icon line-color"
