@@ -5,38 +5,7 @@ import styles from './sidebar.module.css';
 import { PUB_CATEGORY } from "../../utils/constants";
 
 const SidebarMenu = () => {
-  const [resInfo, setResInfo] = useState(null)
-
-  const menuItem=[
-    {
-      path:"/",
-      name:"Dashboard",
-    },
-    {
-      path:"/latest",
-      name:"Latest",
-    },
-    {
-      path:"/sports",
-      name:"Sports",
-    },
-    {
-      path:"/technology",
-      name:"Technology",
-    },
-    {
-      path:"/business",
-      name:"Business",
-    },
-    {
-      path:"/finance",
-      name:"Finance",
-    },
-    {
-      path:"/worldcup",
-      name:"WorldCup",
-    }
-  ]
+  const [menuList, setMenuList] = useState([])
 
   useEffect(() => {
     fetchCategory();
@@ -45,18 +14,26 @@ const SidebarMenu = () => {
   const fetchCategory = async () => {
     const data = await fetch(PUB_CATEGORY);
     const json = await data.json();
-    // setResInfo(json.data);
-    console.log(json)
+    setMenuList(json);
   }
+
+  const renderMenuItems = () => {
+    const renderedCategories = [];
+
+    return menuList.map((category, index) => {
+      if (renderedCategories.includes(category.category_name)) {
+        return null;
+      } else {
+        renderedCategories.push(category.category_name);
+        return <MenuItem key={index} path={'/' + category.category_name} name={category.category_name} />;
+      }
+    });
+  };
 
   return (
     <>
       <ul className={styles.menu_list}>
-        {
-          menuItem.map((item, index) => (
-            <MenuItem key={index} path={item.path} name={item.name} />
-          ))
-        }
+        {renderMenuItems()}
       </ul>
     </>
   )
