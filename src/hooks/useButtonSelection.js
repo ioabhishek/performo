@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 const useButtonSelection = () => {
    const [selectedButtons, setSelectedButtons] = useState([]);
-   console.log(selectedButtons);
 
    const handleButtonSelect = (buttonId) => {
       if (selectedButtons.includes(buttonId)) {

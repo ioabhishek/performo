@@ -11,7 +11,6 @@ const buttonsData = [
    ],
 ];
 
-
 const CompareCard = ({ id, title, content, image }) => {
    const [selectedButtons, setSelectedButtons] = useState(
       new Array(buttonsData.length).fill(null)

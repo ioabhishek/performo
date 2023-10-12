@@ -7,7 +7,7 @@ const SelectButton = ({ id, label, selected, onSelect }) => {
    };
 
    return (
-      <li className={`${styles.sel_btn} ${selected ? styles.selected : ''}`} onClick={handleClick}>{label}</li>
+      <button className={`${styles.sel_btn} ${selected ? styles.selected : ''}`} onClick={handleClick}>{label}</button>
    )
 }
 
