@@ -20,3 +20,105 @@
 .main_card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; font: 400 16px/24px 'Inter', sans-serif; text-align: center; padding: 30px 20px; background-color: #ffffff; border-radius: 16px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04); cursor: pointer; }
 .main_card span:last-child {font-weight: 700;}
 .main_card:hover { background-color: #e7e7ff; color: #696CFF;}
+
+
+
+
+
+
+
+.datepicker{
+    display: flex;
+    flex-direction: column;
+  }
+  .buttoncontainer button{
+    margin-right: 10px;
+  }
+  .container{
+    width: fit-content; padding: 5px; background-color: #ffffff; border-radius: 10px; display: flex; gap: 5px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04); margin-right: 20px;flex-direction: column;
+  }
+  .heading{
+    color: black;
+  }
+  .headingandbutton{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+   z-index: 2;
+    align-items: center;
+    
+  }
+  .headingandbutton h1{
+   
+  }
+  .headingandbutton {
+    display: flex;
+    
+    align-items: center;
+  
+  }
+  
+  .heading {
+    font-size: 18px;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+  
+  .button {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box; font: 400 16px/24px 'Inter', sans-serif; color: #333333; padding: 4px 20px; cursor: pointer; border: 1px solid #d9d9fd; border-radius: 8px; margin: 0;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* .buttoncontainer {
+    margin-bottom: 20px;
+  }
+   */
+  .datepicker {
+    display: flex;
+    margin-top: 60px;
+    flex-direction: column;
+    z-index: 999;
+    position: absolute;
+    width: fit-content; padding: 20px; background-color: #ffffff; border-radius: 10px; display: flex; gap: 5px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
+  }
+  
+  .ant-picker {
+    width: 100%;
+  }
+  
+
+  .ant-picker-footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #f5f5f5;
+    
+  
+  }
+  
+
+  .ant-picker-panel-container {
+    width: 100%;
+    max-width: 320px;
+   
+  }
+  
+  .footer{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .ant-calendar-picker-clear {
+    opacity: 1;
+  }
