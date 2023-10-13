@@ -6,6 +6,8 @@ import { ARTS, ARTM, ARTE } from "@/utils/constants";
 
 const CompareWrap = ({ publisher, publisherid, categoryid, selected }) => {
 
+   console.log(publisher, publisherid, categoryid)
+
    const [articles, setArticles] = useState([]);
 
    useEffect(() => {
@@ -15,7 +17,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected }) => {
    const fetchArticles = async () => {
       const data = await fetch(ARTS+{publisherid}+ARTM+{categoryid}+ARTE);
       const json = await data.json();
-      console.log(json)
+      // console.log(json)
       setArticles(json);
    };
 
@@ -23,9 +25,9 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected }) => {
       <div className={`${styles.compare_wrap} ${selected ? styles.visible : ''}`}>
          <CompareLabel publisher={publisher} />
          {
-            articles.map((article) => (
+            articles.map((article, index) => (
                <CompareCard
-                  key={article.publisher}
+                  key={index}
                   id={article.publisher}
                   title={article.title}
                   content={article.title}

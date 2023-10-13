@@ -7,9 +7,11 @@ const MenuItem = (props) => {
   const pathname = usePathname()
 
   return (
-    <li className={pathname === props.path ? 'menu_link active' : 'menu_link'}>
-      <Link href={props.path}>{props.name}</Link>
-    </li> 
+    <>
+      <li className={pathname === props.path ? 'menu_link active' : 'menu_link'}>
+        <Link href={props.path}>{props.name}</Link>
+      </li> 
+    </>
   )
 }
 

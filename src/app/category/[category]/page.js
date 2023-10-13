@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import Sidebar from '@/components/sideBar/Sidebar'
 import SelectStrip from '@/components/selectStrip/SelectStrip'
 import CompareGrid from '@/components/compareGrid/CompareGrid'
 import NavbarMain from '@/components/newNavbar/NavbarMain'
@@ -12,7 +11,6 @@ const Page = () => {
 
    return (
       <>
-         <Sidebar/>
          <div className='main_content'>
             <div className='main_wrap'>
                <NavbarMain/>
