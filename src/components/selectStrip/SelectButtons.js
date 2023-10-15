@@ -28,7 +28,7 @@ const SelectButtons = ({ selectedButtons, handleButtonSelect }) => {
             <SelectButton
                key={publisherName}
                id={publisherName}
-               label={publisherName}
+               label={publisherName}   
                selected={selectedButtons.includes(publisherName)}
                onSelect={() => handleButtonSelect(publisherName)}
             />

@@ -6,7 +6,7 @@ import { ARTS, ARTM, ARTE } from "@/utils/constants";
 
 const CompareWrap = ({ publisher, publisherid, categoryid, selected }) => {
 
-   console.log(publisher, publisherid, categoryid)
+   // console.log(publisher, publisherid, categoryid)
 
    const [articles, setArticles] = useState([]);
 
