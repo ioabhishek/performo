@@ -4,6 +4,8 @@ const useButtonSelection = () => {
    const [selectedButtons, setSelectedButtons] = useState([]);
 
    const handleButtonSelect = (buttonId) => {
+      // console.log('im clicked')
+
       if (selectedButtons.includes(buttonId)) {
          setSelectedButtons(selectedButtons.filter(id => id !== buttonId));
       } else if (selectedButtons.length < 4) {

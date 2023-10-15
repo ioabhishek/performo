@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation'
 const CompareGrid = ({selectedButtons}) => {
    const [pubList, setPubList] = useState([]);
    const [uniquePublisherInfo, setUniquePublisherInfo] = useState([]);
+   const [savedData, setSavedData] = useState([]);
 
    useEffect(() => {
       fetchPubs();
@@ -39,6 +40,14 @@ const CompareGrid = ({selectedButtons}) => {
    const catgId = getCategoryId(match[1]);
    // console.log(catgId)
 
+   useEffect(() => {
+      const savedDataString = localStorage.getItem('selectedButtonsData');
+      if (savedDataString) {
+         const parsedData = JSON.parse(savedDataString);
+         setSavedData(parsedData);
+      }
+   }, []);
+
 
    return (
       <div className={styles.compare_grid}>
@@ -49,7 +58,7 @@ const CompareGrid = ({selectedButtons}) => {
                   publisher={uniquePublisher.publisher_name}
                   publisherid={uniquePublisher.publisher_id}
                   categoryid={catgId} 
-                  selected={selectedButtons.includes(uniquePublisher.publisher_name)}
+                  selected={selectedButtons.includes(uniquePublisher.publisher_name) || savedData.includes(uniquePublisher.publisher_name)}
                />
             ))
          }

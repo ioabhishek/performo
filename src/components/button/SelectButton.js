@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from './button.module.css'
 
-const SelectButton = ({ id, label, selected, onSelect }) => {
+const SelectButton = ({ id, label, selected, onSelect, setSavedData }) => {
    const handleClick = () => {
+      setSavedData([])
       onSelect(id);
    };
 

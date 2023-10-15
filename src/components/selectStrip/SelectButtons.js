@@ -6,6 +6,7 @@ import { PUB_CATEGORY } from "../../utils/constants";
 const SelectButtons = ({ selectedButtons, handleButtonSelect }) => {
    const [pubList, setPubList] = useState([]);
    const [uniquePublisherNames, setUniquePublisherNames] = useState([]);
+   const [savedData, setSavedData] = useState([]);
 
    useEffect(() => {
       fetchPubs();
@@ -22,6 +23,16 @@ const SelectButtons = ({ selectedButtons, handleButtonSelect }) => {
       setUniquePublisherNames(uniqueNames);
    }, [pubList]);
 
+   useEffect(() => {
+      const savedDataString = localStorage.getItem('selectedButtonsData');
+      if (savedDataString) {
+         const parsedData = JSON.parse(savedDataString);
+         setSavedData(parsedData);
+      }
+   }, []);
+
+   // console.log(savedData)
+
    const renderMenuItems = () => {
       return uniquePublisherNames.map((publisherName) => {
          return (
@@ -29,8 +40,9 @@ const SelectButtons = ({ selectedButtons, handleButtonSelect }) => {
                key={publisherName}
                id={publisherName}
                label={publisherName}   
-               selected={selectedButtons.includes(publisherName)}
+               selected={selectedButtons.includes(publisherName) || savedData.includes(publisherName)}
                onSelect={() => handleButtonSelect(publisherName)}
+               setSavedData={setSavedData}
             />
          );
       });
