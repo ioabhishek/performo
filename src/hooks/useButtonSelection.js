@@ -1,19 +1,43 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const useButtonSelection = () => {
    const [selectedButtons, setSelectedButtons] = useState([]);
+   const [savedData, setSavedData] = useState([]);
 
-   const handleButtonSelect = (buttonId) => {
-      // console.log('im clicked')
+   useEffect(() => {
+      const savedDataString = localStorage.getItem("selectedButtonsData");
+      if (savedDataString) {
+         const parsedData = JSON.parse(savedDataString);
+         setSavedData(parsedData);
+      }
+   }, []);
 
-      if (selectedButtons.includes(buttonId)) {
-         setSelectedButtons(selectedButtons.filter(id => id !== buttonId));
+   useEffect(() => {
+      if (savedData.length > 0 && selectedButtons.length === 0) {
+         setSelectedButtons(savedData);
+      }
+   }, [savedData]);
+
+   const handleButtonSelect = (pubname) => {
+      if (selectedButtons.includes(pubname)) {
+         setSelectedButtons(selectedButtons.filter(id => id !== pubname));
       } else if (selectedButtons.length < 4) {
-         setSelectedButtons([...selectedButtons, buttonId]);
+         setSelectedButtons([...selectedButtons, pubname]);
       }
    };
 
-  return [selectedButtons, handleButtonSelect];
+   return [selectedButtons, handleButtonSelect];
 }
 
 export default useButtonSelection;
+
+// [
+//    {
+//       category: "India",
+//       publishers: ["TOI", "HT", "CNBC", "NDTV"]
+//    },
+//    {
+//       category: "Sports",
+//       publishers: ["TOI", "HT", "CNBC", "NDTV"]
+//    }
+// ]

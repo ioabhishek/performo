@@ -5,10 +5,10 @@ import { PUB_CATEGORY } from '@/utils/constants';
 import useCategoryMapping from '@/hooks/useCategoryId';
 import { usePathname } from 'next/navigation'
 
-const CompareGrid = ({selectedButtons}) => {
+const CompareGrid = ({selectedButtons, savedData}) => {
    const [pubList, setPubList] = useState([]);
    const [uniquePublisherInfo, setUniquePublisherInfo] = useState([]);
-   const [savedData, setSavedData] = useState([]);
+   // const [savedData, setSavedData] = useState([]);
 
    useEffect(() => {
       fetchPubs();
@@ -40,13 +40,13 @@ const CompareGrid = ({selectedButtons}) => {
    const catgId = getCategoryId(match[1]);
    // console.log(catgId)
 
-   useEffect(() => {
-      const savedDataString = localStorage.getItem('selectedButtonsData');
-      if (savedDataString) {
-         const parsedData = JSON.parse(savedDataString);
-         setSavedData(parsedData);
-      }
-   }, []);
+   // useEffect(() => {
+   //    const savedDataString = localStorage.getItem('selectedButtonsData');
+   //    if (savedDataString) {
+   //       const parsedData = JSON.parse(savedDataString);
+   //       setSavedData(parsedData);
+   //    }
+   // }, []);
 
 
    return (
