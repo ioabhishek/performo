@@ -4,7 +4,6 @@ import styles from './button.module.css'
 const SelectButton = ({ pubname, selected, onSelect, setSavedData }) => {
 
    const handleClick = () => {
-      // setSavedData([])
       setSavedData(prevSavedData => prevSavedData.filter(item => item !== pubname));
       onSelect(pubname);
    };

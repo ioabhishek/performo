@@ -4,20 +4,22 @@ import SelectStrip from "@/components/selectStrip/SelectStrip";
 import CompareGrid from "@/components/compareGrid/CompareGrid";
 import NavbarMain from "@/components/newNavbar/NavbarMain";
 import useButtonSelection from "@/hooks/useButtonSelection";
+import { usePathname } from 'next/navigation';
 
 const Page = () => {
    const [selectedButtons, handleButtonSelect] = useButtonSelection();
    const [savedData, setSavedData] = useState([]);
 
+   const pathname = usePathname();
+   const match = pathname.match(/\/category\/(.+)/);
+
    useEffect(() => {
-      const savedDataString = localStorage.getItem("selectedButtonsData");
+      const savedDataString = localStorage.getItem("selectedButtons"+match[1]);
       if (savedDataString) {
          const parsedData = JSON.parse(savedDataString);
          setSavedData(parsedData);
       }
    }, []);
-
-   
 
    return (
       <>

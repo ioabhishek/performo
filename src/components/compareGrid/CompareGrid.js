@@ -8,7 +8,6 @@ import { usePathname } from 'next/navigation'
 const CompareGrid = ({selectedButtons, savedData}) => {
    const [pubList, setPubList] = useState([]);
    const [uniquePublisherInfo, setUniquePublisherInfo] = useState([]);
-   // const [savedData, setSavedData] = useState([]);
 
    useEffect(() => {
       fetchPubs();
@@ -32,22 +31,10 @@ const CompareGrid = ({selectedButtons, savedData}) => {
       setUniquePublisherInfo(uniqueInfo);
    }, [pubList]);
 
-
-   // Getting category id from hook
    const getCategoryId = useCategoryMapping(pubList);
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
    const catgId = getCategoryId(match[1]);
-   // console.log(catgId)
-
-   // useEffect(() => {
-   //    const savedDataString = localStorage.getItem('selectedButtonsData');
-   //    if (savedDataString) {
-   //       const parsedData = JSON.parse(savedDataString);
-   //       setSavedData(parsedData);
-   //    }
-   // }, []);
-
 
    return (
       <div className={styles.compare_grid}>

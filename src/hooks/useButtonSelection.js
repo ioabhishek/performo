@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 const useButtonSelection = () => {
    const [selectedButtons, setSelectedButtons] = useState([]);
    const [savedData, setSavedData] = useState([]);
 
+   const pathname = usePathname();
+   const match = pathname.match(/\/category\/(.+)/);
+
    useEffect(() => {
-      const savedDataString = localStorage.getItem("selectedButtonsData");
+      const savedDataString = localStorage.getItem("selectedButtons"+match[1]);
       if (savedDataString) {
          const parsedData = JSON.parse(savedDataString);
          setSavedData(parsedData);
@@ -30,14 +34,3 @@ const useButtonSelection = () => {
 }
 
 export default useButtonSelection;
-
-// [
-//    {
-//       category: "India",
-//       publishers: ["TOI", "HT", "CNBC", "NDTV"]
-//    },
-//    {
-//       category: "Sports",
-//       publishers: ["TOI", "HT", "CNBC", "NDTV"]
-//    }
-// ]
