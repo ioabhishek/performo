@@ -4,5 +4,7 @@ export const ARTS = "https://localhost/poc/api/all_article.php?token_key=@123abc
 export const ARTM = "&category_id=";
 export const ARTE = "&page_number=10&key=all_article_new";
 
+export const UPREFS = "https://localhost/poc/api/get_user_preference.php?token_key=@123abcd1366&category="
+export const UPREFE = "&key=user_preference"
 
-// https://localhost/poc/api/all_article.php?token_key=@123abcd1366&publisher_id=16&category_id=417066b1cb9840f3773da93ea390a9de&page_number=10&key=all_article_new
+export const UPREF_POST = "https://localhost/poc/api/save_publisher.php?token_key=@123abcd1366&"
