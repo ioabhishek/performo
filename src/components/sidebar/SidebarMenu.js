@@ -4,28 +4,23 @@ import MenuItem from './MenuItem';
 import styles from './sidebar.module.css';
 import { PUB_CATEGORY } from "../../utils/constants";
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation';
 
 const SidebarMenu = () => {
-  const pathname = usePathname()
-  
-  const [menuList, setMenuList] = useState([])
-
-
-const SidebarMenu = () => {
+  const pathname = usePathname();
   const [menuList, setMenuList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [json1,setjson]=useState([]);
+  const [json1, setJson] = useState([]);
   useEffect(() => {
+    const fetchCategory = async () => {
+      const data = await fetch(PUB_CATEGORY);
+      const json = await data.json();
+      setMenuList(json);
+      setJson(json);
+    }
     fetchCategory();
   }, []);
 
-  const fetchCategory = async () => {
-    const data = await fetch(PUB_CATEGORY);
-    const json = await data.json();
-    setMenuList(json);
-    setjson(json);
-  }
 
   const renderMenuItems = () => {
     const renderedCategories = [];
@@ -40,37 +35,32 @@ const SidebarMenu = () => {
     });
   };
 
-  const search = () => {
+  const filterMenuList = () => {
     if (searchQuery.trim() === '') {
-     
       setMenuList(json1);
     } else {
-    const filteredItems = menuList.filter(category => {
-      return category.category_name.toLowerCase().includes(searchQuery.toLowerCase());
-    });
-    setMenuList(filteredItems);
+      const filteredItems = json1.filter(category => {
+        return category.category_name.toLowerCase().includes(searchQuery.toLowerCase());
+      });
+      setMenuList(filteredItems);
+    }
   }
-  }
-  const clear = () => {
-    setSearchQuery('');
-    setMenuList(json1);
-  }
+
   return (
     <>
-    <div className={styles.main}>
-
-      <input
-        type="text"
-        placeholder="Search.."
-        name="search"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        className={styles.search}
-   
+      <div className={styles.menu_search}>
+        <input
+          type="text"
+          placeholder="Search category..."
+          name="search"
+          value={searchQuery}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            filterMenuList();
+          }}
+          className={styles.search}
         />
-        </div>
-      <button type="submit" onClick={search} className={styles.button}>Submit</button>
-      <button type="submit" onClick={clear} className={styles.button}>clear</button>
+      </div>
       <ul className={styles.menu_list}>
         <li className={pathname === '/' ? 'menu_link active' : 'menu_link'}>
           <Link href="/">Dashboard</Link>
