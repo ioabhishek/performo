@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import styles from "./selectStrip.module.css";
 import SelectButton from "@/components/button/SelectButton";
 import { PUB_CATEGORY } from "../../utils/constants";
 
-const SelectButtons = ({ selectedButtons, handleButtonSelect }) => {
+const SelectButtons = ({
+   selectedButtons,
+   handleButtonSelect,
+   savedData,
+   setSavedData,
+}) => {
    const [pubList, setPubList] = useState([]);
    const [uniquePublisherNames, setUniquePublisherNames] = useState([]);
 
@@ -18,7 +23,9 @@ const SelectButtons = ({ selectedButtons, handleButtonSelect }) => {
    };
 
    useEffect(() => {
-      const uniqueNames = Array.from(new Set(pubList.map(pub => pub.publisher_name)));
+      const uniqueNames = Array.from(
+         new Set(pubList.map((pub) => pub.publisher_name))
+      );
       setUniquePublisherNames(uniqueNames);
    }, [pubList]);
 
@@ -27,20 +34,19 @@ const SelectButtons = ({ selectedButtons, handleButtonSelect }) => {
          return (
             <SelectButton
                key={publisherName}
-               id={publisherName}
-               label={publisherName}
-               selected={selectedButtons.includes(publisherName)}
+               pubname={publisherName}
+               selected={
+                  selectedButtons.includes(publisherName) ||
+                  savedData.includes(publisherName)
+               }
                onSelect={() => handleButtonSelect(publisherName)}
+               setSavedData={setSavedData}
             />
          );
       });
    };
 
-   return (
-      <div className={styles.tab_strip}>
-         {renderMenuItems()}
-      </div>
-   );
+   return <div className={styles.tab_strip}>{renderMenuItems()}</div>;
 };
 
 export default SelectButtons;

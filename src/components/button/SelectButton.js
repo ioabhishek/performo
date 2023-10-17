@@ -1,14 +1,16 @@
 import React from 'react'
 import styles from './button.module.css'
 
-const SelectButton = ({ id, label, selected, onSelect }) => {
+const SelectButton = ({ pubname, selected, onSelect, setSavedData }) => {
+
    const handleClick = () => {
-      onSelect(id);
+      setSavedData(prevSavedData => prevSavedData.filter(item => item !== pubname));
+      onSelect(pubname);
    };
 
    return (
-      <button className={`${styles.sel_btn} ${selected ? styles.selected : ''}`} onClick={handleClick}>{label}</button>
+      <button className={`${styles.sel_btn} ${selected ? styles.selected : ''}`} onClick={handleClick}>{pubname}</button>
    )
 }
 
-export default SelectButton
+export default SelectButton  

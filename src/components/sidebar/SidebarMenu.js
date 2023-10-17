@@ -3,7 +3,13 @@ import React, { useEffect, useState } from 'react';
 import MenuItem from './MenuItem';
 import styles from './sidebar.module.css';
 import { PUB_CATEGORY } from "../../utils/constants";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation'
 
+const SidebarMenu = () => {
+  const pathname = usePathname()
+  
+  const [menuList, setMenuList] = useState([])
 
 
 const SidebarMenu = () => {
@@ -66,6 +72,9 @@ const SidebarMenu = () => {
       <button type="submit" onClick={search} className={styles.button}>Submit</button>
       <button type="submit" onClick={clear} className={styles.button}>clear</button>
       <ul className={styles.menu_list}>
+        <li className={pathname === '/' ? 'menu_link active' : 'menu_link'}>
+          <Link href="/">Dashboard</Link>
+        </li>
         {renderMenuItems()}
       </ul>
     </>
