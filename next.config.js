@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+   webpack: (config) => {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@': path.resolve(__dirname, './'),
+      };
+  
+      return config;
+   },
    images: {
       domains: ["images.news18.com", "i.gadgets360cdn.com", "c.ndtvimg.com", "www.livemint.com", "i.ndtvimg.com",],
    },
