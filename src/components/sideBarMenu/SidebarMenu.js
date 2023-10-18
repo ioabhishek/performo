@@ -23,17 +23,27 @@ const SidebarMenu = () => {
   }, []);
 
   const renderMenuItems = () => {
+    const sortedMenuList = [...menuList].sort((a, b) => {
+      return a.category_name.localeCompare(b.category_name);
+    });
+  
     const renderedCategories = [];
-
-    return menuList.map((category, index) => {
+  
+    return sortedMenuList.map((category, index) => {
       if (renderedCategories.includes(category.category_name)) {
         return null;
       } else {
         renderedCategories.push(category.category_name);
-        return <MenuItem key={index} path={'/category/' + category.category_name} name={category.category_name} />;
+        return (
+          <MenuItem
+            key={index}
+            path={'/category/' + category.category_name}
+            name={category.category_name}
+          />
+        );
       }
     });
-  };
+  };  
 
   const filterMenuList = () => {
     if (searchQuery.trim() === '') {
