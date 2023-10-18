@@ -12,7 +12,8 @@ function Button({selectedButtons}) {
          category: match[1],
          sources: selectedButtons.join(',')
       };
-      const url = `https://localhost/poc/api/save_publisher.php?token_key=@123abcd1366&userid=${data.userid}&category=${data.category}&sources=${data.sources}`;
+
+      const url = `https://performo.in/api/save_publisher.php?token_key=@123abcd1366&userid=${data.userid}&category=${data.category}&sources=${data.sources}`;
     
       const response = await fetch(url, {
          method: 'POST',

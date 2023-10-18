@@ -1,51 +1,54 @@
 import React, { useState, useEffect } from 'react'
 import styles from './compareGrid.module.css'
 import CompareWrap from './CompareWrap'
-import { PUB_CATEGORY } from '@/utils/constants';
 import useCategoryMapping from '@/hooks/useCategoryId';
 import { usePathname } from 'next/navigation'
+import { PUB_CATEGORY } from '@/utils/constants';
+import { PUBLISHER, CATEGORY } from '@/utils/constants';
+
 
 const CompareGrid = ({selectedButtons, savedData}) => {
    const [pubList, setPubList] = useState([]);
-   const [uniquePublisherInfo, setUniquePublisherInfo] = useState([]);
+   const [catgList, setCatgList] = useState([]);
+   
 
    useEffect(() => {
+      const fetchPubs = async () => {
+         const data = await fetch(PUBLISHER);
+         const json = await data.json();
+         setPubList(json);
+      };
       fetchPubs();
+
+      const fetchCatg = async () => {
+         const data = await fetch(CATEGORY);
+         const json = await data.json();
+         setCatgList(json);
+      };
+      fetchCatg();
    }, []);
 
-   const fetchPubs = async () => {
-      const data = await fetch(PUB_CATEGORY);
-      const json = await data.json();
-      setPubList(json);
-   };
 
-   useEffect(() => {
-      const uniqueInfo = Array.from(new Set(pubList.map(pub => pub.publisher_id))).map(publisherId => {
-         const pub = pubList.find(pub => pub.publisher_id === publisherId);
-         return {
-            publisher_name: pub.publisher_name,
-            publisher_id: pub.publisher_id,
-            category_id: pub.category_id
-         };
-      });
-      setUniquePublisherInfo(uniqueInfo);
-   }, [pubList]);
-
-   const getCategoryId = useCategoryMapping(pubList);
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
-   const catgId = getCategoryId(match[1]);
+   let categoryId;
 
+   catgList.forEach(category => {
+      if (category.category_name === match[1]) {
+         categoryId = category.category_id;
+      }
+   });
+  
    return (
       <div className={styles.compare_grid}>
          {
-            uniquePublisherInfo.map((uniquePublisher) => (
+            pubList.map((publisher) => (
                <CompareWrap
-                  key={uniquePublisher.publisher_id}
-                  publisher={uniquePublisher.publisher_name}
-                  publisherid={uniquePublisher.publisher_id}
-                  categoryid={catgId} 
-                  selected={selectedButtons.includes(uniquePublisher.publisher_name) || savedData.includes(uniquePublisher.publisher_name)}
+                  key={publisher.publisher_id}
+                  publisher={publisher.publisher_name}
+                  publisherid={publisher.publisher_id}
+                  categoryid={categoryId} 
+                  selected={selectedButtons.includes(publisher.publisher_name) || savedData.includes(publisher.publisher_name)}
                />
             ))
          }

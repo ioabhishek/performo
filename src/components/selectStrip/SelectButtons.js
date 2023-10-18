@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./selectStrip.module.css";
 import SelectButton from "@/components/button/SelectButton";
-import { PUB_CATEGORY } from "../../utils/constants";
+import { PUBLISHER } from "../../utils/constants";
 
 const SelectButtons = ({
    selectedButtons,
@@ -13,14 +13,13 @@ const SelectButtons = ({
    const [uniquePublisherNames, setUniquePublisherNames] = useState([]);
 
    useEffect(() => {
+      const fetchPubs = async () => {
+         const data = await fetch(PUBLISHER);
+         const json = await data.json();
+         setPubList(json);
+      };
       fetchPubs();
    }, []);
-
-   const fetchPubs = async () => {
-      const data = await fetch(PUB_CATEGORY);
-      const json = await data.json();
-      setPubList(json);
-   };
 
    useEffect(() => {
       const uniqueNames = Array.from(

@@ -4,18 +4,24 @@ import styles from "./compareGrid.module.css";
 import CompareButtonCard from "./CompareButtonCard";
 
 const CompareCard = ({ id, title, content, image }) => {
+   // Define the default image source
+   const placeholderImg = "/placeholder.png";
+
+   // Determine the image source based on the value of the 'image' prop
+   const imageSrc = image === "Default_Article_JPG" ? placeholderImg : image;
+
    return (
       <div className={styles.compare_card}>
          <Image
             className={styles.compare_card_img}
-            src={image}
+            src={imageSrc}
             alt="facebook"
             width={300}
             height={200}
          />
          <h3 className={styles.compare_card_ttl}>{title}</h3>
          <h4 className={styles.compare_card_sttl}>{content}</h4>
-         <CompareButtonCard />
+         <CompareButtonCard id={id} />
          <div className={styles.rank_no}>1</div>
       </div>
    );

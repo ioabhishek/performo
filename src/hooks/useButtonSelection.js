@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { UPREFS, UPREFE } from "@/utils/constants";
+import { UPREFS } from "@/utils/constants";
 
 const useButtonSelection = () => {
    const [selectedButtons, setSelectedButtons] = useState([]);
@@ -12,7 +12,7 @@ const useButtonSelection = () => {
    useEffect(() => {
       const fetchPref = async () => {
          try {
-            const data = await fetch(UPREFS + match[1] + "&userid=" + 1 + UPREFE);
+            const data = await fetch(`${UPREFS}${match[1]}&userid=1`);
             if (data.ok) {
                const json = await data.json();
    

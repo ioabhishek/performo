@@ -1,12 +1,24 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styles from './compareGrid.module.css';
 
-const CompareAuthor = () => {
+const CompareAuthor = ({id}) => {
+   const [authorData, setAuthorData] = useState([]);
+
+   const url = `https://performo.in/api/get_author.php?token_key=@123abcd1366&article_id=${id}&key=author__${id}`
+
+   useEffect(() => {
+      const fetchCategory = async () => {
+        const data = await fetch(url);
+        const json = await data.json();
+        setAuthorData(json);
+      }
+      fetchCategory();
+   }, []);
+
    return (
       <div className={styles.compare_tab_itm}>
-         <h4>About Seller</h4>
-         <span>Powerhouse91Brands 4.5</span>
-         <p>Powerhouse91 was founded with a single mission: to help ecommerce brands achieve their true potential by delight in the lives of millions of customers. </p>
+         <h4>Article Author</h4>
+         <span>{authorData.author}</span>
       </div>
    )
 }

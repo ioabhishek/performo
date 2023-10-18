@@ -1,16 +1,30 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styles from './compareGrid.module.css';
 
-const CompareKeyword = () => {
+const CompareKeyword = ({id}) => {
+   const [keywordData, setKeywordData] = useState([]);
+
+   const url = `https://performo.in/api/article_keywords.php?token_key=@123abcd1366&article_id=${id}&key=keyword__${id}`
+
+   useEffect(() => {
+      const fetchCategory = async () => {
+        const data = await fetch(url);
+        const json = await data.json();
+        setKeywordData(json[0].keyword_name.split(','));
+      }
+      fetchCategory();
+   }, []);
+
+   console.log(keywordData ? true : false)
+
    return (
       <div className={styles.compare_tab_itm}>
-         <h4>Search Keywords</h4>
-         <span>Manufacturing</span>
-         <span>Tooling</span>
-         <span>Robotics</span>
-         <span>Steel</span>
-         <span>Engineering</span>
-         <span>Servicing</span>
+         <h4>Article Keywords</h4>
+         {
+            keywordData.map((keyword, index) => (
+               <span key={index}>{keyword}</span>
+            ))
+         }
       </div>
    )
 }

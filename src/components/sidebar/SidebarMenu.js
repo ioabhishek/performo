@@ -1,26 +1,26 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import MenuItem from './MenuItem';
 import styles from './sidebar.module.css';
-import { PUB_CATEGORY } from "../../utils/constants";
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { CATEGORY } from '../../utils/constants';
 
 const SidebarMenu = () => {
   const pathname = usePathname();
   const [menuList, setMenuList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [json1, setJson] = useState([]);
+
   useEffect(() => {
     const fetchCategory = async () => {
-      const data = await fetch(PUB_CATEGORY);
+      const data = await fetch(CATEGORY);
       const json = await data.json();
       setMenuList(json);
       setJson(json);
     }
     fetchCategory();
   }, []);
-
 
   const renderMenuItems = () => {
     const renderedCategories = [];

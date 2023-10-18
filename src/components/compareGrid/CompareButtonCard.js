@@ -5,10 +5,11 @@ import CompareHistory from './CompareHistory';
 import CompareKeyword from './CompareKeyword';
 import CompareAuthor from './CompareAuthor';
 
-const CompareButtonCard = () => {
+const CompareButtonCard = ({id}) => {
+
    const [selectedComponentIndex, setSelectedComponentIndex] = useState(null);
    const [buttonInfo, setButtonInfo] = useState([
-      { label: 'History' },
+      { label: 'Ranking' },
       { label: 'Keyword' },
       { label: 'Author' }
    ]);
@@ -39,9 +40,9 @@ const CompareButtonCard = () => {
             )}
          </div>
          <div className={styles.compare_tab_wrp}>
-            {selectedComponentIndex === 0 && <CompareHistory />}
-            {selectedComponentIndex === 1 && <CompareKeyword />}
-            {selectedComponentIndex === 2 && <CompareAuthor />}
+            {selectedComponentIndex === 0 && <CompareHistory id = {id}/>}
+            {selectedComponentIndex === 1 && <CompareKeyword id = {id}/>}
+            {selectedComponentIndex === 2 && <CompareAuthor id = {id}/>}
          </div>
       </>
    );

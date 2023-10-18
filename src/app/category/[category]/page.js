@@ -5,7 +5,7 @@ import CompareGrid from "@/components/compareGrid/CompareGrid";
 import NavbarMain from "@/components/newNavbar/NavbarMain";
 import useButtonSelection from "@/hooks/useButtonSelection";
 import { usePathname } from 'next/navigation';
-import { UPREFS, UPREFE } from "@/utils/constants";
+import { UPREFS } from "@/utils/constants";
 
 const Page = () => {
    const [selectedButtons, handleButtonSelect] = useButtonSelection();
@@ -17,7 +17,7 @@ const Page = () => {
    useEffect(() => {
       const fetchPref = async () => {
          try {
-            const data = await fetch(UPREFS + match[1] + "&userid=" + 1 + UPREFE);
+            const data = await fetch(`${UPREFS}${match[1]}&userid=1`);
             if (data.ok) {
                const json = await data.json();
    
