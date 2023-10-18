@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import styles from './compareGrid.module.css'
 import CompareWrap from './CompareWrap'
-import useCategoryMapping from '@/hooks/useCategoryId';
 import { usePathname } from 'next/navigation'
-import { PUB_CATEGORY } from '@/utils/constants';
 import { PUBLISHER, CATEGORY } from '@/utils/constants';
-
 
 const CompareGrid = ({selectedButtons, savedData}) => {
    const [pubList, setPubList] = useState([]);
    const [catgList, setCatgList] = useState([]);
    
-
    useEffect(() => {
       const fetchPubs = async () => {
          const data = await fetch(PUBLISHER);
@@ -27,7 +23,6 @@ const CompareGrid = ({selectedButtons, savedData}) => {
       };
       fetchCatg();
    }, []);
-
 
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);

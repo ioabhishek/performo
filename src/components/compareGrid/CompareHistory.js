@@ -4,7 +4,7 @@ import styles from './compareGrid.module.css';
 const CompareHistory = ({id}) => {
    const [rankingData, setRankingData] = useState([]);
 
-   const url = `https://performo.in/api/article_ranking.php?token_key=@123abcd1366&article_id=${id}&key=ranking__${id}`
+   const url = `https://performo.in/api/article_ranking.php?token_key=@123abcd1366&article_id=${id}`
 
    useEffect(() => {
       const fetchCategory = async () => {

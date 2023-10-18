@@ -4,7 +4,7 @@ import styles from './compareGrid.module.css';
 const CompareKeyword = ({id}) => {
    const [keywordData, setKeywordData] = useState([]);
 
-   const url = `https://performo.in/api/article_keywords.php?token_key=@123abcd1366&article_id=${id}&key=keyword__${id}`
+   const url = `https://performo.in/api/article_keywords.php?token_key=@123abcd1366&article_id=${id}`
 
    useEffect(() => {
       const fetchCategory = async () => {
@@ -14,8 +14,6 @@ const CompareKeyword = ({id}) => {
       }
       fetchCategory();
    }, []);
-
-   console.log(keywordData ? true : false)
 
    return (
       <div className={styles.compare_tab_itm}>
