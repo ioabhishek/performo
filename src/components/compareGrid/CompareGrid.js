@@ -26,10 +26,11 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
 
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
+   const decodedParam = decodeURIComponent(match[1]);
 
    useEffect(() => {
       catgList.forEach((category) => {
-         if (category.category_name === match[1]) {
+         if (category.category_name === decodedParam) {
             setCategoryId(category.category_id);
          }
       });
