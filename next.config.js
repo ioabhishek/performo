@@ -11,7 +11,7 @@ const nextConfig = {
       return config;
    },
    images: {
-      domains: ["img.jagranjosh.com", "images.news18.com", "i.gadgets360cdn.com", "c.ndtvimg.com", "www.livemint.com", "i.ndtvimg.com"],
+      domains: ["edata.ndtv.com","img.jagranjosh.com", "images.news18.com", "i.gadgets360cdn.com", "c.ndtvimg.com", "www.livemint.com", "i.ndtvimg.com"],
    },
 }
 

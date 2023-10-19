@@ -10,7 +10,7 @@ const SelectButtons = ({
    setSavedData,
 }) => {
    const [pubList, setPubList] = useState([]);
-   const [uniquePublisherNames, setUniquePublisherNames] = useState([]);
+   // const [uniquePublisherNames, setUniquePublisherNames] = useState([]);
 
    useEffect(() => {
       const fetchPubs = async () => {
@@ -21,24 +21,24 @@ const SelectButtons = ({
       fetchPubs();
    }, []);
 
-   useEffect(() => {
-      const uniqueNames = Array.from(
-         new Set(pubList.map((pub) => pub.publisher_name))
-      );
-      setUniquePublisherNames(uniqueNames);
-   }, [pubList]);
+   // useEffect(() => {
+   //    const uniqueNames = Array.from(
+   //       new Set(pubList.map((pub) => pub.publisher_name))
+   //    );
+   //    setUniquePublisherNames(uniqueNames);
+   // }, [pubList]);
 
    const renderMenuItems = () => {
-      return uniquePublisherNames.map((publisherName) => {
+      return pubList.map((publisher) => {
          return (
             <SelectButton
-               key={publisherName}
-               pubname={publisherName}
+               key={publisher.publisher_name}
+               pubname={publisher.publisher_name}
                selected={
-                  selectedButtons.includes(publisherName) ||
-                  savedData.includes(publisherName)
+                  selectedButtons.includes(publisher.publisher_name) ||
+                  savedData.includes(publisher.publisher_name)
                }
-               onSelect={() => handleButtonSelect(publisherName)}
+               onSelect={() => handleButtonSelect(publisher.publisher_name)}
                setSavedData={setSavedData}
             />
          );
