@@ -1,5 +1,3 @@
-export const PUB_CATEGORY = "https://localhost/poc/api/publisher_category.php?token_key=@123abcd1366&key=publisher_category_publisher";
-
 export const PUBLISHER = "https://performo.in/api/get_publisher.php?token_key=@123abcd1366";
 export const CATEGORY = "https://performo.in/api/get_category.php?token_key=@123abcd1366";
 
