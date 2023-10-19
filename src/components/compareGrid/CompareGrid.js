@@ -38,7 +38,9 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
 
    if (categoryId === null) {
       return (
-         <h1>Loading...</h1>
+         <div className='loading_wrap'>
+            <h2 className='loading_text'>Loading...</h2>
+         </div>
       ); 
    }
 

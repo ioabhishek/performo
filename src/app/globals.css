@@ -32,3 +32,6 @@ li {
 
 .main_content { padding-left: 260px; padding-top: 0!important; transition: .5s; position: relative; min-height: 100vh; overflow: hidden; }
 .main_wrap { padding: 20px 20px; }
+
+.loading_wrap { display: flex; justify-content: center; align-items: center; width: 100%;}
+.loading_text { text-align: center; color: #666666;}

@@ -56,6 +56,14 @@ const SidebarMenu = () => {
     }
   }
 
+  if (menuList.length === 0) {
+    return (
+      <div className='loading_wrap'>
+        <h2 className='loading_text'>Loading...</h2>
+      </div>
+    ); 
+  }
+
   return (
     <>
       <div className={styles.menu_search}>
