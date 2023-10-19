@@ -2,7 +2,6 @@
 import React, {useState, useEffect} from "react";
 import SelectStrip from "@/components/selectStrip/SelectStrip";
 import CompareGrid from "@/components/compareGrid/CompareGrid";
-import NavbarMain from "@/components/newNavbar/NavbarMain";
 import useButtonSelection from "@/hooks/useButtonSelection";
 import { usePathname } from 'next/navigation';
 import { UPREFS } from "@/utils/constants";
@@ -29,7 +28,7 @@ const Page = () => {
                   if (item.user_id === "1" && !encounteredUserIds[item.user_id]) {
                      encounteredUserIds[item.user_id] = true;
                      // Split the comma-separated values into an array
-                     return item.publisher_name.split(',') //.map(name => name.trim());
+                     return item.publisher_name.split(',')
                   }
                   return null;
                }).filter(Boolean); // Remove null values from the array
@@ -47,27 +46,20 @@ const Page = () => {
       }
    
       fetchPref();
-   }, []);
-
-   // console.log(savedData)
+   });
 
    return (
       <>
-         <div className="main_content">
-            <div className="main_wrap">
-               <NavbarMain />
-               <SelectStrip
-                  selectedButtons={selectedButtons}
-                  handleButtonSelect={handleButtonSelect}
-                  savedData={savedData}
-                  setSavedData={setSavedData}
-               />
-               <CompareGrid
-                  selectedButtons={selectedButtons}
-                  savedData={savedData}
-               />
-            </div>
-         </div>
+         <SelectStrip
+            selectedButtons={selectedButtons}
+            handleButtonSelect={handleButtonSelect}
+            savedData={savedData}
+            setSavedData={setSavedData}
+         />
+         <CompareGrid
+            selectedButtons={selectedButtons}
+            savedData={savedData}
+         />
       </>
    );
 };
