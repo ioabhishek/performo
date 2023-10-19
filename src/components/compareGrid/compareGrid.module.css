@@ -1,4 +1,4 @@
-.compare_grid { display: grid; grid-template-columns: repeat(4,1fr); gap:20px;}
+.compare_grid { display: grid; grid-template-columns: repeat(4,1fr); gap:10px;}
 
 .compare_wrap { display: none; height: fit-content; padding: 10px; border-radius: 16px; border: 2px dashed #b7b7b7; position: relative;} 
 .compare_wrap.visible { display: block; }

@@ -3,4 +3,4 @@
 .tab_strip { min-height: 43px; width: 100%; width: fit-content; display: flex; flex-wrap: wrap; align-items: center; gap: 5px; padding: 5px; background-color: #ffffff; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04); border-radius: 10px; margin-bottom: 5px; }
 .tstrip_con span { font: 400 12px/14px 'Inter', sans-serif; color: #999999; }
 
-.compare_grid { display: grid; grid-template-columns: repeat(4,1fr); gap:20px;}
+.compare_grid { display: grid; grid-template-columns: repeat(4,1fr); gap:10px;}
