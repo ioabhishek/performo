@@ -20,7 +20,11 @@ const Page = () => {
                throw new Error(`Failed to fetch data. Status: ${data.status}`);
             }
             const json = await data.json();
-            setSavedData(json[0].publisher_name.split(','));
+            if (Array.isArray(json) && json.length === 0) {
+               setSavedData([]);
+            } else {
+               setSavedData(json[0].publisher_name.split(','));
+            }
          } catch (error) {
             console.error("An error occurred:", error);
          }

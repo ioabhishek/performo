@@ -4,10 +4,7 @@ import styles from "./compareGrid.module.css";
 import CompareButtonCard from "./CompareButtonCard";
 
 const CompareCard = ({ id, title, content, image }) => {
-   // Define the default image source
    const placeholderImg = "/placeholder.png";
-
-   // Determine the image source based on the value of the 'image' prop
    const imageSrc = image === "Default_Article_JPG" ? placeholderImg : image;
 
    return (

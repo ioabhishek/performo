@@ -12,23 +12,16 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected }) => {
       const fetchArticles = async () => {
          try {
             const data = await fetch(`${ARTS}${publisherid}${ARTM}${categoryid}${ARTE}`);
-     
             if (!data.ok) {
-               // Handle non-OK responses here, e.g., by throwing an error or setting an error state
                throw new Error(`Failed to fetch data (status code: ${data.status})`);
             }
-     
             const json = await data.json();
-            // console.log(json);
-   
-            // Check if the response is an empty array and set the state accordingly
             if (Array.isArray(json) && json.length === 0) {
                setArticles([]);
             } else {
                setArticles(json);
             }
          } catch (error) {
-            // Handle the error here, e.g., by logging or displaying an error message
             console.error('An error occurred while fetching data:', error);
          }
       };
