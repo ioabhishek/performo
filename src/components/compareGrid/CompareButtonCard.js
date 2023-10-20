@@ -16,29 +16,25 @@ const CompareButtonCard = ({id}) => {
       { label: 'Author' }
    ]);
 
-   console.log(id)
-
-   // useEffect(() => {
-   //    const fetchRanking = async () => {
-   //       try {
-   //          const data = await fetch(`${RANKING}${id}`);
-   //          if (!data.ok) {
-   //             throw new Error(`HTTP error! Status: ${data.status}`);
-   //          }
-   //          const json = await data.json();
-   //          if (json.length === 0) {
-   //             setLatestRanking(0);
-   //          } else {
-   //             const lastElement = json[json.length - 1];
-   //             setLatestRanking(lastElement);
-   //          }
-   //       } catch (error) {
-   //          console.error("An error occurred while fetching data:", error);
-   //       }
-   //    };
-    
-   //    fetchRanking();
-   // }, [id]);
+   useEffect(() => {
+      const fetchRanking = async () => {
+         try {
+            const data = await fetch(`${RANKING}${id}`);
+            if (!data.ok) {
+               throw new Error(`HTTP error! Status: ${data.status}`);
+            }
+            const json = await data.json();
+            if(json.length === 0) {
+               setLatestRanking(0)
+            } else {
+               setLatestRanking(json[0].rank)
+            }
+         } catch (error) {
+            console.error("An error occurred while fetching data:", error);
+         }
+      }
+      fetchRanking()
+   }, [id]);
 
    const handleButtonClick = (buttonIndex) => {
       if (selectedComponentIndex === buttonIndex) {
@@ -69,7 +65,7 @@ const CompareButtonCard = ({id}) => {
             {selectedComponentIndex === 1 && <CompareKeyword id = {id}/>}
             {selectedComponentIndex === 2 && <CompareAuthor id = {id}/>}
          </div>
-         <div className={styles.rank_no}>0</div>
+         <div className={styles.rank_no}>{latestRanking}</div>
       </>
    );
 };
