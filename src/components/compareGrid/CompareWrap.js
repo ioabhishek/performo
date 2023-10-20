@@ -41,6 +41,8 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected }) => {
                   content={article.title}
                   image={article.mediaurl}
                   arturl={article.link}
+                  author={article.author}
+                  pubdate={article.pubdate}
                />
             ))
          }

@@ -13,7 +13,6 @@ const CompareButtonCard = ({id}) => {
    const [buttonInfo, setButtonInfo] = useState([
       { label: 'Ranking' },
       { label: 'Keyword' },
-      { label: 'Author' }
    ]);
 
    useEffect(() => {
@@ -63,7 +62,6 @@ const CompareButtonCard = ({id}) => {
          <div className={styles.compare_tab_wrp}>
             {selectedComponentIndex === 0 && <CompareRanking id = {id} />}
             {selectedComponentIndex === 1 && <CompareKeyword id = {id}/>}
-            {selectedComponentIndex === 2 && <CompareAuthor id = {id}/>}
          </div>
          <div className={styles.rank_no}>{latestRanking}</div>
       </>
