@@ -1,44 +1,42 @@
 import React, {useState, useEffect} from 'react'
 import styles from './compareGrid.module.css';
-import { RANKING } from '@/utils/constants';
+import LineChart from '@/utils/LineChart';
 
-const CompareRanking = ({id}) => {
-   const [rankingData, setRankingData] = useState([]);
+const CompareRanking = ({ ranking }) => {
 
-   useEffect(() => {
-      const fetchRanking = async () => {
-         try {
-            const data = await fetch(`${RANKING}${id}`);
-            if (!data.ok) {
-               throw new Error(`HTTP error! Status: ${data.status}`);
-            }
-            const json = await data.json();
-            setRankingData(json);
-         } catch (error) {
-            console.error("An error occurred while fetching data:", error);
-         }
+   const formattedRankingData = ranking.map((data) => {
+      const rankDate = new Date(data.rank_datetime);
+      const day = rankDate.getDate().toString();
+      return {
+         rank: data.rank,
+         rank_datetime: day,
       };
-    
-      fetchRanking();
-   }, [id]);
-    
+   });
 
-   if (rankingData.length === 0) {
-      return (
-         <div className={styles.compare_tab_itm}>
-            <span className='loading_text'>No data...</span>
-         </div>
-      ); 
-   }
-
+   const [rankingData, setRankingData] = useState({
+      labels: formattedRankingData.map((data) => data.rank_datetime),
+      datasets: [
+         {
+            label: "Article Ranking",
+            data: formattedRankingData.map((data) => data.rank),
+            backgroundColor: ["#e7e7ff"],
+            borderColor: "#696cff",
+            borderWidth: 1.5,
+            tension: 0.4,
+            fill: true,
+         },
+      ],
+      options: {
+         legend: {
+           display: false
+         }
+      },
+      responsive: true
+   });
+   
    return (
       <div className={styles.compare_tab_itm}>
-         <h4>Article Ranking</h4>
-         {
-            rankingData.map((ranking, index) => (
-               <span key={index}>{ranking.rank}</span>
-            ))
-         }
+         <LineChart chartData={rankingData} />
       </div>
    )
 }
