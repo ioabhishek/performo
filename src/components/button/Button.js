@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import styles from './button.module.css'
 import { usePathname } from 'next/navigation';
 
@@ -36,7 +37,14 @@ function Button({selectedButtons}) {
    };
 
    return (
-      <div className={styles.button} onClick={handleSaveClick}>Save</div>
+      <div className={styles.button} onClick={handleSaveClick}>
+         <Image
+            src="/save.svg"
+            alt="save"
+            width={20}
+            height={20}
+         />
+      </div>
    )
 }
 

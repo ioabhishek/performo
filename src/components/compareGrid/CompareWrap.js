@@ -27,7 +27,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected }) => {
       };
    
       fetchArticles();
-   }, []);
+   }, []);  
 
    return (
       <div className={`${styles.compare_wrap} ${selected ? styles.visible : ''}`}>
@@ -40,6 +40,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected }) => {
                   title={article.title}
                   content={article.title}
                   image={article.mediaurl}
+                  arturl={article.link}
                />
             ))
          }

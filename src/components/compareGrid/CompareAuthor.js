@@ -1,19 +1,37 @@
 import React, {useState, useEffect} from 'react'
 import styles from './compareGrid.module.css';
+import { AUTHOR } from '@/utils/constants';
 
 const CompareAuthor = ({id}) => {
    const [authorData, setAuthorData] = useState([]);
 
-   const url = `https://performo.in/api/get_author.php?token_key=@123abcd1366&article_id=${id}`
-
    useEffect(() => {
       const fetchCategory = async () => {
-        const data = await fetch(url);
-        const json = await data.json();
-        setAuthorData(json);
+         try {
+            const data = await fetch(`${AUTHOR}${id}`);
+            if (!data.ok) {
+               throw new Error(`Network response was not ok (status: ${data.status})`);
+            }
+            const json = await data.json();
+            setAuthorData(json);
+         } catch (error) {
+            console.error("An error occurred while fetching data:", error);
+         }
       }
+    
       fetchCategory();
-   }, []);
+   }, [id]);
+    
+
+   if (authorData.length === 0) {
+      return (
+         <div className={styles.compare_tab_itm}>
+            <span className='loading_text'>No data...</span>
+         </div>
+      ); 
+   }
+
+   // console.log(authorData)
 
    return (
       <div className={styles.compare_tab_itm}>
