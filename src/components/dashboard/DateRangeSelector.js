@@ -146,7 +146,6 @@ function DateRangeSelector() {
                   if (values && values.length > 1) {
                     const startDate = values[0].format("YYYY/MM/DD");
                     const endDate = values[1].format("YYYY/MM/DD");
-                    // console.log(startDate, endDate);
                     setDate(
                       "from" + " " + startDate + " " + "to" + " " + endDate
                     );

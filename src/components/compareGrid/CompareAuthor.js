@@ -31,8 +31,6 @@ const CompareAuthor = ({id}) => {
       ); 
    }
 
-   // console.log(authorData)
-
    return (
       <div className={styles.compare_tab_itm}>
          <h4>Article Author</h4>

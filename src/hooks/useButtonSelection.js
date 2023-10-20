@@ -43,8 +43,6 @@ const useButtonSelection = () => {
    
       fetchPref();
    }, []);
-   
-   // console.log(savedData)
 
    useEffect(() => {
       if (savedData.length > 0 && selectedButtons.length === 0) {

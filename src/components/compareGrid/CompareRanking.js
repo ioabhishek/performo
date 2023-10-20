@@ -31,8 +31,6 @@ const CompareRanking = ({id}) => {
       ); 
    }
 
-   console.log(rankingData)
-
    return (
       <div className={styles.compare_tab_itm}>
          <h4>Article Ranking</h4>
