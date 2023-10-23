@@ -7,15 +7,20 @@ import { ARTS, ARTM, ARTE } from "@/utils/constants";
 const CompareWrap = ({ publisher, publisherid, categoryid, selected }) => {
 
    const [articles, setArticles] = useState([]);
+   const [loadingTime, setLoadingTime] = useState(null);
 
    useEffect(() => {
       const fetchArticles = async () => {
          try {
+            const startTime = performance.now(); // Record start time
             const data = await fetch(`${ARTS}${publisherid}${ARTM}${categoryid}${ARTE}`);
             if (!data.ok) {
                throw new Error(`Failed to fetch data (status code: ${data.status})`);
             }
             const json = await data.json();
+            const endTime = performance.now(); // Record end time
+            setLoadingTime(endTime - startTime); // Calculate and set loading time
+
             if (Array.isArray(json) && json.length === 0) {
                setArticles([]);
             } else {
@@ -32,6 +37,11 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected }) => {
    return (
       <div className={`${styles.compare_wrap} ${selected ? styles.visible : ''}`}>
          <CompareLabel publisher={publisher} />
+         <div>
+            {loadingTime !== null && (
+               <p>Data loaded in {loadingTime.toFixed(2)} ms</p>
+            )}
+         </div>
          {
             articles.slice(0,5).map((article, index) => (
                <CompareCard

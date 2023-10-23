@@ -21,7 +21,6 @@ const CompareAuthor = ({id}) => {
     
       fetchCategory();
    }, [id]);
-    
 
    if (authorData.length === 0) {
       return (
