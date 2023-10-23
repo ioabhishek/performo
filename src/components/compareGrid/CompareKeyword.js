@@ -5,8 +5,6 @@ import { KEYWORD } from '@/utils/constants';
 const CompareKeyword = ({id}) => {
    const [keywordData, setKeywordData] = useState([]);
 
-   // const [kw, setKw] = useState([]);
-
    // useEffect(() => {
    //    const fetchCategory = async () => {
    //       try {
@@ -37,41 +35,39 @@ const CompareKeyword = ({id}) => {
       fetchkw();
    }, []);
 
-   // console.log(kw)
-
    // dummy keyword
-   const dummyKeyword = [
-      {
-         "keyword_name": "bollywood",
-         "keywordfirstseendate": "2023-10-19 06:34:13",
-         "keywordlastseendate": null
-      },
-      {
-         "keyword_name": "katrina kaif",
-         "keywordfirstseendate": "2023-10-19 06:34:14",
-         "keywordlastseendate": "2023-10-19 10:47:59"
-      },
-      {
-         "keyword_name": "tiger 3",
-         "keywordfirstseendate": "2023-10-19 06:34:14",
-         "keywordlastseendate": null
-      },
-      {
-         "keyword_name": "aditya chopra",
-         "keywordfirstseendate": "2023-10-19 06:34:13",
-         "keywordlastseendate": null
-      },
-      {
-         "keyword_name": "salman khan",
-         "keywordfirstseendate": "2023-10-19 06:34:14",
-         "keywordlastseendate": null
-      },
-      {
-         "keyword_name": "yash raj films",
-         "keywordfirstseendate": "2023-10-19 06:34:14",
-         "keywordlastseendate": null
-      }
-   ]
+   // const dummyKeyword = [
+   //    {
+   //       "keyword_name": "bollywood",
+   //       "keywordfirstseendate": "2023-10-19 06:34:13",
+   //       "keywordlastseendate": null
+   //    },
+   //    {
+   //       "keyword_name": "katrina kaif",
+   //       "keywordfirstseendate": "2023-10-19 06:34:14",
+   //       "keywordlastseendate": "2023-10-19 10:47:59"
+   //    },
+   //    {
+   //       "keyword_name": "tiger 3",
+   //       "keywordfirstseendate": "2023-10-19 06:34:14",
+   //       "keywordlastseendate": null
+   //    },
+   //    {
+   //       "keyword_name": "aditya chopra",
+   //       "keywordfirstseendate": "2023-10-19 06:34:13",
+   //       "keywordlastseendate": null
+   //    },
+   //    {
+   //       "keyword_name": "salman khan",
+   //       "keywordfirstseendate": "2023-10-19 06:34:14",
+   //       "keywordlastseendate": null
+   //    },
+   //    {
+   //       "keyword_name": "yash raj films",
+   //       "keywordfirstseendate": "2023-10-19 06:34:14",
+   //       "keywordlastseendate": null
+   //    }
+   // ]
 
    if (keywordData.length === 0) {
       return (
