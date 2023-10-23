@@ -43,7 +43,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected }) => {
             )}
          </div>
          {
-            articles.slice(0,5).map((article, index) => (
+            articles.map((article, index) => (
                <CompareCard
                   key={index}
                   id={article.id}

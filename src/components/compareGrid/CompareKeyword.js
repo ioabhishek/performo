@@ -5,26 +5,39 @@ import { KEYWORD } from '@/utils/constants';
 const CompareKeyword = ({id}) => {
    const [keywordData, setKeywordData] = useState([]);
 
+   // const [kw, setKw] = useState([]);
+
+   // useEffect(() => {
+   //    const fetchCategory = async () => {
+   //       try {
+   //          const data = await fetch(`${KEYWORD}${id}`);
+   //          if (!data.ok) {
+   //             throw new Error(`HTTP error! Status: ${data.status}`);
+   //          }
+   //          const json = await data.json();
+   //          if (json && Array.isArray(json) && json.length > 0 && json[0].keyword_name) {
+   //             setKeywordData(json[0].keyword_name.split(','));
+   //          } else {
+   //             setKeywordData([]);
+   //             console.error("Invalid data format received");
+   //          }
+   //       } catch (error) {
+   //          console.error("An error occurred while fetching data:", error);
+   //       }
+   //    };
+   //    fetchCategory();
+   // }, [id]);
+
    useEffect(() => {
-      const fetchCategory = async () => {
-         try {
-            const data = await fetch(`${KEYWORD}${id}`);
-            if (!data.ok) {
-               throw new Error(`HTTP error! Status: ${data.status}`);
-            }
-            const json = await data.json();
-            if (json && Array.isArray(json) && json.length > 0 && json[0].keyword_name) {
-               setKeywordData(json[0].keyword_name.split(','));
-            } else {
-               setKeywordData([]);
-               console.error("Invalid data format received");
-            }
-         } catch (error) {
-            console.error("An error occurred while fetching data:", error);
-         }
-      };
-      fetchCategory();
-   }, [id]);
+      const fetchkw = async () => {
+         const data = await fetch(`${KEYWORD}${id}`);
+         const json = await data.json();
+         setKeywordData(json);
+      }
+      fetchkw();
+   }, []);
+
+   // console.log(kw)
 
    // dummy keyword
    const dummyKeyword = [
@@ -60,7 +73,7 @@ const CompareKeyword = ({id}) => {
       }
    ]
 
-   if (dummyKeyword.length === 0) {
+   if (keywordData.length === 0) {
       return (
          <div className={styles.compare_tab_itm}>
             <span className='loading_text'>No data...</span>
@@ -71,7 +84,7 @@ const CompareKeyword = ({id}) => {
    return (
       <div className={styles.compare_tab_itm}>
          {
-            dummyKeyword.map((keyword, index) => (
+            keywordData.map((keyword, index) => (
                <>
                   <span key={index}>#{keyword.keyword_name}</span>
                </>
