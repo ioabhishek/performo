@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from "react";
+import Image from "next/image";
 import styles from "./navbar.module.css";
 import { useSearchContext } from "@/utils/searContext";
 
@@ -14,7 +15,6 @@ const NavbarSearch = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchInput(inputText);
-    console.log(inputText);
   };
 
   return (
@@ -25,7 +25,14 @@ const NavbarSearch = () => {
         value={inputText}
         onChange={handleInputChange}
       />
-      <button type="submit">Search</button>
+      <button type="submit">
+        <Image
+          src="/search.svg"
+          alt="save"
+          width={20}
+          height={20}
+         />
+      </button>
     </form>
   );
 };

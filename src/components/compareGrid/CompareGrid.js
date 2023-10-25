@@ -17,18 +17,34 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
 
    useEffect(() => {
       const fetchPubs = async () => {
-         const data = await fetch(PUBLISHER);
-         const json = await data.json();
-         setPubList(json);
+         try {
+            const data = await fetch(PUBLISHER);
+            if (!data.ok) {
+               throw new Error(`HTTP error! Status: ${data.status}`);
+            }
+            const json = await data.json();
+            setPubList(json);
+         } catch (error) {
+            // console.error('Error fetching publishers:', error);
+         }
       };
       fetchPubs();
+    
       const fetchCatg = async () => {
-         const data = await fetch(CATEGORY);
-         const json = await data.json();
-         setCatgList(json);
+         try {
+            const data = await fetch(CATEGORY);
+            if (!data.ok) {
+               throw new Error(`HTTP error! Status: ${data.status}`);
+            }
+            const json = await data.json();
+            setCatgList(json);
+         } catch (error) {
+            // console.error('Error fetching categories:', error);
+         }
       };
       fetchCatg();
    }, []);
+    
 
    useEffect(() => {
       catgList.forEach((category) => {

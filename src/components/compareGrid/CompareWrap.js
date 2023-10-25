@@ -9,8 +9,6 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
    const [articles, setArticles] = useState([]);
    const [loadingTime, setLoadingTime] = useState(null);
 
-   console.log(searchInput)
-
    useEffect(() => {
       const fetchArticles = async () => {
          try {
@@ -36,7 +34,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                setArticles(json);
             }
          } catch (error) {
-            console.error('An error occurred while fetching data:', error);
+            // console.error('An error occurred while fetching data:', error);
          }
       };
 
