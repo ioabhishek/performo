@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+'use client'
 import Image from 'next/image';
 import styles from './button.module.css'
 import { usePathname } from 'next/navigation';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Button({selectedButtons}) {
    const pathname = usePathname();
@@ -32,6 +33,16 @@ function Button({selectedButtons}) {
    }
 
    const handleSaveClick = () => {
+      toast.success('Preference saved!', {
+         position: "top-right",
+         autoClose: 3000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+         theme: "light",
+         });
       savePublisherData();
    };
 

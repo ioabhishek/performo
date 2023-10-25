@@ -1,6 +1,8 @@
 import './globals.css'
 import { Inter } from 'next/font/google';
 import Sidebar from '@/components/sideBarMenu/Sidebarm';
+import { ToastContainer } from '@/utils/nextToast';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,6 +17,7 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <Sidebar/>
           {children}
+          <ToastContainer/>
         </body>
     </html>
   )
