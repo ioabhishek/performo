@@ -2,8 +2,8 @@ import Main from '@/components/mainContainer/Main'
 
 export default function Home() {
   return (
-    <main>
+    <div>
       <Main/>
-    </main>
+    </div>
   )
 }

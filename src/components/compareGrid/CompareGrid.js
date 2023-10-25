@@ -3,11 +3,17 @@ import styles from './compareGrid.module.css';
 import CompareWrap from './CompareWrap';
 import { usePathname } from 'next/navigation';
 import { PUBLISHER, CATEGORY } from '@/utils/constants';
+import { useSearchContext } from "@/utils/searContext";
 
 const CompareGrid = ({ selectedButtons, savedData }) => {
    const [pubList, setPubList] = useState([]);
    const [catgList, setCatgList] = useState([]);
    const [categoryId, setCategoryId] = useState(null);
+   const pathname = usePathname();
+   const match = pathname.match(/\/category\/(.+)/);
+   const decodedParam = decodeURIComponent(match[1]);
+
+   const { searchInput } = useSearchContext();
 
    useEffect(() => {
       const fetchPubs = async () => {
@@ -23,10 +29,6 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
       };
       fetchCatg();
    }, []);
-
-   const pathname = usePathname();
-   const match = pathname.match(/\/category\/(.+)/);
-   const decodedParam = decodeURIComponent(match[1]);
 
    useEffect(() => {
       catgList.forEach((category) => {
@@ -53,6 +55,7 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
                publisherid={publisher.publisher_id}
                categoryid={categoryId}
                selected={selectedButtons.includes(publisher.publisher_name) || savedData.includes(publisher.publisher_name)}
+               searchInput={ searchInput }
             />
          ))}
       </div>
