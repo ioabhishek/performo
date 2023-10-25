@@ -4,3 +4,16 @@
 .tstrip_con span { font: 400 12px/14px 'Inter', sans-serif; color: #999999; }
 
 .compare_grid { display: grid; grid-template-columns: repeat(4,1fr); gap:10px;}
+.main_content { padding-left: 210px; padding-top: 0!important; transition: .5s; position: relative; min-height: 100vh; overflow: hidden;  }
+
+.testing{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center ;
+height: 100vh;
+width: 100%;
+}
+.parent{
+    height: 100%;
+}
