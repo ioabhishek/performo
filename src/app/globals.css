@@ -35,3 +35,6 @@ li {
 
 .loading_wrap { display: flex; justify-content: center; align-items: center; width: 100%;}
 .loading_text { text-align: center; color: #666666;}
+
+.Toastify__progress-bar--success { background: #696CFF !important;}
+.Toastify__toast-icon svg { fill: #696CFF !important; }
