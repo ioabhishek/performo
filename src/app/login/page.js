@@ -10,22 +10,22 @@ function Signin() {
     console.log(session);
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const email = session.data.user.email;
-    console.log(email);
-    const password = formData.get("password");
-    console.log(email, password);
-    const response = await fetch("/api/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    // const formData = new FormData(event.target);
+    // const email = session.data.user.email;
+    // console.log(email);
+    // const password = formData.get("password");
+    // console.log(email, password);
+    // const response = await fetch("/api/user", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
       
-      body: JSON.stringify({ email }),
-    });
-    if(response.ok){
-      router.push("/category/india");
-    }
+    //   body: JSON.stringify({ email }),
+    // });
+    // if(response.ok){
+    //   router.push("/category/india");
+    // }
   };
 const googlesignin= async ()=>{
   signIn('google',{callbackUrl:"http://localhost:300"})
