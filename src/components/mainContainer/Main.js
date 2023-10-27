@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react';
 const Main = () => {
   const session = useSession();
   const [userData, setUserData] = useState(null);
-
+  const [subscriber,setsubscriber] = useState(false);
   useEffect(() => {
     if (session.status === 'authenticated') {
       const { email, image, name } = session.data.user;
@@ -19,7 +19,7 @@ const Main = () => {
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({ email, name, image }),
+              body: JSON.stringify({ email, name, image ,subscriber}),
             });
 
             
