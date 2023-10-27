@@ -18,13 +18,14 @@ export async function POST(req) {
     //     image,
     //   },
     // });
-    const image=existingUser.image;
-    if(image === 'https://lh3.googleusercontent.com/a/ACg8ocKIUTzhA6_FPbHB7hR0lIPTGCa7lQFlwgQ00JI7nWIdSQ=s96-c'){
+    const status=existingUser.subscriber;
+    console.log(status);
+    if(status === true){
 result="suscriber";
     }
-    return NextResponse.json({ result, message: "User created successfully" }, { status: 200 });
+    return NextResponse.json({ result, }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ user: null, message: "Error creating user" }, { status: 500 });
+    return NextResponse.json({ user: null, message: "Error" }, { status: 500 });
   }
 }
