@@ -12,7 +12,8 @@ function Wait() {
     if(session.status === 'authenticated')
       { 
       const userEmail = session.data.user.email;
-      
+      const { email, image, name } = session.data.user;
+      const subscriber =false;
       const fetchData = async () => {
         try {
           const response = await fetch('/api/check', {
@@ -34,7 +35,19 @@ function Wait() {
         } catch (error) {
           console.error(error);
         }
+        try {
+          const response = await fetch('/api/user', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, name, image ,subscriber}),
+          });
 
+          
+        } catch (error) {
+          console.error(error);
+        }
        
       };
     
