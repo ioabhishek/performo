@@ -2,7 +2,9 @@
 import React from 'react'
 import styles from './signin.module.css'
 import Link from 'next/link'
+import {useRouter }from 'next/navigation'
 function Signup() {
+  const router=useRouter();
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -17,8 +19,7 @@ function Signup() {
           body: JSON.stringify({ email }),
         });
         if(response.ok){
-          const {user}=await response.json();
-          console.log(user);
+          router.push("/category/india");
         }
       };
   return (
