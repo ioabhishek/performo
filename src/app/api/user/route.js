@@ -7,6 +7,7 @@ export async function POST(req) {
     const { email, name, image } = body;
 
     const existingUser = await db.user.findUnique({ where: { email: email } });
+
     if (existingUser) {
       return NextResponse.json({ user: null, message: "Email already exists" }, { status: 400 });
     }

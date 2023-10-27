@@ -27,8 +27,15 @@ function Signin() {
     //   router.push("/category/india");
     // }
   };
-const googlesignin= async ()=>{
-  signIn('google',{callbackUrl:"http://localhost:300"})
+  const googlesignin = async () => {
+   
+    await signIn('google', { callbackUrl: "/wait" });
+  
+    
+   
+  };
+  
+  
   // const email = session.data.user.email;
   // const image=session.data.user.image;
   // const name = session.data.user.name;
@@ -44,7 +51,7 @@ const googlesignin= async ()=>{
   // if(response.ok){
   //   router.push("/category/india");
   // }
-}
+//}
   return (
     <div className={styles.signinbox}>
       <form onSubmit={handleSubmit}>
