@@ -2,7 +2,7 @@ import React from "react";
 import SelectButtons from "./SelectButtons";
 import styles from "./selectStrip.module.css";
 
-const SelectWrap = ({
+const SelectWrap = ({   
    selectedButtons,
    handleButtonSelect,
    savedData,

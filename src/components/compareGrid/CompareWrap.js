@@ -55,7 +55,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                <p>Data loaded in {loadingTime.toFixed(2)} milliseconds</p>
             )}
          </div>
-         {articles.slice(0, showCount).map((article, index) => (
+         {selected && articles.slice(0, showCount).map((article, index) => (
             <CompareCard
                key={index}
                id={article.id}
