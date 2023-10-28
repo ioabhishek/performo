@@ -10,23 +10,24 @@ const SelectButtons = ({
    setSavedData,
 }) => {
    const [pubList, setPubList] = useState([]);
-   // const [uniquePublisherNames, setUniquePublisherNames] = useState([]);
 
    useEffect(() => {
       const fetchPubs = async () => {
-         const data = await fetch(PUBLISHER);
-         const json = await data.json();
-         setPubList(json);
+         try {
+            const data = await fetch(PUBLISHER);
+            if (!data.ok) {
+               throw new Error(`Failed to fetch data (status code: ${data.status})`);
+            }
+            const json = await data.json();
+            setPubList(json);
+         } catch (error) {
+            // console.error('Error fetching publishers:', error);
+         }
       };
+   
       fetchPubs();
    }, []);
-
-   // useEffect(() => {
-   //    const uniqueNames = Array.from(
-   //       new Set(pubList.map((pub) => pub.publisher_name))
-   //    );
-   //    setUniquePublisherNames(uniqueNames);
-   // }, [pubList]);
+   
 
    const renderMenuItems = () => {
       return pubList.map((publisher) => {

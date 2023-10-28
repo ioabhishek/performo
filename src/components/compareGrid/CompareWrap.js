@@ -8,6 +8,7 @@ import { SRCHS, SRCHM, SRCHE } from "@/utils/constants";
 const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput }) => {
    const [articles, setArticles] = useState([]);
    const [loadingTime, setLoadingTime] = useState(null);
+   const [showCount, setShowCount] = useState(10);
 
    useEffect(() => {
       const fetchArticles = async () => {
@@ -17,7 +18,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
 
             if (searchInput) {
                apiEndpoint = `${SRCHS}${publisherid}${SRCHM}${categoryid}${SRCHE}${searchInput}`;
-               console.log(searchInput)
+               console.log(searchInput);
             }
 
             const data = await fetch(apiEndpoint);
@@ -34,12 +35,17 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                setArticles(json);
             }
          } catch (error) {
-            // console.error('An error occurred while fetching data:', error);
+            // Handle the error as needed
+            console.error('An error occurred while fetching data:', error);
          }
       };
 
       fetchArticles();
    }, [searchInput, publisherid, categoryid]);
+
+   const loadMoreArticles = () => {
+      setShowCount(prevShowCount => prevShowCount + 10);
+   };
 
    return (
       <div className={`${styles.compare_wrap} ${selected ? styles.visible : ''}`}>
@@ -49,7 +55,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                <p>Data loaded in {loadingTime.toFixed(2)} milliseconds</p>
             )}
          </div>
-         {articles.map((article, index) => (
+         {selected && articles.slice(0, showCount).map((article, index) => (
             <CompareCard
                key={index}
                id={article.id}
@@ -61,6 +67,9 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                pubdate={article.pubdate}
             />
          ))}
+         {articles.length > showCount && (
+            <button className={styles.show_more_btn} onClick={loadMoreArticles}>Load More</button>
+         )}
       </div>
    );
 };

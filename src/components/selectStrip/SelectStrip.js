@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import styles from "./selectStrip.module.css";
-import Button from "../button/Button";
+import Button from "../button/SavePreference";
 import SelectWrap from "./SelectWrap";
 
 const SelectStrip = ({
