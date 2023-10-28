@@ -3,12 +3,12 @@ import React, {useState, useEffect} from "react";
 import SelectStrip from "@/components/selectStrip/SelectStrip";
 import CompareGrid from "@/components/compareGrid/CompareGrid";
 import useButtonSelection from "@/hooks/useButtonSelection";
-import { redirect, usePathname } from 'next/navigation';
 import { UPREFS } from "@/utils/constants";
+import { redirect, usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react'
 
 const Page = () => {
-   const {data: session} =  useSession({
+   const {status, data: session} =  useSession({
       required: true,
       onUnauthenticated() {
          redirect('/login?callbackUrl=/protected/client')
@@ -39,6 +39,10 @@ const Page = () => {
       };
       fetchPref();
    }, []);
+
+   if (status === "loading" || !session) {
+      return null;
+   } 
 
    return (
       <>

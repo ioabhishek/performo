@@ -2,6 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google';
 import Sidebar from '@/components/sideBarMenu/Sidebar';
 import Authprovider from '@/components/Authprovider/Authprovider';
+import GlobalState from '@/context/GlobalContext';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {

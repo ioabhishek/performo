@@ -5,8 +5,12 @@ import styles from "./navbar.module.css";
 import { useSession, signOut } from "next-auth/react";
 
 const UserProfile = () => {
+
   const { data: session } = useSession();
+  
   const [open, setOpen] = useState(false);
+
+
 
   const userName = session && session.user && session.user.name;
   const userImage = session && session.user && session.user.image;
