@@ -4,6 +4,7 @@ import Sidebar from '@/components/sideBarMenu/Sidebar';
 import Authprovider from '@/components/Authprovider/Authprovider';
 import { ToastContainer } from '@/utils/nextToast';
 import 'react-toastify/dist/ReactToastify.css';
+import { AccessProvider } from '@/context/accessContext';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -16,9 +17,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Authprovider>
-          <Sidebar/>
-          {children}
-          <ToastContainer/>
+          <AccessProvider>
+            <Sidebar/>
+            {children}
+            <ToastContainer/>
+          </AccessProvider>
         </Authprovider>
       </body>
     </html>

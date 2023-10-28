@@ -1,75 +1,31 @@
-'use client'
-import React, { useEffect, useState } from 'react';
-import { db } from "@/lib/db";
-import { useSession } from 'next-auth/react';
+"use client"
+import React, { useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { useAccess } from "@/context/accessContext";
 
 function Wait() {
-    const session = useSession();
-  const [email, setEmail] = useState(null);
-    // console.log(session);
-    // console.log(email);
+  const session = useSession();
+  const { accessStatus, checkAccess } = useAccess();
+
   useEffect(() => {
-    if(session.status === 'authenticated')
-      { 
+    if (session.status === "authenticated" && accessStatus === "checking") {
       const userEmail = session.data.user.email;
-      const { email, image, name } = session.data.user;
-      const subscriber =false;
-      const fetchData = async () => {
-        try {
-          const response = await fetch('/api/check', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: userEmail}),
-          });
-        const data = await response.json();
-        console.log(data);
-          if(data.result==="suscriber"){
-            window.location.href = "/";
-          }
-          else{
-            window.location.href = "/category/india";   
-          }
-          
-        } catch (error) {
-          console.error(error);
-        }
-        try {
-          const response = await fetch('/api/user', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, name, image ,subscriber}),
-          });
-
-          
-        } catch (error) {
-          console.error(error);
-        }
-       
-      };
-    
-      fetchData();
+      checkAccess(userEmail);
     }
-    
-  }, [session]);
+  }, [session, accessStatus, checkAccess]);
 
-  const check = async (email) => {
-    const existingUser = await db.user.findUnique({ where: { email: email } });
-    console.log("here");
-    if (existingUser && existingUser.image === 'https://lh3.googleusercontent.com/a/ACg8ocKIUTzhA6_FPbHB7hR0lIPTGCa7lQFlwgQ00JI7nWIdSQ=s96-c') {
+  useEffect(() => {
+    if (accessStatus === "authenticated") {
       window.location.href = "/";
-    } else {
-      window.location.href = "/category/india";
+    } else if (accessStatus === "unauthenticated") {
+      window.location.href = "/access";
     }
-  };
+  }, [accessStatus]);
 
   return (
     <div>
       <div>
-        <h1>Hold on verifying your status....</h1>
+        <h1>Hold on checking for access....</h1>
       </div>
     </div>
   );

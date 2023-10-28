@@ -6,19 +6,22 @@ import useButtonSelection from "@/hooks/useButtonSelection";
 import { UPREFS } from "@/utils/constants";
 import { redirect, usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react'
+import { useAccess } from '@/context/accessContext';
 
 const Page = () => {
-   const {status, data: session} =  useSession({
-      required: true,
-      onUnauthenticated() {
-         redirect('/login?callbackUrl=/protected/client')
-      }
-   });
-
    const [selectedButtons, handleButtonSelect] = useButtonSelection();
    const [savedData, setSavedData] = useState([]);
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
+   const session = useSession();
+   const { accessStatus, checkAccess } = useAccess();
+
+   useEffect(() => {
+      if (session.status === "authenticated" && accessStatus === "checking") {
+         const userEmail = session.data.user.email;
+         checkAccess(userEmail);
+      }
+   }, [session, accessStatus, checkAccess]);
 
    useEffect(() => {
       const fetchPref = async () => {
@@ -40,24 +43,28 @@ const Page = () => {
       fetchPref();
    }, []);
 
-   if (status === "loading" || !session) {
-      return null;
-   } 
-
-   return (
-      <>
-         <SelectStrip
-            selectedButtons={selectedButtons}
-            handleButtonSelect={handleButtonSelect}
-            savedData={savedData}
-            setSavedData={setSavedData}
-         />
-         <CompareGrid
-            selectedButtons={selectedButtons}
-            savedData={savedData}
-         />
-      </>
-   );
+   if (accessStatus === "authenticated"){
+      return (
+         <>
+            <SelectStrip
+               selectedButtons={selectedButtons}
+               handleButtonSelect={handleButtonSelect}
+               savedData={savedData}
+               setSavedData={setSavedData}
+            />
+            <CompareGrid
+               selectedButtons={selectedButtons}
+               savedData={savedData}
+            />
+         </>
+      );
+   } else if (session.status === "unauthenticated"){
+      console.log(session.status)
+      redirect('/access')
+   } else {
+      redirect('/login')
+   }
+   
 };
 
 export default Page;
