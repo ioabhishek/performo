@@ -3,10 +3,18 @@ import React, {useState, useEffect} from "react";
 import SelectStrip from "@/components/selectStrip/SelectStrip";
 import CompareGrid from "@/components/compareGrid/CompareGrid";
 import useButtonSelection from "@/hooks/useButtonSelection";
-import { usePathname } from 'next/navigation';
+import { redirect, usePathname } from 'next/navigation';
 import { UPREFS } from "@/utils/constants";
+import { useSession } from 'next-auth/react'
 
 const Page = () => {
+   const {data: session} =  useSession({
+      required: true,
+      onUnauthenticated() {
+         redirect('/login?callbackUrl=/protected/client')
+      }
+   });
+
    const [selectedButtons, handleButtonSelect] = useButtonSelection();
    const [savedData, setSavedData] = useState([]);
    const pathname = usePathname();

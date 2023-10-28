@@ -1,11 +1,11 @@
 import Main from '@/components/mainContainer/Main'
-import Signin from '@/components/signInPage/Signin'
-import Signup from '@/components/signInPage/Signup'
+import { useSession } from 'next-auth/react'
 
 export default function Home() {
+
   return (
     <div>
-     <Main/>
+      <Main/>
     </div>
   )
 }
