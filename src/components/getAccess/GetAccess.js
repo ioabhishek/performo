@@ -5,7 +5,7 @@ import Link from 'next/link';
 const GetAccess = () => {
    return (
       <div className={styles.access_wrap}>
-         <div className={styles.access_text}>You don't have access to use this feature. <br /> Request by entering your email</div>
+         <div className={styles.access_text}>You don&apos;t have access to use this feature. <br /> Request by entering your email</div>
          <form action="">
             <input type="text" placeholder='Enter your email...' />
             <button>Request</button>

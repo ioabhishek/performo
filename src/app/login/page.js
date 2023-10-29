@@ -9,7 +9,6 @@ function Signin() {
   const { status, data: session} = useSession();
 
   if (status === "loading") {
-    // return <div>Loading...</div>;
     return (
       <div className={styles.signinbox}>
         <PulseLoader
@@ -23,7 +22,7 @@ function Signin() {
 
   return (
     <div className={styles.signinbox}>
-      <Image src="./performo.svg" width={200} height={100} alt="" />
+      <Image className={styles.plogo} src="./performo.svg" width={200} height={40} alt="" />
       {
         status === "authenticated" ? (
           <button
