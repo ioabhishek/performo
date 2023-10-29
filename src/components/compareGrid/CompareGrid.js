@@ -4,6 +4,7 @@ import CompareWrap from './CompareWrap';
 import { usePathname } from 'next/navigation';
 import { PUBLISHER, CATEGORY } from '@/utils/constants';
 import { useSearchContext } from "@/utils/searContext";
+import { PulseLoader } from "react-spinners";
 
 const CompareGrid = ({ selectedButtons, savedData }) => {
    const [pubList, setPubList] = useState([]);
@@ -57,7 +58,11 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
    if (categoryId === null) {
       return (
          <div className='loading_wrap'>
-            <h2 className='loading_text'>Loading...</h2>
+            <PulseLoader
+               color="#696CFF"
+               size={20}
+               data-textid="Loader"
+            />
          </div>
       ); 
    }

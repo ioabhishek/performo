@@ -5,6 +5,7 @@ import MenuItem from './MenuItem';
 import styles from './sidebar.module.css';
 import { usePathname } from 'next/navigation';
 import { CATEGORY } from '../../utils/constants';
+import { PulseLoader } from "react-spinners";
 
 const SidebarMenu = () => {
   const pathname = usePathname();
@@ -59,7 +60,11 @@ const SidebarMenu = () => {
   if (menuList.length === 0) {
     return (
       <div className='loading_wrap'>
-        <h2 className='loading_text'>Loading...</h2>
+        <PulseLoader
+          color="#696CFF"
+          size={20}
+          data-textid="Loader"
+        />
       </div>
     ); 
   }

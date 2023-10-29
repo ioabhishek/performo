@@ -58,13 +58,11 @@ const Page = () => {
             />
          </>
       );
-   } else if (session.status === "unauthenticated"){
-      console.log(session.status)
+   } else if (accessStatus === "unauthenticated"){
       redirect('/access')
-   } else {
+   } else if (session.status === "unauthenticated") {
       redirect('/login')
    }
-   
 };
 
 export default Page;

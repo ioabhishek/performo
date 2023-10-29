@@ -2,6 +2,9 @@
 import React, { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useAccess } from "@/context/accessContext";
+import styles from './wait.module.css'
+import { PulseLoader } from "react-spinners";
+import { redirect } from "next/navigation";
 
 function Wait() {
   const session = useSession();
@@ -23,12 +26,20 @@ function Wait() {
   }, [accessStatus]);
 
   return (
-    <div>
-      <div>
-        <h1>Hold on checking for access....</h1>
-      </div>
+    <div className={styles.wait_wrap}>
+      <h1 className={styles.wait_text}>Hold on, checking for access...</h1>
+      <PulseLoader
+          color="#696CFF"
+          size={20}
+          data-textid="Loader"
+        />
     </div>
   );
+  // if (session.status === "authenticated"){
+  // } else {
+  //   redirect('/login')
+  // }
+
 }
 
 export default Wait;

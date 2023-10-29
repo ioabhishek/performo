@@ -2,23 +2,42 @@
 import Main from '@/components/mainContainer/Main'
 import { redirect } from 'next/navigation';
 import { useSession } from 'next-auth/react'
+import { PulseLoader } from "react-spinners";
 
 export default function Home() {
-  const {status, data: session} =  useSession({
-    required: true,
-    onUnauthenticated() {
-      // redirect('/login?callbackUrl=/protected/client')
-      redirect('/login')
-    }
-  });
+  const session = useSession();
 
-  if (status === "loading" || !session) {
-    return null;
+  if (session.status === "loading") {
+    // return <div>Loading...</div>;
+    return (
+      <div className="signinbox">
+        <PulseLoader
+          color="#696CFF"
+          size={20}
+          data-textid="Loader"
+        />
+      </div>
+    )
   }
 
-  return (
-    <>
-      <Main/>
-    </>
-  )
+  // const {status, data: session} =  useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     redirect('/login')
+  //   }
+  // });
+
+  // if (status === "loading" || !session) {
+  //   return null;
+  // }
+
+  if (session.status === "authenticated") {
+    return (
+      <>
+        <Main/>
+      </>
+    )
+  } else {
+    redirect('/login')
+  }
 }
