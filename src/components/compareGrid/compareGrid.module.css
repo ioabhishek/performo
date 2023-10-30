@@ -25,3 +25,5 @@
 .compare_tab_wrp { width: 100%; }
 .compare_card_dauth { font: 400 12px/12px 'Inter', sans-serif; color: #999999; margin-bottom: 15px;  }
 .compare_tab_itm canvas { max-width: 100%; width: 100% !important; height: 100% !important;}
+
+.show_more_btn { background-color: #696CFF; color: #ffffff; border-radius: 10px; padding: 8px 16px; font: 500 16px/16px 'Inter', sans-serif; width: 100%;  box-sizing: border-box; text-align: center; border: none; cursor: pointer; }

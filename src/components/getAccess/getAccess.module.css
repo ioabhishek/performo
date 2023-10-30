@@ -1,0 +1,6 @@
+.access_wrap { position: absolute; inset: 0; margin: auto; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.access_text {font-size: 30px; font-weight: 700; text-align: center; margin-bottom: 25px; ;}
+.access_wrap form { display: flex; align-items: center; gap: 10px; margin-bottom: 20px;}
+.access_wrap input { width: 300px; height: 40px; border: 1px solid #e5e5e5; padding: 0 15px; border-radius: 10px; outline: none; font: 400 16px/16px 'Inter';}
+.access_wrap button {height: 40px;  border: none; background-color: #696CFF; color: #fff; border-radius: 10px; font: 500 16px/16px 'Inter'; padding: 0 20px; cursor: pointer;}
+.access_wrap a { color: #696CFF;}

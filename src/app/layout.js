@@ -1,7 +1,10 @@
 import './globals.css'
 import { Inter } from 'next/font/google';
-import Sidebar from '@/components/sideBarMenu/Sidebarm';
-
+import Sidebar from '@/components/sideBarMenu/Sidebar';
+import Authprovider from '@/components/Authprovider/Authprovider';
+import { ToastContainer } from '@/utils/nextToast';
+import 'react-toastify/dist/ReactToastify.css';
+import { AccessProvider } from '@/context/accessContext';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -12,10 +15,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-        <body className={inter.className}>
-          {/* <Sidebar/> */}
-          {children}
-        </body>
+      <body className={inter.className}>
+        <Authprovider>
+          <AccessProvider>
+            <Sidebar/>
+            {children}
+            <ToastContainer/>
+          </AccessProvider>
+        </Authprovider>
+      </body>
     </html>
   )
 }

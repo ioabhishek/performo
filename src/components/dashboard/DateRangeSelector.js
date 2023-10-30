@@ -69,50 +69,11 @@ function DateRangeSelector() {
   return (
     <div>
       <div className={styles.container}>
-        <div className={styles.headingandbutton}>
+        <div className={styles.headingandbutton} onClick={toggleRangePicker}>
           <h1 className={styles.heading} id="heading1">
             {date}
           </h1>
-          <svg
-            fill="#000000"
-            width="40px"
-            height="40px"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            className="icon line-color"
-            onClick={toggleRangePicker}
-          >
-            <path
-              d="M20,21H4a1,1,0,0,1-1-1V9H21V20A1,1,0,0,1,20,21ZM21,5a1,1,0,0,0-1-1H4A1,1,0,0,0,3,5V9H21Z"
-              style={{
-                fill: "none",
-                stroke: "black",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                strokeWidth: 2,
-              }}
-            ></path>
-            <polyline
-              points="12 13 12 15 15 15"
-              style={{
-                fill: "none",
-                stroke: "rgb(44, 169, 188)",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                strokeWidth: 2,
-              }}
-            ></polyline>
-            <path
-              d="M16,3V6M8,3V6M9,17V13m6,0v4"
-              style={{
-                fill: "none",
-                stroke: "rgb(44, 169, 188)",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                strokeWidth: 2,
-              }}
-            ></path>
-          </svg>
+          <Image src='/calendar.svg' width={20} height={20} alt="" />
         </div>
         {showRangePicker && (
           <div className={styles.datepicker}>

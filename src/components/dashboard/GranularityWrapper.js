@@ -3,6 +3,7 @@ import DurationWrapper from './DurationWrapper'
 import CategorySelector from './CategorySelector'
 import styles from './dashboard.module.css'
 import DateRangeSelector from './DateRangeSelector'
+import UserProfile from '../navbar/UserProfile'
 
 function GranularityWrapper() {
   return (
@@ -12,6 +13,7 @@ function GranularityWrapper() {
       <DateRangeSelector />
       <span className={styles.tstrip_label}>Select Category</span>
       <CategorySelector/>
+      <UserProfile/>
     </div>
   )
 }

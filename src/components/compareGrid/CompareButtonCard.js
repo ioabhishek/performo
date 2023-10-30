@@ -15,27 +15,27 @@ const CompareButtonCard = ({id}) => {
       { label: 'Keyword' },
    ]);
 
-   useEffect(() => {
-      const fetchRanking = async () => {
-         try {
-            const data = await fetch(`${RANKING}${id}`);
-            if (!data.ok) {
-               throw new Error(`HTTP error! Status: ${data.status}`);
-            }
-            const json = await data.json();
-            if(json.length === 0) {
-               setRanking([])
-               setLatestRanking(null)
-            } else {
-               setRanking(json)
-               setLatestRanking(json[0].rank)
-            }
-         } catch (error) {
-            console.error("An error occurred while fetching data:", error);
-         }
-      }
-      fetchRanking()
-   }, [id]);
+   // useEffect(() => {
+   //    const fetchRanking = async () => {
+   //       try {
+   //          const data = await fetch(`${RANKING}${id}`);
+   //          if (!data.ok) {
+   //             throw new Error(`HTTP error! Status: ${data.status}`);
+   //          }
+   //          const json = await data.json();
+   //          if(json.length === 0) {
+   //             setRanking([])
+   //             setLatestRanking(null)
+   //          } else {
+   //             setRanking(json)
+   //             setLatestRanking(json[0].rank)
+   //          }
+   //       } catch (error) {
+   //          console.error("An error occurred while fetching data:", error);
+   //       }
+   //    }
+   //    fetchRanking()
+   // }, [id]);
 
 
    const handleButtonClick = (buttonIndex) => {

@@ -3,30 +3,49 @@ import styles from './compareGrid.module.css';
 import CompareWrap from './CompareWrap';
 import { usePathname } from 'next/navigation';
 import { PUBLISHER, CATEGORY } from '@/utils/constants';
+import { useSearchContext } from "@/utils/searContext";
+import { PulseLoader } from "react-spinners";
 
 const CompareGrid = ({ selectedButtons, savedData }) => {
    const [pubList, setPubList] = useState([]);
    const [catgList, setCatgList] = useState([]);
    const [categoryId, setCategoryId] = useState(null);
-
-   useEffect(() => {
-      const fetchPubs = async () => {
-         const data = await fetch(PUBLISHER);
-         const json = await data.json();
-         setPubList(json);
-      };
-      fetchPubs();
-      const fetchCatg = async () => {
-         const data = await fetch(CATEGORY);
-         const json = await data.json();
-         setCatgList(json);
-      };
-      fetchCatg();
-   }, []);
-
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
    const decodedParam = decodeURIComponent(match[1]);
+
+   const { searchInput } = useSearchContext();
+
+   useEffect(() => {
+      const fetchPubs = async () => {
+         try {
+            const data = await fetch(PUBLISHER);
+            if (!data.ok) {
+               throw new Error(`HTTP error! Status: ${data.status}`);
+            }
+            const json = await data.json();
+            setPubList(json);
+         } catch (error) {
+            // console.error('Error fetching publishers:', error);
+         }
+      };
+      fetchPubs();
+    
+      const fetchCatg = async () => {
+         try {
+            const data = await fetch(CATEGORY);
+            if (!data.ok) {
+               throw new Error(`HTTP error! Status: ${data.status}`);
+            }
+            const json = await data.json();
+            setCatgList(json);
+         } catch (error) {
+            // console.error('Error fetching categories:', error);
+         }
+      };
+      fetchCatg();
+   }, []);
+    
 
    useEffect(() => {
       catgList.forEach((category) => {
@@ -39,7 +58,11 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
    if (categoryId === null) {
       return (
          <div className='loading_wrap'>
-            <h2 className='loading_text'>Loading...</h2>
+            <PulseLoader
+               color="#696CFF"
+               size={20}
+               data-textid="Loader"
+            />
          </div>
       ); 
    }
@@ -53,6 +76,7 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
                publisherid={publisher.publisher_id}
                categoryid={categoryId}
                selected={selectedButtons.includes(publisher.publisher_name) || savedData.includes(publisher.publisher_name)}
+               searchInput={ searchInput }
             />
          ))}
       </div>
