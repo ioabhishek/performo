@@ -15,3 +15,5 @@ export const UPREFPS = "https://performo.in/api/save_publisher.php?token_key=@12
 export const RANKING = "https://performo.in/api/article_ranking.php?token_key=@123abcd1366&article_id=";
 export const AUTHOR = "https://performo.in/api/get_author.php?token_key=@123abcd1366&article_id=";
 export const KEYWORD = "https://performo.in/api/article_keywords.php?token_key=@123abcd1366&article_id=";
+
+export const RPOSITION = "https://performo.in/api/ranking_position.php?token_key=@123abcd1366&date_from=2023-10-19&publisher_id=16"

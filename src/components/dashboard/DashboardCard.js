@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './dashboard.module.css'
 
-function DashboardCard(props) {
+function DashboardCard({rankcount, rank}) {
   return (
     <div className={styles.main_card}>
-      <span>{props.cardTitle}</span>
-      <span>{props.cardValue}</span>
+      <span>TOP {rankcount}</span>
+      <span>{rank}</span>
     </div>
   )
 }

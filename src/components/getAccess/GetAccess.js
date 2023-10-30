@@ -1,8 +1,9 @@
 'use client'
 import React, { useState } from 'react'
+import Link from 'next/link';
 import styles from './getAccess.module.css';
 import { ToastContainer, toast } from 'react-toastify';
-import Link from 'next/link';
+import { PulseLoader } from "react-spinners";
 
 const GetAccess = () => {
    const [email, setEmail] = useState('');

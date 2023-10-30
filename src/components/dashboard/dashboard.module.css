@@ -24,92 +24,22 @@
 
 
 
+.datepicker{display:flex;flex-direction:column}
+.buttoncontainer button{margin-right:10px}
+.container{width:fit-content;background-color:#fff;border-radius:10px;display:flex;gap:5px;box-shadow:0 4px 4px 0 rgba(0,0,0,0.04);margin-right:20px;flex-direction:column}
+.heading{color:#000}
+.headingandbutton{padding:8px 10px; position:relative;display:flex;gap:10px;align-items:center;flex-direction:row;z-index:2;align-items:center; cursor: pointer;}
+.heading{font:400 16px/24px Inter,sans-serif}
+.button{background-color:#fff;color:#000;border:none;padding:10px 20px;cursor:pointer;transition:background-color .3s ease;box-sizing:border-box;font:400 16px/24px Inter,sans-serif;color:#333;padding:4px 20px;cursor:pointer;border:1px solid #d9d9fd;border-radius:8px;margin:0}
+.button:hover{background-color:#696CFF; color: #ffffff;}
+.datepicker{display:flex;margin-top:60px;flex-direction:column;z-index:999;position:absolute;width:fit-content;padding:10px;background-color:#fff;border-radius:10px;display:flex;gap:5px;box-shadow:0 4px 4px 0 rgba(0,0,0,0.2)}
+.ant-picker{width:100%}
+.ant-picker-footer{display:flex;justify-content:space-around;padding:10px;background-color:#f5f5f5}
+.ant-picker-panel-container{width:100%;max-width:320px}
+.footer{margin-top:5px;display:flex;flex-direction:row;justify-content:space-between}
+.ant-calendar-picker-clear{opacity:1}
+:where(.css-dev-only-do-not-override-pr0fja).ant-picker-focused { border-color: #696CFF; box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);  outline: 0; }
 
 
 
-.datepicker{
-    display: flex;
-    flex-direction: column;
-  }
-  .buttoncontainer button{
-    margin-right: 10px;
-  }
-  .container{
-    width: fit-content; padding: 8px 10px; background-color: #ffffff; border-radius: 10px; display: flex; gap: 5px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04); margin-right: 20px;flex-direction: column;
-  }
-  .heading{
-    color: black;
-  }
-  .headingandbutton{
-    position: relative;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-direction: row;
-    z-index: 2;
-    align-items: center;
-    
-  }
-  
-  .heading {
-    font: 400 16px/24px 'Inter', sans-serif
-  }
-  
-  .button {
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-sizing: border-box; font: 400 16px/24px 'Inter', sans-serif; color: #333333; padding: 4px 20px; cursor: pointer; border: 1px solid #d9d9fd; border-radius: 8px; margin: 0;
-  }
-  
-  .button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* .buttoncontainer {
-    margin-bottom: 20px;
-  }
-   */
-  .datepicker {
-    display: flex;
-    margin-top: 60px;
-    flex-direction: column;
-    z-index: 999;
-    position: absolute;
-    width: fit-content; padding: 20px; background-color: #ffffff; border-radius: 10px; display: flex; gap: 5px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
-  }
-  
-  .ant-picker {
-    width: 100%;
-  }
-  
 
-  .ant-picker-footer {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    background-color: #f5f5f5;
-    
-  
-  }
-  
-
-  .ant-picker-panel-container {
-    width: 100%;
-    max-width: 320px;
-   
-  }
-  
-  .footer{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .ant-calendar-picker-clear {
-    opacity: 1;
-  }
