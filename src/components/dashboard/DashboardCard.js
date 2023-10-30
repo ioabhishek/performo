@@ -1,11 +1,15 @@
 import React from 'react'
 import styles from './dashboard.module.css'
 
-function DashboardCard({rankcount, rank}) {
+function DashboardCard({topKeywords}) {
   return (
     <div className={styles.main_card}>
-      <span>TOP {rank}</span>
-      <span>{rankcount}</span>
+      <span>Top Keywords</span>
+      {
+        topKeywords.map((topKeyword, index) => (
+          <span key={index}>#{topKeyword?.topkeycount}</span>
+        ))
+      }
     </div>
   )
 }

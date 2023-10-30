@@ -5,7 +5,6 @@ import { CATEGORY } from '@/utils/constants'
 
 const CategorySelector = ({selectedCategory, setSelectedCategory}) => {
   const [category, setCategory] = useState([]);
-  // const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     const fetchCategory = async () => {

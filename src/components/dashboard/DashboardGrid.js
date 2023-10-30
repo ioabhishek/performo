@@ -1,21 +1,38 @@
-import React from 'react'
-import styles from './dashboard.module.css'
-import DashboardCard from './DashboardCard'
+import React from 'react';
+import styles from './dashboard.module.css';
+import DashboardCardr from './DashboardCardr';
+import DashboardCardm from './DashboardCardm';
+import DashboardCard from './DashboardCard';
+import { PulseLoader } from "react-spinners";
 
-const DashboardGrid = ({positions}) => {
+const DashboardGrid = ({ positions, mpositions, topKeywords }) => {
+  if (!positions || !mpositions || !topKeywords) {
+    return (
+      <div className='loading_wrap'>
+        <PulseLoader
+          color="#696CFF"
+          size={20}
+          data-textid="Loader"
+        />
+      </div>
+    );
+  }
 
   return (
-    <div className={styles.main_grid}>
-      {positions?.map((position, index) => (
-        <DashboardCard key={index} rankcount={position?.rankcount} rank={position?.rank}/>
-      ))}
-    </div>
-  )
+    <>
+      <div className={styles.main_grid}>
+        {positions.map((position, index) => (
+          <DashboardCardr key={index} rankcount={position?.rankcount} rank={position?.rank}/>
+        ))}
+        {mpositions.map((mposition, index) => (
+          <DashboardCardm key={index} rankminute={mposition?.rank_minute} rank={mposition?.rank}/>
+        ))}
+        {topKeywords.length > 0 && (
+          <DashboardCard topKeywords={topKeywords} />
+        )}
+      </div>
+    </>
+  );
 }
 
-export default DashboardGrid
-
-
-{/* <div className={styles.main_grid}>
-  <DashboardCard cardTitle="Total Revenue" cardValue="$ 1,000,000" positions={positions}/>
-</div> */}
+export default DashboardGrid;
