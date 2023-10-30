@@ -15,6 +15,11 @@ model User {
   subscriber Boolean? @default(true)
 }
 
+model AccessRequest {
+  id      Int      @id @default(autoincrement())
+  email   String?  @unique
+}
+
 // model Account {
 //   id                 String  @id @default(cuid())
 //   userId             String

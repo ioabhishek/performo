@@ -12,7 +12,8 @@ const handler = NextAuth({
             if(account.provider === 'google') {
                 const {email, name, image, subscriber} = user;
                 try {
-                    const res = await fetch('http://localhost:3000/api/user', {
+                    // const res = await fetch('http://localhost:3000/api/user', {
+                    const res = await fetch('https://performo.vercel.app/api/user', {
                         method: "POST",
                         headers: {
                             'Content-Type': 'application/json'
