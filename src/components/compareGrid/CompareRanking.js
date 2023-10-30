@@ -4,7 +4,7 @@ import LineChart from '@/utils/LineChart';
 
 const CompareRanking = ({ ranking }) => {
 
-   const formattedRankingData = ranking.map((data) => {
+   const formattedRankingData = ranking?.map((data) => {
       const rankDate = new Date(data.rank_datetime);
       const day = rankDate.getDate().toString();
       return {
@@ -14,11 +14,11 @@ const CompareRanking = ({ ranking }) => {
    });
 
    const [rankingData, setRankingData] = useState({
-      labels: formattedRankingData.map((data) => data.rank_datetime),
+      labels: formattedRankingData?.map((data) => data.rank_datetime),
       datasets: [
          {
             label: "Article Ranking",
-            data: formattedRankingData.map((data) => data.rank),
+            data: formattedRankingData?.map((data) => data.rank),
             backgroundColor: ["#e7e7ff"],
             borderColor: "#696cff",
             borderWidth: 1.5,

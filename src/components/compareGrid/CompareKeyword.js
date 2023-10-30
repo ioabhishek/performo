@@ -28,10 +28,19 @@ const CompareKeyword = ({id}) => {
 
    useEffect(() => {
       const fetchkw = async () => {
-         const data = await fetch(`${KEYWORD}${id}`);
-         const json = await data.json();
-         setKeywordData(json);
-      }
+         try {
+            const data = await fetch(`${KEYWORD}${id}`);
+            if (!data.ok) {
+               throw new Error(`Failed to fetch data. Status: ${data.status}`);
+            }
+            const json = await data.json();
+            setKeywordData(json);
+         } catch (error) {
+            console.error("An error occurred:", error);
+            // You can add code to handle the error as needed, such as showing an error message to the user.
+         }
+      };
+    
       fetchkw();
    }, []);
 
@@ -69,6 +78,8 @@ const CompareKeyword = ({id}) => {
    //    }
    // ]
 
+   console.log(keywordData)
+
    if (keywordData.length === 0) {
       return (
          <div className={styles.compare_tab_itm}>
@@ -80,9 +91,9 @@ const CompareKeyword = ({id}) => {
    return (
       <div className={styles.compare_tab_itm}>
          {
-            keywordData.map((keyword, index) => (
+            keywordData?.map((keyword, index) => (
                <>
-                  <span key={index}>#{keyword.keyword_name}</span>
+                  <span key={index}>#{keyword?.keyword_name}</span>
                </>
                
             ))
