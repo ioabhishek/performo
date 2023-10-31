@@ -53,7 +53,7 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
             setCategoryId(category.category_id);
          }
       });
-   }, [catgList, match]);
+   }, [catgList, match, decodedParam]);
 
    if (categoryId === null) {
       return (
