@@ -16,6 +16,6 @@ export const RANKING = "https://performo.in/api/article_ranking.php?token_key=@1
 export const AUTHOR = "https://performo.in/api/get_author.php?token_key=@123abcd1366&article_id=";
 export const KEYWORD = "https://performo.in/api/article_keywords.php?token_key=@123abcd1366&article_id=";
 
-export const RPOSITION = "https://performo.in/api/ranking_position.php?token_key=@123abcd1366&date_from=2023-10-19&publisher_id=16"
-export const MPOSITION = "https://performo.in/api/ranking_position_time.php?token_key=@123abcd1366&date_from=2023-10-19&publisher_id=16"
-export const TOP_KEYWORDS = "https://performo.in/api/top_keyword.php?token_key=@123abcd1366&date_from=2023-10-25%2010:02:15.52439"
+export const RPOSITION = "https://performo.in/api/ranking_position.php?token_key=@123abcd1366&date_from=2023-10-19&date_to=2023-10-25&publisher_id=10"
+export const MPOSITION = "https://performo.in/api/ranking_position_time.php?token_key=@123abcd1366&date_from=2023-10-19&date_to=2023-10-25&publisher_id=10"
+export const TOP_KEYWORDS = "https://performo.in/api/top_keyword.php?token_key=@123abcd1366&date_from=2023-10-19&date_to=2023-10-25"
