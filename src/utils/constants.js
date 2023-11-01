@@ -19,3 +19,11 @@ export const KEYWORD = "https://performo.in/api/article_keywords.php?token_key=@
 export const RPOSITION = "https://performo.in/api/ranking_position.php?token_key=@123abcd1366&date_from=2023-10-19&date_to=2023-10-25&publisher_id=10"
 export const MPOSITION = "https://performo.in/api/ranking_position_time.php?token_key=@123abcd1366&date_from=2023-10-19&date_to=2023-10-25&publisher_id=10"
 export const TOP_KEYWORDS = "https://performo.in/api/top_keyword.php?token_key=@123abcd1366&date_from=2023-10-19&date_to=2023-10-25"
+
+export const MISSED_TRAIN = "https://performo.in/api/miss_trained.php?token_key=@123abcd1366&publisher_id=16&date_from=2023-10-24&date_to=2023-10-25"
+
+export const LEGAARD = "https://performo.in/api/legaard.php?token_key=@123abcd1366&publisher_id=16&date_from=2023-10-24&date_to=2023-10-25"
+
+export const EARLY_OFFER = "https://performo.in/api/early_offer.php?token_key=@123abcd1366&publisher_id=16&category_id=336fdcf7d540e4b430a890b63da159c9&date_from=2023-10-24&date_to=2023-10-25 "
+
+
