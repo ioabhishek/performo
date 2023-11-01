@@ -29,7 +29,17 @@ const GetAccess = () => {
             setEmail(session.user.email);
          }
          try{
-            const response = await fetch(`https://performo.in/api/request.php?token_key=@123abcd1366&email=${email}`)
+            // const response = await fetch(`https://performo.in/api/request.php?token_key=@123abcd1366&email=${email}`)
+
+            const data = await fetch('https://performo.in/api/request.php', {
+               method: 'POST',
+               headers: {
+                     Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+               },
+               body: new URLSearchParams({ email : email })
+            });
+            const json = await data.json();
+            console.log(json)
          } catch(error) {
             console.log(error)
          }

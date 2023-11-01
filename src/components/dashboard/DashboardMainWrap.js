@@ -2,12 +2,6 @@ import React, { useState, useEffect } from "react";
 import styles from "./dashboard.module.css";
 import GranularityWrapper from "./GranularityWrapper";
 import DashboardGrid from "./DashboardGrid";
-import { MISSED_TRAIN, RPOSITION } from "@/utils/constants";
-import { MPOSITION } from "@/utils/constants";
-import { TOP_KEYWORDS } from "@/utils/constants";
-import { LEGAARD } from "@/utils/constants";
-import { EARLY_OFFER } from "@/utils/constants";
-
 
 function DashboardMainWrap() {
   const [date, setDate] = useState(new Date().toLocaleDateString());
@@ -21,10 +15,15 @@ function DashboardMainWrap() {
   const [early_bird, setEarly_bird] = useState([]);
   const [early_birdall, setEarly_birdall] = useState([]);
   
-  // const [ranklegaard, setRanklegaard] = useState([]);
   useEffect(() => {
     const fetchLagaard = async () => {
-      const data = await fetch(LEGAARD);
+      const data = await fetch('https://performo.in/api/legaard.php', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        },
+        body: new URLSearchParams({ publisher_id : 10, date_from : '2023-10-24', date_to : '2023-10-25' })
+      });
       const json = await data.json();
       const legard_keyword_name1 = json
         .slice(0, 5)
@@ -34,29 +33,38 @@ function DashboardMainWrap() {
       const legard_keyword_name2=json.map((item) => item.legard_keyword_name);
       setleggardall(legard_keyword_name2);
       //  setRanklegaard(legard_keyword_rank);
-      //  console.log(ranklegaard);
     };
     fetchLagaard();
 
     const fetchmissed = async () => {
-      const data = await fetch(MISSED_TRAIN);
+      const data = await fetch('https://performo.in/api/miss_trained.php', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        },
+        body: new URLSearchParams({ publisher_id : 10, date_from : '2023-10-24', date_to : '2023-10-25' })
+      });
       const json = await data.json();
       // const miss_trained =  json.slice(0,5).map(item => item.legard_keyword_name);
       setMiss_trained(json);
-      console.log(json);
       //  setRanklegaard(legard_keyword_rank);
-      //  console.log(ranklegaard);
     };
     fetchmissed();
 
     const fetchEarly = async () => {
-      const data = await fetch(EARLY_OFFER);
+      const data = await fetch('https://performo.in/api/early_offer.php', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        },
+        body: new URLSearchParams({ publisher_id : 10, category_id : '336fdcf7d540e4b430a890b63da159c9', date_from : '2023-10-24', date_to : '2023-10-25' })
+      });
       const json = await data.json();
+
       const early_key=json.slice(0,5).map(item => item.early_keyword_name);
       const early_key_all=json.map(item => item.early_keyword_name);
       setEarly_bird(early_key);
       setEarly_birdall(early_key_all);
-      console.log(early_key);
     };
     fetchEarly();
 
