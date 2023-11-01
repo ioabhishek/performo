@@ -12,7 +12,14 @@ const useButtonSelection = () => {
    useEffect(() => {
       const fetchPref = async () => {
          try {
-            const data = await fetch(`${UPREFS}${match[1]}&userid=1`);
+            const data = await fetch('https://performo.in/api/get_user_preference.php', {
+               method: 'POST',
+               headers: {
+                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+               },
+               body: new URLSearchParams({category: match[1], userid : 1})
+            });
+           
             if (data.ok) {
                const json = await data.json();
    

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styles from './compareGrid.module.css';
 import CompareWrap from './CompareWrap';
 import { usePathname } from 'next/navigation';
-import { PUBLISHER, CATEGORY } from '@/utils/constants';
 import { useSearchContext } from "@/utils/searContext";
 import { PulseLoader } from "react-spinners";
 
@@ -19,10 +18,12 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
    useEffect(() => {
       const fetchPubs = async () => {
          try {
-            const data = await fetch(PUBLISHER);
-            if (!data.ok) {
-               throw new Error(`HTTP error! Status: ${data.status}`);
-            }
+            const data = await fetch('https://performo.in/api/get_publisher.php', {
+               method: 'POST',
+               headers: {
+                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+               },
+            });
             const json = await data.json();
             setPubList(json);
          } catch (error) {
@@ -33,10 +34,13 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
     
       const fetchCatg = async () => {
          try {
-            const data = await fetch(CATEGORY);
-            if (!data.ok) {
-               throw new Error(`HTTP error! Status: ${data.status}`);
-            }
+
+            const data = await fetch('https://performo.in/api/get_category.php', {
+               method: 'POST',
+               headers: {
+                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+               },
+            });
             const json = await data.json();
             setCatgList(json);
          } catch (error) {

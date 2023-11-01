@@ -10,15 +10,16 @@ const handler = NextAuth({
     callbacks: {
         async signIn({ user, account}) {
             if(account.provider === 'google') {
-                const {email, name, image, subscriber} = user;
+                const {name, email, image} = user;
                 try {
-                    // const res = await fetch('http://localhost:3000/api/user', {
-                    const res = await fetch('https://performo.vercel.app/api/user', {
+                    const url = `https://performo.in/api/signup.php?token_key=@123abcd1366&name=${name}&email=${email}&image=${image}`
+
+                    const res = await fetch(url, {
                         method: "POST",
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({email, name, image, subscriber})
+                        body: JSON.stringify({email, name, image})
                     })
                     if(res.ok) {
                         return user;

@@ -35,11 +35,6 @@ function Wait() {
         />
     </div>
   );
-  // if (session.status === "authenticated"){
-  // } else {
-  //   redirect('/login')
-  // }
-
 }
 
 export default Wait;

@@ -2,11 +2,8 @@ import React, {useState, useEffect} from 'react'
 import styles from './dashboard.module.css'
 import GranularityWrapper from './GranularityWrapper'
 import DashboardGrid from './DashboardGrid'
-import { RPOSITION } from '@/utils/constants'
-import { MPOSITION } from '@/utils/constants'
-import { TOP_KEYWORDS } from '@/utils/constants'
 
-function DashboardMainWrap() {
+const DashboardMainWrap = () => {
   const [date, setDate] = useState(new Date().toLocaleDateString());
   const [selectedCategory, setSelectedCategory] = useState('');
   const [positions, setPositions] = useState([]);
@@ -15,21 +12,39 @@ function DashboardMainWrap() {
 
   useEffect(() => {
     const fetchPosition = async () => {
-      const data = await fetch(RPOSITION);
+      const data = await fetch('https://performo.in/api/ranking_position.php', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        },
+        body: new URLSearchParams({date_from : '2023-10-24', date_to : '2023-10-25', publisher_id : 10})
+      });
       const json = await data.json();
       setPositions(json);
     }
     fetchPosition();
 
     const fetchMposition = async () => {
-      const data = await fetch(MPOSITION);
+      const data = await fetch('https://performo.in/api/ranking_position_time.php', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        },
+        body: new URLSearchParams({date_from : '2023-10-24', date_to : '2023-10-25', publisher_id : 10})
+      });
       const json = await data.json();
       setMositions(json);
     }
     fetchMposition();
 
     const fetchTopKeywords = async () => {
-      const data = await fetch(TOP_KEYWORDS);
+      const data = await fetch('https://performo.in/api/top_keyword.php', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        },
+        body: new URLSearchParams({date_from : '2023-10-24', date_to : '2023-10-25'})
+      });
       const json = await data.json();
       setTopKeyword(json);
     }
