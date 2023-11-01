@@ -35,9 +35,9 @@ const DashboardGrid = ({ positions, mpositions, topKeywords,legaard,miss_trained
         {legaard.length>0&& (
           <DashboardCardLeg legaard={legaard} leggardall={leggardall}  />
         )}
-        {/* {miss_trained.length>0&& (
+        {miss_trained.length>0&& (
           <DashboardCardMissed missed_train={miss_trained}  />
-        )} */}
+        )}
         {early_bird.length>0&& (
 
         <DashboardCardEarly early_bird={early_bird} early_birdall={early_birdall}/>

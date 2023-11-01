@@ -39,9 +39,9 @@ function DashboardMainWrap() {
     const fetchmissed = async () => {
       const data = await fetch(MISSED_TRAIN);
       const json = await data.json();
-      // const miss_trained =  json.slice(0,5).map(item => item.legard_keyword_name);
-      setMiss_trained(json);
-      console.log(json);
+      const miss_trained =  json.slice(0,5).map(item => item.missed_train);
+      setMiss_trained(miss_trained);
+      console.log(miss_trained);
       //  setRanklegaard(legard_keyword_rank);
       //  console.log(ranklegaard);
     };
