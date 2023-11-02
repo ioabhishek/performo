@@ -21,7 +21,7 @@ export const AccessProvider = ({ children }) => {
          });
          const checkData = await checkResponse.json();
 
-         if (checkData[0].subscriber === "true") {  
+         if (checkData.subscriber === "true") {  
             setAccessStatus("authenticated");
          } else {
             setAccessStatus("unauthenticated");
