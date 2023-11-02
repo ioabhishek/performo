@@ -7,8 +7,8 @@ import { PulseLoader } from "react-spinners";
 import DashboardCardLeg from './DashboardCardLeg';
 import DashboardCardMissed from './DashboardCardMissed';
 import DashboardCardEarly from './DashboardCardEarly';
-const DashboardGrid = ({ positions, mpositions, topKeywords,legaard,miss_trained,early_bird,leggardall,early_birdall}) => {
-  if (!positions || !mpositions || !topKeywords) {
+const DashboardGrid = ({ positions, mpositions, topKeywords, leggards, missedTrain, earlyBirds}) => {
+  if (!positions || !mpositions || !topKeywords || !leggards || !missedTrain || !earlyBirds) {
     return (
       <div className='loading_wrap'>
         <PulseLoader
@@ -32,15 +32,14 @@ const DashboardGrid = ({ positions, mpositions, topKeywords,legaard,miss_trained
         {topKeywords.length > 0 && (
           <DashboardCard topKeywords={topKeywords} />
         )}
-        {legaard.length> 0 && (
-          <DashboardCardLeg legaard={legaard} leggardall={leggardall}  />
+        {leggards.length> 0 && (
+          <DashboardCardLeg leggards={leggards} />
         )}
-        {miss_trained.length>0&& (
-          <DashboardCardMissed miss_trained={miss_trained}  />
+        {missedTrain.length> 0 && (
+          <DashboardCardMissed missedTrain={missedTrain}  />
         )}
-        {early_bird.length>0&& (
-
-        <DashboardCardEarly early_bird={early_bird} early_birdall={early_birdall}/>
+        {earlyBirds.length> 0 && (
+          <DashboardCardEarly earlyBirds={earlyBirds}/>
         )
         }
       </div>
