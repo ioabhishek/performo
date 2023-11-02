@@ -12,15 +12,18 @@ const handler = NextAuth({
             if(account.provider === 'google') {
                 const {name, email, image} = user;
                 try {
-                    const url = `https://performo.in/api/signup.php?token_key=@123abcd1366&name=${name}&email=${email}&image=${image}`
-
-                    const res = await fetch(url, {
+                    const res = await fetch('https://performo.in/api/signup.php', {
                         method: "POST",
                         headers: {
-                            'Content-Type': 'application/json'
+                            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
                         },
-                        body: JSON.stringify({email, name, image})
+                        body: new URLSearchParams({ name:name, email:email, image:image })
                     })
+
+                    const json = await res.json()
+                    console.log(json)
+
+
                     if(res.ok) {
                         return user;
                     }

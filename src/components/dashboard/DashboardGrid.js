@@ -32,7 +32,7 @@ const DashboardGrid = ({ positions, mpositions, topKeywords,legaard,miss_trained
         {topKeywords.length > 0 && (
           <DashboardCard topKeywords={topKeywords} />
         )}
-        {legaard.length>0&& (
+        {legaard.length> 0 && (
           <DashboardCardLeg legaard={legaard} leggardall={leggardall}  />
         )}
         {miss_trained.length>0&& (

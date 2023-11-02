@@ -76,7 +76,7 @@ function DashboardMainWrap() {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({date_from : '2023-10-24', date_to : '2023-10-25', publisher_id : 10})
+        body: new URLSearchParams({date_from : '2023-10-19', date_to : '2023-10-25', publisher_id : 10})
       });
       const json = await data.json();
       setPositions(json);
@@ -89,7 +89,7 @@ function DashboardMainWrap() {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({date_from : '2023-10-24', date_to : '2023-10-25', publisher_id : 10})
+        body: new URLSearchParams({date_from : '2023-10-19', date_to : '2023-10-25', publisher_id : 10})
       });
       const json = await data.json();
       setMositions(json);
