@@ -8,7 +8,6 @@ import { useSession } from "next-auth/react";
 import { useAccess } from "@/context/accessContext";
 
 const GetAccess = () => {
-   const [email, setEmail] = useState('');
    const {status, data:session} = useSession();
    const { accessStatus, checkAccess } = useAccess();
 
@@ -25,24 +24,21 @@ const GetAccess = () => {
          theme: "light",
       });
       const requestAccess = async() => {
-         if (status === "authenticated"){
-            setEmail(session.user.email);
+         if (status === "authenticated" && accessStatus === "unauthenticated"){
+            const userEmail = session.user.email;
+            try{
+               const data = await fetch('https://performo.in/api/request.php', {
+                  method: 'POST',
+                  headers: {
+                        Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                  },
+                  body: new URLSearchParams({ email : userEmail })
+               });
+            } catch(error) {
+               console.log(error)
+            }
          }
-         try{
-            // const response = await fetch(`https://performo.in/api/request.php?token_key=@123abcd1366&email=${email}`)
 
-            const data = await fetch('https://performo.in/api/request.php', {
-               method: 'POST',
-               headers: {
-                     Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-               },
-               body: new URLSearchParams({ email : email })
-            });
-            const json = await data.json();
-            console.log(json)
-         } catch(error) {
-            console.log(error)
-         }
       }
       requestAccess()
    }
@@ -69,7 +65,6 @@ const GetAccess = () => {
          <div className={styles.access_wrap}>
             <div className={styles.access_text}>You don&apos;t have access to use this feature. <br /> Click below to request.</div>
             <form action="" onSubmit={(e) => handleSubmit(e)}>
-               {/* <input type="email" placeholder='Enter your email...' value={email} onChange={handleEmailChange}/> */}
                <button type='submit' >Request</button>
             </form>
             <Link href="/login">Back to Login</Link>

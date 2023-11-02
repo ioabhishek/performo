@@ -19,9 +19,9 @@ console.log(session)
 
   useEffect(() => {
     if (accessStatus === "authenticated") {
-      window.location.href = "/";
+      redirect('/')
     } else if (accessStatus === "unauthenticated") {
-      window.location.href = "/access";
+      redirect('/access')
     }
   }, [accessStatus]);
 
