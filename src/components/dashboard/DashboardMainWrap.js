@@ -17,7 +17,7 @@ function DashboardMainWrap() {
   
   useEffect(() => {
     const fetchLagaard = async () => {
-      const data = await fetch('https://performo.in/api/legaard.php', {
+      const data = await fetch('https://performo.in/api/leggard.php', {
         method: 'POST',
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -37,12 +37,12 @@ function DashboardMainWrap() {
     fetchLagaard();
 
     const fetchmissed = async () => {
-      const data = await fetch('https://performo.in/api/miss_trained.php', {
+      const data = await fetch('https://performo.in/api/missed_train.php', {
         method: 'POST',
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ publisher_id : 10, date_from : '2023-10-24', date_to : '2023-10-25' })
+        body: new URLSearchParams({ publisher_id : 16, date_from : '2023-10-24', date_to : '2023-10-25' })
       });
       const json = await data.json();
       // const miss_trained =  json.slice(0,5).map(item => item.legard_keyword_name);
