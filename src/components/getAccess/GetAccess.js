@@ -26,8 +26,6 @@ const GetAccess = () => {
       const requestAccess = async() => {
          if (status === "authenticated" && accessStatus === "unauthenticated"){
             const userEmail = session.user.email;
-
-            console.log(userEmail)
             try{
                const data = await fetch('https://performo.in/api/request.php', {
                   method: 'POST',
