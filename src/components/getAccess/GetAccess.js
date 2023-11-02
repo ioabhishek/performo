@@ -12,10 +12,6 @@ const GetAccess = () => {
    const {status, data:session} = useSession();
    const { accessStatus, checkAccess } = useAccess();
 
-   const handleEmailChange = (e) => {
-      setEmail(e.target.value)
-   }
-
    const handleSubmit = (e) => {
       e.preventDefault();
       toast.success('Request sent!', {
@@ -28,21 +24,27 @@ const GetAccess = () => {
          progress: undefined,
          theme: "light",
       });
-      const fetchData = async() => {
+      const requestAccess = async() => {
+         if (status === "authenticated"){
+            setEmail(session.user.email);
+         }
          try{
-            const response = await fetch('/api/access', {
-               method: "POST",
+            // const response = await fetch(`https://performo.in/api/request.php?token_key=@123abcd1366&email=${email}`)
+
+            const data = await fetch('https://performo.in/api/request.php', {
+               method: 'POST',
                headers: {
-                  'Content-Type': 'application/json'
+                     Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
                },
-               body: JSON.stringify({ email })
-            })
+               body: new URLSearchParams({ email : email })
+            });
+            const json = await data.json();
+            console.log(json)
          } catch(error) {
             console.log(error)
          }
       }
-      fetchData()
-      setEmail('')
+      requestAccess()
    }
 
    useEffect(() => {
@@ -52,7 +54,7 @@ const GetAccess = () => {
       }
    }, [session, accessStatus, checkAccess]);
 
-   if (accessStatus === "authenticated") {
+   if (accessStatus === "authenticated" || accessStatus === "checking") {
       return (
          <div className='loading_wrap'>
             <PulseLoader
@@ -65,9 +67,9 @@ const GetAccess = () => {
    } else if (accessStatus === "unauthenticated") {
       return (
          <div className={styles.access_wrap}>
-            <div className={styles.access_text}>You don&apos;t have access to use this feature. <br /> Request by entering your email</div>
+            <div className={styles.access_text}>You don&apos;t have access to use this feature. <br /> Click below to request.</div>
             <form action="" onSubmit={(e) => handleSubmit(e)}>
-               <input type="email" placeholder='Enter your email...' value={email} onChange={handleEmailChange}/>
+               {/* <input type="email" placeholder='Enter your email...' value={email} onChange={handleEmailChange}/> */}
                <button type='submit' >Request</button>
             </form>
             <Link href="/login">Back to Login</Link>

@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import styles from './compareGrid.module.css';
-import { KEYWORD } from '@/utils/constants';
 
 const CompareKeyword = ({id}) => {
    const [keywordData, setKeywordData] = useState([]);
@@ -29,15 +28,17 @@ const CompareKeyword = ({id}) => {
    useEffect(() => {
       const fetchkw = async () => {
          try {
-            const data = await fetch(`${KEYWORD}${id}`);
-            if (!data.ok) {
-               throw new Error(`Failed to fetch data. Status: ${data.status}`);
-            }
+            const data = await fetch('https://performo.in/api/article_keywords.php', {
+               method: 'POST',
+               headers: {
+                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+               },
+               body: new URLSearchParams({ article_id: id })
+            });
             const json = await data.json();
             setKeywordData(json);
          } catch (error) {
             console.error("An error occurred:", error);
-            // You can add code to handle the error as needed, such as showing an error message to the user.
          }
       };
     
@@ -77,8 +78,6 @@ const CompareKeyword = ({id}) => {
    //       "keywordlastseendate": null
    //    }
    // ]
-
-   console.log(keywordData)
 
    if (keywordData.length === 0) {
       return (

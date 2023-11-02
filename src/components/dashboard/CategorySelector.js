@@ -8,8 +8,18 @@ const CategorySelector = ({selectedCategory, setSelectedCategory}) => {
 
   useEffect(() => {
     const fetchCategory = async () => {
-      const data = await fetch(CATEGORY);
+
+      const data = await fetch('https://performo.in/api/get_category.php', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        },
+        // body: new URLSearchParams({email: userEmail})
+      });
       const json = await data.json();
+
+      // const data = await fetch(CATEGORY);
+      // const json = await data.json();
       const sortedCategory = json.sort((a, b) => a.category_name.localeCompare(b.category_name));
       setCategory(sortedCategory);
     }

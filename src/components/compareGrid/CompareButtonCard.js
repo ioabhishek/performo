@@ -3,7 +3,6 @@ import styles from './compareGrid.module.css';
 import CompareButton from '../button/CompareButton';
 import CompareRanking from './CompareRanking';
 import CompareKeyword from './CompareKeyword';
-import { RANKING } from '@/utils/constants';
 
 const CompareButtonCard = ({id}) => {
 
@@ -18,7 +17,14 @@ const CompareButtonCard = ({id}) => {
    useEffect(() => {
       const fetchRanking = async () => {
          try {
-            const data = await fetch(`${RANKING}${id}`);
+            const data = await fetch('https://performo.in/api/article_ranking.php', {
+               method: 'POST',
+               headers: {
+                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+               },
+               body: new URLSearchParams({ article_id: id })
+            });
+
             if (!data.ok) {
                throw new Error(`HTTP error! Status: ${data.status}`);
             }
@@ -71,10 +77,6 @@ const CompareButtonCard = ({id}) => {
          rank_datetime: "2023-10-20 20:00:09",
       },
    ];
-
-   // console.log(ranking)
-   // console.log(latestRanking)
-   // console.log(rankingData)
 
    return (
       <>

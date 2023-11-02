@@ -8,20 +8,20 @@ export const useAccess = () => {
 };
 
 export const AccessProvider = ({ children }) => {
-   const [accessStatus, setAccessStatus] = useState("checking"); // You can use "checking," "authenticated," or "unauthenticated"
+   const [accessStatus, setAccessStatus] = useState("checking");
 
    const checkAccess = async (userEmail) => {
       try {
-         const checkResponse = await fetch("/api/check", {
-            method: "POST",
+         const checkResponse = await fetch('https://performo.in/api/access.php', {
+            method: 'POST',
             headers: {
-               "Content-Type": "application/json",
+               Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
             },
-            body: JSON.stringify({ email: userEmail }),
+            body: new URLSearchParams({email: userEmail})
          });
          const checkData = await checkResponse.json();
 
-         if (checkData.result === "subscriber") {
+         if (checkData[0].subscriber === "true") {  
             setAccessStatus("authenticated");
          } else {
             setAccessStatus("unauthenticated");
@@ -29,7 +29,6 @@ export const AccessProvider = ({ children }) => {
       } catch (error) {
          console.error("Error checking user status:", error);
          setAccessStatus("error");
-         // Handle errors if necessary
       }
    };
 

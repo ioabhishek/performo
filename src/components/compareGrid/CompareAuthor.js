@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import styles from './compareGrid.module.css';
-import { AUTHOR } from '@/utils/constants';
 
 const CompareAuthor = ({id}) => {
    const [authorData, setAuthorData] = useState([]);
@@ -8,10 +7,13 @@ const CompareAuthor = ({id}) => {
    useEffect(() => {
       const fetchCategory = async () => {
          try {
-            const data = await fetch(`${AUTHOR}${id}`);
-            if (!data.ok) {
-               throw new Error(`Network response was not ok (status: ${data.status})`);
-            }
+            const data = await fetch(apiEndpoint, {
+               method: 'POST',
+               headers: {
+                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+               },
+               body: new URLSearchParams({ article_id: id })
+            });
             const json = await data.json();
             setAuthorData(json);
          } catch (error) {

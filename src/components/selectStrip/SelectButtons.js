@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./selectStrip.module.css";
 import SelectButton from "@/components/button/SelectButton";
-import { PUBLISHER } from "../../utils/constants";
 
 const SelectButtons = ({
    selectedButtons,
@@ -14,10 +13,12 @@ const SelectButtons = ({
    useEffect(() => {
       const fetchPubs = async () => {
          try {
-            const data = await fetch(PUBLISHER);
-            if (!data.ok) {
-               throw new Error(`Failed to fetch data (status code: ${data.status})`);
-            }
+            const data = await fetch('https://performo.in/api/get_publisher.php', {
+               method: 'POST',
+               headers: {
+                     Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+               },
+            });
             const json = await data.json();
             setPubList(json);
          } catch (error) {

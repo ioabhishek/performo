@@ -15,14 +15,12 @@ function Button({selectedButtons}) {
          sources: selectedButtons.join(',')
       };
 
-      const url = `https://performo.in/api/save_publisher.php?token_key=@123abcd1366&userid=${data.userid}&category=${data.category}&sources=${data.sources}`;
-    
-      const response = await fetch(url, {
+      const response = await fetch('https://performo.in/api/save_publisher.php', {
          method: 'POST',
          headers: {
-            'Content-Type': 'application/json',
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
          },
-         body: JSON.stringify(data),
+         body: new URLSearchParams({userid: data.userid, category : data.category, sources : data.sources })
       });
     
       if (response.ok) {
