@@ -48,7 +48,7 @@ function DashboardMainWrap() {
      
       const miss_trained =  json.map(item => item.missed_train);
       console.log(miss_trained);
-      setMiss_trained(json);
+      setMiss_trained(miss_trained);
       //  setRanklegaard(legard_keyword_rank);
     };
     fetchmissed();

@@ -14,7 +14,7 @@ function DashboardCardLeg({legaard,leggardall}) {
   }
 
   return (
-    <div className={styles.main_card}>
+    <div className={styles.main_card_special}>
       <span>Legaard</span>
       {
         load.map((load, index) => (

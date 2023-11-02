@@ -13,7 +13,7 @@ function DashboardCardEarly({early_bird,early_birdall}) {
     }
   }
   return (
-    <div className={styles.main_card}>
+    <div className={styles.main_card_special}>
     <span>Early Bird</span>
     {load.map((load, index) => (
           <span key={index}>{load}</span>
