@@ -21,7 +21,7 @@ function DashboardCardLeg({legaard,leggardall}) {
           <span key={index}>{load}</span>
         ))
       }
-      <button onClick={showmore} > load more</button>
+      <button onClick={showmore} className={styles.button} > load more</button>
     </div>
   )
 }

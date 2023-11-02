@@ -20,7 +20,7 @@
 .main_card { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px; font: 400 16px/24px 'Inter', sans-serif; text-align: center; padding: 30px 20px; background-color: #ffffff; border-radius: 16px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04); cursor: pointer; height: fit-content;overflow:auto ; }
 .main_card span:last-child {font-weight: 700;}
 .main_card:hover { background-color: #e7e7ff; color: #696CFF;}
-.main_card_special{ display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px; font: 400 16px/24px 'Inter', sans-serif; text-align: center; padding: 30px 20px; background-color: #ffffff; border-radius: 16px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04); cursor: pointer; height: 284px;overflow:auto ;}
+.main_card_special{ display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px; font: 400 16px/24px 'Inter', sans-serif; text-align: center; padding: 30px 20px; background-color: #ffffff; border-radius: 16px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04); cursor: pointer; height: 300px;overflow:auto ;}
 .main_card_special:hover { background-color: #e7e7ff; color: #696CFF;}
 .main_card_special span:last-child {font-weight: 700;}
 

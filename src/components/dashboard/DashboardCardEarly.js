@@ -18,7 +18,7 @@ function DashboardCardEarly({early_bird,early_birdall}) {
     {load.map((load, index) => (
           <span key={index}>{load}</span>
         ))}
-        <button onClick={loadmore}>load more</button>
+        <button onClick={loadmore} className={styles.button}>load more</button>
   </div>
   )
 }
