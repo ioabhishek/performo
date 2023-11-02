@@ -6,7 +6,7 @@ import CompareLabel from "./CompareLabel";
 const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput }) => {
    const [articles, setArticles] = useState([]);
    const [loadingTime, setLoadingTime] = useState(null);
-   const [showCount, setShowCount] = useState(10);
+   const [pageNum, setPageNum] = useState(10);
 
    useEffect(() => {
       if(selected) {
@@ -14,13 +14,13 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
             try {
                const startTime = performance.now();
                let apiEndpoint = 'https://performo.in/api/all_article.php'
-   
+
                if (searchInput) {
                   apiEndpoint = 'https://performo.in/api/search_keyword.php'
                }
-   
+
                let json;
-   
+
                if(searchInput) {
                   const data = await fetch(apiEndpoint, {
                      method: 'POST',
@@ -36,31 +36,38 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                      headers: {
                         Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
                      },
-                     body: new URLSearchParams({publisher_id : publisherid, category_id : categoryid, page_num : 10, })
+                     body: new URLSearchParams({publisher_id : publisherid, category_id : categoryid, page_num : pageNum, })
                   });
                   json = await data.json();
                }
-   
+
                const endTime = performance.now();
                setLoadingTime(endTime - startTime);
-   
+
+               console.log(searchInput)
+
                if (Array.isArray(json) && json.length === 0) {
                   setArticles([]);
                } else {
-                  setArticles(json);
+                  if (Array.isArray(json)) {
+                    setArticles((prevArticles) => [...prevArticles, ...json]);
+                  } else if (typeof json === "object") {
+                    setArticles([json]);
+                  }
                }
+               
+               
             } catch (error) {
-               // Handle the error as needed
-               console.error('An error occurred while fetching data:', error);
+               // console.error('An error occurred while fetching data:', error);
             }
          };
-   
+
          fetchArticles();
       }
-   }, [selected, searchInput, publisherid, categoryid]);
+   }, [selected, searchInput, publisherid, categoryid, pageNum]);
 
    const loadMoreArticles = () => {
-      setShowCount(prevShowCount => prevShowCount + 10);
+      setPageNum(pageNum + 10);
    };
 
    return (
@@ -71,7 +78,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                <p>Data loaded in {loadingTime.toFixed(2)} milliseconds</p>
             )}
          </div>
-         {selected && articles?.slice(0, showCount).map((article, index) => (
+         {selected && articles?.map((article, index) => (
             <CompareCard
                key={index}
                id={article.id}
@@ -83,9 +90,13 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                pubdate={article.pubdate}
             />
          ))}
-         {articles.length > showCount && (
-            <button className={styles.show_more_btn} onClick={loadMoreArticles}>Load More</button>
-         )}
+         {
+            articles.length && (
+               <button className={styles.show_more_btn} onClick={loadMoreArticles}>
+                  Load More
+               </button>
+            )
+         }
       </div>
    );
 };

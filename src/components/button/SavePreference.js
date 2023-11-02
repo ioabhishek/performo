@@ -26,7 +26,7 @@ function Button({selectedButtons}) {
       if (response.ok) {
          const result = await response.json();
       } else {
-         console.error('Error:', response.status, response.statusText);
+         // console.error('Error:', response.status, response.statusText);
       }
    }
 
