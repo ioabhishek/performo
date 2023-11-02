@@ -36,7 +36,9 @@ function DashboardMainWrap() {
         body: new URLSearchParams({ publisher_id : 16, date_from : '2023-10-24', date_to : '2023-10-25' })
       });
       const json = await data.json();
-      setMissedTrain(json);
+      const miss_trained =  json.map(item => item.missed_train);
+      console.log(miss_trained);
+      setMissedTrain(miss_trained);
     };
     fetchmissed();
 

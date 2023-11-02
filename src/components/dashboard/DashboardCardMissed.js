@@ -6,8 +6,8 @@ function DashboardCardMissed({missedTrain}) {
     <div className={styles.main_card}>
         <span>MISSED TRAIN</span>
       {
-        missed_train.map((missed_train, index) => (
-          <span key={index}>{missed_train}</span>
+        missedTrain.map((missedTrain, index) => (
+          <span key={index}>{missedTrain}</span>
         ))
       }
     </div>
