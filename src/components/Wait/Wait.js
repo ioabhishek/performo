@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 function Wait() {
   const session = useSession();
   const { accessStatus, checkAccess } = useAccess();
-
+console.log(session)
   useEffect(() => {
     if (session.status === "authenticated" && accessStatus === "checking") {
       const userEmail = session.data.user.email;

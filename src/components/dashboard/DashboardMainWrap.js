@@ -45,6 +45,7 @@ function DashboardMainWrap() {
         body: new URLSearchParams({ publisher_id : 16, date_from : '2023-10-24', date_to : '2023-10-25' })
       });
       const json = await data.json();
+      console.log(json);
       // const miss_trained =  json.slice(0,5).map(item => item.legard_keyword_name);
       setMiss_trained(json);
       //  setRanklegaard(legard_keyword_rank);
