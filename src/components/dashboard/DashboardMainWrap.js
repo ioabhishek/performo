@@ -9,11 +9,9 @@ function DashboardMainWrap() {
   const [positions, setPositions] = useState([]);
   const [mpositions, setMositions] = useState([]);
   const [topKeywords, setTopKeyword] = useState([]);
-  const [legaard, setLegaard] = useState([]);
-  const [leggardall,setleggardall]=useState([]);
-  const [miss_trained, setMiss_trained] = useState([]);
-  const [early_bird, setEarly_bird] = useState([]);
-  const [early_birdall, setEarly_birdall] = useState([]);
+  const [leggards, setLeggards] = useState([]);
+  const [missedTrain, setMissedTrain] = useState([]);
+  const [earlyBirds, setEarlyBirds] = useState([]);
   
   useEffect(() => {
     const fetchLagaard = async () => {
@@ -25,14 +23,7 @@ function DashboardMainWrap() {
         body: new URLSearchParams({ publisher_id : 10, date_from : '2023-10-24', date_to : '2023-10-25' })
       });
       const json = await data.json();
-      const legard_keyword_name1 = json
-        .slice(0, 5)
-        .map((item) => item.legard_keyword_name);
-      // const legard_keyword_rank =  json.slice(0,5).map(item => item.rank);
-      setLegaard(legard_keyword_name1);
-      const legard_keyword_name2=json.map((item) => item.legard_keyword_name);
-      setleggardall(legard_keyword_name2);
-      //  setRanklegaard(legard_keyword_rank);
+      setLeggards(json)
     };
     fetchLagaard();
 
@@ -45,9 +36,7 @@ function DashboardMainWrap() {
         body: new URLSearchParams({ publisher_id : 16, date_from : '2023-10-24', date_to : '2023-10-25' })
       });
       const json = await data.json();
-      // const miss_trained =  json.slice(0,5).map(item => item.legard_keyword_name);
-      setMiss_trained(json);
-      //  setRanklegaard(legard_keyword_rank);
+      setMissedTrain(json);
     };
     fetchmissed();
 
@@ -60,11 +49,7 @@ function DashboardMainWrap() {
         body: new URLSearchParams({ publisher_id : 10, category_id : '336fdcf7d540e4b430a890b63da159c9', date_from : '2023-10-24', date_to : '2023-10-25' })
       });
       const json = await data.json();
-
-      const early_key=json.slice(0,5).map(item => item.early_keyword_name);
-      const early_key_all=json.map(item => item.early_keyword_name);
-      setEarly_bird(early_key);
-      setEarly_birdall(early_key_all);
+      setEarlyBirds(json)
     };
     fetchEarly();
 
@@ -120,11 +105,9 @@ function DashboardMainWrap() {
         positions={positions}
         mpositions={mpositions}
         topKeywords={topKeywords}
-        legaard={legaard}
-        leggardall={leggardall}
-        miss_trained={miss_trained}
-        early_bird={early_bird}
-        early_birdall={early_birdall}
+        leggards={leggards}
+        missedTrain={missedTrain}
+        earlyBirds={earlyBirds}
       />
     </>
   );
