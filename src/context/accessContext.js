@@ -27,7 +27,7 @@ export const AccessProvider = ({ children }) => {
             setAccessStatus("unauthenticated");
          }
       } catch (error) {
-         console.error("Error checking user status:", error);
+         // console.error("Error checking user status:", error);
          setAccessStatus("error");
       }
    };

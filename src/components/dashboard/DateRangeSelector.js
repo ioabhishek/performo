@@ -13,7 +13,6 @@ const inter = Inter({ subsets: ["latin"] });
 const DateRangeSelector = ({date, setDate}) => {
   const [size, setSize] = useState("middle");
   const [showRangePicker, setShowRangePicker] = useState(false);
-  // const [date, setDate] = useState(new Date().toLocaleDateString());
   var moment1 = moment(date, "YYYY/MM/DD");
   
   const toggleRangePicker = () => {
@@ -23,13 +22,10 @@ const DateRangeSelector = ({date, setDate}) => {
   const clear = () => {
     setDate(new Date().toLocaleDateString());
     moment1=null;
-   
   };
   const apply = () => {
     setShowRangePicker(false);
   };
-
-  // console.log(date)
 
   return (
     <div>
@@ -48,12 +44,11 @@ const DateRangeSelector = ({date, setDate}) => {
                 allowclear={true}
                 onChange={(values) => {
                   if (values && values.length > 1) {
-                    const startDate = values[0].format("YYYY/MM/DD");
-                    const endDate = values[1].format("YYYY/MM/DD");
-                    setDate(startDate);
-                    // setDate(
-                    //   startDate + " " + "-" + " " + endDate
-                    // );
+                    const startDate = values[0].format("YYYY-MM-DD");
+                    const endDate = values[1].format("YYYY-MM-DD");
+                    setDate(
+                      startDate + " " + "-" + " " + endDate
+                    );
                   }
                 }}
               />

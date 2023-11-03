@@ -49,7 +49,6 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
       };
       fetchCatg();
    }, []);
-    
 
    useEffect(() => {
       catgList.forEach((category) => {

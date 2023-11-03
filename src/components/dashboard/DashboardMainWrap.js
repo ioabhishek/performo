@@ -3,10 +3,15 @@ import GranularityWrapper from "./GranularityWrapper";
 import DashboardGrid from "./DashboardGrid";
 
 const DashboardMainWrap = () => {
-  const [date, setDate] = useState(new Date().toLocaleDateString());
+  const formatDate = new Date().toLocaleDateString();
+  const parts = formatDate.split('/');
+  const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+  const [date, setDate] = useState(formattedDate);
   const [selectedCategory, setSelectedCategory] = useState("");
-
-  console.log(date, selectedCategory)
+  const [catgList, setCatgList] = useState([])
+  const [categoryId, setCategoryId] = useState('336fdcf7d540e4b430a890b63da159c9');
+  const startDate = date.split(" - ")[0]
+  const endDate = date.split(" - ")[1] ? date.split(" - ")[1] : date.split(" - ")[0]
 
   const [positions, setPositions] = useState([]);
   const [mpositions, setMositions] = useState([]);
@@ -14,15 +19,40 @@ const DashboardMainWrap = () => {
   const [leggards, setLeggards] = useState([]);
   const [missedTrain, setMissedTrain] = useState([]);
   const [earlyBirds, setEarlyBirds] = useState([]);
-  
+
   useEffect(() => {
+    const fetchCatg = async () => {
+      try {
+        const data = await fetch('https://performo.in/api/get_category.php', {
+          method: 'POST',
+          headers: {
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+          },
+        });
+        const json = await data.json();
+        setCatgList(json);
+      } catch (error) {
+         // console.error('Error fetching categories:', error);
+      }
+    };
+    fetchCatg();
+  
+    catgList.forEach((category) => {
+      if (category.category_name === selectedCategory) {
+        setCategoryId(category.category_id);
+      }
+    });
+  }, [catgList, selectedCategory])
+
+  useEffect(() => {
+
     const fetchLagaard = async () => {
       const data = await fetch('https://performo.in/api/leggard.php', {
         method: 'POST',
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : '2023-10-19', date_to : '2023-10-26', publisher_id : 10, category_id: '52c37b612a408d420a70bf7858af6636' })
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId })
       });
       const json = await data.json();
       setLeggards(json)
@@ -35,7 +65,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : '2023-10-19', date_to : '2023-10-26', publisher_id : 10, category_id: '52c37b612a408d420a70bf7858af6636'})
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId})
       });
       const json = await data.json();
       setMissedTrain(json);
@@ -48,7 +78,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : '2023-10-19', date_to : '2023-10-26', publisher_id : 10, category_id: '52c37b612a408d420a70bf7858af6636' })
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId })
       });
       const json = await data.json();
       setEarlyBirds(json)
@@ -61,7 +91,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({date_from : '2023-10-19', date_to : '2023-10-26', publisher_id : 10, category_id: '52c37b612a408d420a70bf7858af6636'})
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId})
       }); 
       const json = await data.json();
       setPositions(json);
@@ -74,7 +104,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({date_from : '2023-10-19', date_to : '2023-10-26', publisher_id : 10, category_id: '52c37b612a408d420a70bf7858af6636'})
+        body: new URLSearchParams({date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId})
       });
       const json = await data.json();
       setMositions(json);
@@ -87,13 +117,13 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({date_from : '2023-10-24', date_to : '2023-10-25'})
+        body: new URLSearchParams({date_from : startDate, date_to : endDate})
       });
       const json = await data.json();
       setTopKeyword(json);
     };
     fetchTopKeywords();
-  }, [date]);
+  }, [date, startDate, endDate, categoryId]);
 
   return (
     <>
@@ -102,6 +132,7 @@ const DashboardMainWrap = () => {
         setDate={setDate}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
+
       />
       <DashboardGrid
         positions={positions}
