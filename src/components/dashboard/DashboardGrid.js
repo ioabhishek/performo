@@ -8,6 +8,7 @@ import DashboardCardLeg from './DashboardCardLeg';
 import DashboardCardMissed from './DashboardCardMissed';
 import DashboardCardEarly from './DashboardCardEarly';
 const DashboardGrid = ({ positions, mpositions, topKeywords, leggards, missedTrain, earlyBirds}) => {
+
   if (!positions || !mpositions || !topKeywords || !leggards || !missedTrain || !earlyBirds) {
     return (
       <div className='loading_wrap'>

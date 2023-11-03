@@ -20,7 +20,7 @@ const CategorySelector = ({selectedCategory, setSelectedCategory}) => {
       setCategory(sortedCategory);
     }
     fetchCategory();
-  }, []);
+  }, [selectedCategory]);
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);

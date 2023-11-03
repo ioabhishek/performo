@@ -20,7 +20,7 @@ const DashboardMainWrap = () => {
   const [leggards, setLeggards] = useState([]);
   const [missedTrain, setMissedTrain] = useState([]);
   const [earlyBirds, setEarlyBirds] = useState([]);
-  const { publisher_id } = useAccess();
+  const { userPubId } = useAccess();
 
   useEffect(() => {
     const fetchCatg = async () => {
@@ -34,17 +34,17 @@ const DashboardMainWrap = () => {
         const json = await data.json();
         setCatgList(json);
       } catch (error) {
-         // console.error('Error fetching categories:', error);
+        //  console.error('Error fetching categories:', error);
       }
     };
     fetchCatg();
-  
     catgList.forEach((category) => {
       if (category.category_name === selectedCategory) {
         setCategoryId(category.category_id);
       }
     });
-  }, [catgList, selectedCategory])
+  }, [])
+
 
   useEffect(() => {
     const fetchLagaard = async () => {
@@ -53,7 +53,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : publisher_id, category_id: categoryId })
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId })
       });
       const json = await data.json();
       setLeggards(json)
@@ -66,7 +66,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : publisher_id, category_id: categoryId})
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId})
       });
       const json = await data.json();
       setMissedTrain(json);
@@ -79,7 +79,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : publisher_id, category_id: categoryId })
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId })
       });
       const json = await data.json();
       setEarlyBirds(json)
@@ -92,7 +92,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : publisher_id, category_id: categoryId})
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId})
       }); 
       const json = await data.json();
       setPositions(json);
@@ -105,7 +105,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({date_from : startDate, date_to : endDate, publisher_id : publisher_id, category_id: categoryId})
+        body: new URLSearchParams({date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId})
       });
       const json = await data.json();
       setMositions(json);
@@ -124,7 +124,7 @@ const DashboardMainWrap = () => {
       setTopKeyword(json);
     };
     fetchTopKeywords();
-  }, [startDate, endDate, categoryId]);
+  }, [startDate, endDate, categoryId, selectedCategory]);
 
   return (
     <>
