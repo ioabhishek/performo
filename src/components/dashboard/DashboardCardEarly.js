@@ -1,7 +1,28 @@
-'use client'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './dashboard.module.css'
-function DashboardCardEarly({earlyBirds}) {
+import { useAccess } from '@/context/accessContext';
+
+function DashboardCardEarly({startDate, endDate, categoryId}) {
+  const { userPubId } = useAccess();
+  const [earlyBirds, setEarlyBirds] = useState([]);
+
+  console.log(categoryId)
+
+  useEffect(() => {
+    const fetchEarly = async () => {
+      const data = await fetch('https://performo.in/api/early_offer.php', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        },
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : 16, category_id: categoryId })
+      });
+      const json = await data.json();
+      setEarlyBirds(json)
+    };
+    fetchEarly();
+  }, [startDate, endDate, categoryId])
+
   return (
     <div className={styles.main_card}>
       <span className={styles.dcard_ttl}>EARLY BIRD</span>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GranularityWrapper from "./GranularityWrapper";
-import DashboardGrid from "./DashboardGrid";
-import { useAccess } from '@/context/accessContext';
+import DashboardGrid from "./DashboardGrid";  
 
 const DashboardMainWrap = () => {
   const formatDate = new Date().toLocaleDateString();
@@ -14,13 +13,7 @@ const DashboardMainWrap = () => {
   const startDate = date.split(" - ")[0]
   const endDate = date.split(" - ")[1] ? date.split(" - ")[1] : date.split(" - ")[0]
 
-  const [positions, setPositions] = useState([]);
-  const [mpositions, setMositions] = useState([]);
-  const [topKeywords, setTopKeyword] = useState([]);
-  const [leggards, setLeggards] = useState([]);
-  const [missedTrain, setMissedTrain] = useState([]);
-  const [earlyBirds, setEarlyBirds] = useState([]);
-  const { userPubId } = useAccess();
+  // console.log(selectedCategory)
 
   useEffect(() => {
     const fetchCatg = async () => {
@@ -43,88 +36,7 @@ const DashboardMainWrap = () => {
         setCategoryId(category.category_id);
       }
     });
-  }, [])
-
-
-  useEffect(() => {
-    const fetchLagaard = async () => {
-      const data = await fetch('https://performo.in/api/leggard.php', {
-        method: 'POST',
-        headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId })
-      });
-      const json = await data.json();
-      setLeggards(json)
-    };
-    fetchLagaard();
-
-    const fetchmissed = async () => {
-      const data = await fetch('https://performo.in/api/missed_train.php', {
-        method: 'POST',
-        headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId})
-      });
-      const json = await data.json();
-      setMissedTrain(json);
-    };
-    fetchmissed();
-
-    const fetchEarly = async () => {
-      const data = await fetch('https://performo.in/api/early_offer.php', {
-        method: 'POST',
-        headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId })
-      });
-      const json = await data.json();
-      setEarlyBirds(json)
-    };
-    fetchEarly();
-
-    const fetchPosition = async () => {
-      const data = await fetch('https://performo.in/api/ranking_position.php', {
-        method: 'POST',
-        headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId})
-      }); 
-      const json = await data.json();
-      setPositions(json);
-    };
-    fetchPosition();
-
-    const fetchMposition = async () => {
-      const data = await fetch('https://performo.in/api/ranking_position_time.php', {
-        method: 'POST',
-        headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        },
-        body: new URLSearchParams({date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId})
-      });
-      const json = await data.json();
-      setMositions(json);
-    };
-    fetchMposition();
-
-    const fetchTopKeywords = async () => {
-      const data = await fetch('https://performo.in/api/top_keyword.php', {
-        method: 'POST',
-        headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        },
-        body: new URLSearchParams({date_from : startDate, date_to : endDate})
-      });
-      const json = await data.json();
-      setTopKeyword(json);
-    };
-    fetchTopKeywords();
-  }, [startDate, endDate, categoryId, selectedCategory]);
+  }, [setSelectedCategory])
 
   return (
     <>
@@ -135,12 +47,9 @@ const DashboardMainWrap = () => {
         setSelectedCategory={setSelectedCategory}
       />
       <DashboardGrid
-        positions={positions}
-        mpositions={mpositions}
-        topKeywords={topKeywords}
-        leggards={leggards}
-        missedTrain={missedTrain}
-        earlyBirds={earlyBirds}
+        startDate={startDate}
+        endDate={endDate}
+        categoryId={categoryId}
       />
     </>
   );
