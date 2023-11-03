@@ -14,12 +14,8 @@ const CategorySelector = ({selectedCategory, setSelectedCategory}) => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        // body: new URLSearchParams({email: userEmail})
       });
       const json = await data.json();
-
-      // const data = await fetch(CATEGORY);
-      // const json = await data.json();
       const sortedCategory = json.sort((a, b) => a.category_name.localeCompare(b.category_name));
       setCategory(sortedCategory);
     }
