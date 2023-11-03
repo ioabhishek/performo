@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styles from "./dashboard.module.css";
 import GranularityWrapper from "./GranularityWrapper";
 import DashboardGrid from "./DashboardGrid";
 
-function DashboardMainWrap() {
+const DashboardMainWrap = () => {
   const [date, setDate] = useState(new Date().toLocaleDateString());
   const [selectedCategory, setSelectedCategory] = useState("");
+
+  console.log(date, selectedCategory)
+
   const [positions, setPositions] = useState([]);
   const [mpositions, setMositions] = useState([]);
   const [topKeywords, setTopKeyword] = useState([]);
@@ -20,7 +22,7 @@ function DashboardMainWrap() {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ publisher_id : 10, date_from : '2023-10-24', date_to : '2023-10-25' })
+        body: new URLSearchParams({ date_from : '2023-10-19', date_to : '2023-10-26', publisher_id : 10, category_id: '52c37b612a408d420a70bf7858af6636' })
       });
       const json = await data.json();
       setLeggards(json)
@@ -33,7 +35,7 @@ function DashboardMainWrap() {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ publisher_id : 16, date_from : '2023-10-24', date_to : '2023-10-25' })
+        body: new URLSearchParams({ date_from : '2023-10-19', date_to : '2023-10-26', publisher_id : 10, category_id: '52c37b612a408d420a70bf7858af6636'})
       });
       const json = await data.json();
       setMissedTrain(json);
@@ -46,7 +48,7 @@ function DashboardMainWrap() {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ publisher_id : 10, category_id : '336fdcf7d540e4b430a890b63da159c9', date_from : '2023-10-24', date_to : '2023-10-25' })
+        body: new URLSearchParams({ date_from : '2023-10-19', date_to : '2023-10-26', publisher_id : 10, category_id: '52c37b612a408d420a70bf7858af6636' })
       });
       const json = await data.json();
       setEarlyBirds(json)
@@ -59,8 +61,8 @@ function DashboardMainWrap() {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({date_from : '2023-10-19', date_to : '2023-10-25', publisher_id : 10})
-      });
+        body: new URLSearchParams({date_from : '2023-10-19', date_to : '2023-10-26', publisher_id : 10, category_id: '52c37b612a408d420a70bf7858af6636'})
+      }); 
       const json = await data.json();
       setPositions(json);
     };
@@ -72,7 +74,7 @@ function DashboardMainWrap() {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({date_from : '2023-10-19', date_to : '2023-10-25', publisher_id : 10})
+        body: new URLSearchParams({date_from : '2023-10-19', date_to : '2023-10-26', publisher_id : 10, category_id: '52c37b612a408d420a70bf7858af6636'})
       });
       const json = await data.json();
       setMositions(json);
