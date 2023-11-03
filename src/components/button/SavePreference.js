@@ -3,24 +3,26 @@ import Image from 'next/image';
 import styles from './button.module.css'
 import { usePathname } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
+import { useAccess } from '@/context/accessContext';
 
 function Button({selectedButtons}) {
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
+   const { userId } = useAccess();
 
    async function savePublisherData() {
-      const data = {
-         userid: '1',
-         category: match[1],
-         sources: selectedButtons.join(',')
-      };
+      // const data = {
+      //    userid: '1',
+      //    category: match[1],
+      //    sources: selectedButtons.join(',')
+      // };
 
       const response = await fetch('https://performo.in/api/save_publisher.php', {
          method: 'POST',
          headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
          },
-         body: new URLSearchParams({userid: data.userid, category : data.category, sources : data.sources })
+         body: new URLSearchParams({userid: userId, category : match[1], sources : selectedButtons.join(',') })
       });
     
       if (response.ok) {

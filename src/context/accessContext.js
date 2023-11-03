@@ -9,6 +9,8 @@ export const useAccess = () => {
 
 export const AccessProvider = ({ children }) => {
    const [accessStatus, setAccessStatus] = useState("checking");
+   const [userId, setUserId] = useState(null)
+   const [userPubName, setUserPubName] = useState(null)
 
    const checkAccess = async (userEmail) => {
       try {
@@ -23,6 +25,8 @@ export const AccessProvider = ({ children }) => {
 
          if (checkData.subscriber === "true") {  
             setAccessStatus("authenticated");
+            setUserId(checkData.userid)
+            setUserPubName(checkData.publisher_id)
          } else {
             setAccessStatus("unauthenticated");
          }
@@ -33,7 +37,7 @@ export const AccessProvider = ({ children }) => {
    };
 
    return (
-      <AccessContext.Provider value={{ accessStatus, checkAccess }}>
+      <AccessContext.Provider value={{ accessStatus, checkAccess, userId, userPubName }}>
          {children}
       </AccessContext.Provider>
    );

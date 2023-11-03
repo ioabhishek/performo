@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GranularityWrapper from "./GranularityWrapper";
 import DashboardGrid from "./DashboardGrid";
+import { useAccess } from '@/context/accessContext';
 
 const DashboardMainWrap = () => {
   const formatDate = new Date().toLocaleDateString();
@@ -19,6 +20,7 @@ const DashboardMainWrap = () => {
   const [leggards, setLeggards] = useState([]);
   const [missedTrain, setMissedTrain] = useState([]);
   const [earlyBirds, setEarlyBirds] = useState([]);
+  const { publisher_id } = useAccess();
 
   useEffect(() => {
     const fetchCatg = async () => {
@@ -45,14 +47,13 @@ const DashboardMainWrap = () => {
   }, [catgList, selectedCategory])
 
   useEffect(() => {
-
     const fetchLagaard = async () => {
       const data = await fetch('https://performo.in/api/leggard.php', {
         method: 'POST',
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId })
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : publisher_id, category_id: categoryId })
       });
       const json = await data.json();
       setLeggards(json)
@@ -65,7 +66,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId})
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : publisher_id, category_id: categoryId})
       });
       const json = await data.json();
       setMissedTrain(json);
@@ -78,7 +79,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId })
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : publisher_id, category_id: categoryId })
       });
       const json = await data.json();
       setEarlyBirds(json)
@@ -91,7 +92,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId})
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : publisher_id, category_id: categoryId})
       }); 
       const json = await data.json();
       setPositions(json);
@@ -104,7 +105,7 @@ const DashboardMainWrap = () => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId})
+        body: new URLSearchParams({date_from : startDate, date_to : endDate, publisher_id : publisher_id, category_id: categoryId})
       });
       const json = await data.json();
       setMositions(json);
@@ -123,7 +124,7 @@ const DashboardMainWrap = () => {
       setTopKeyword(json);
     };
     fetchTopKeywords();
-  }, [date, startDate, endDate, categoryId]);
+  }, [startDate, endDate, categoryId]);
 
   return (
     <>
@@ -132,7 +133,6 @@ const DashboardMainWrap = () => {
         setDate={setDate}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
-
       />
       <DashboardGrid
         positions={positions}

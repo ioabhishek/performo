@@ -9,6 +9,7 @@ const SelectStrip = ({
    savedData,
    setSavedData,
 }) => {
+
    return (
       <div className={styles.tstrip_wrap}>
          <SelectWrap

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { UPREFS } from "@/utils/constants";
+import { useAccess } from '@/context/accessContext';
 
 const useButtonSelection = () => {
    const [selectedButtons, setSelectedButtons] = useState([]);
    const [savedData, setSavedData] = useState([]);
+   const { userId } = useAccess();
 
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
@@ -17,7 +18,7 @@ const useButtonSelection = () => {
                headers: {
                   Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
                },
-               body: new URLSearchParams({category: match[1], userid : 1})
+               body: new URLSearchParams({category: match[1], userid : userId})
             });
            
             if (data.ok) {

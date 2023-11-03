@@ -13,7 +13,7 @@ const Page = () => {
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
    const session = useSession();
-   const { accessStatus, checkAccess } = useAccess();
+   const { accessStatus, checkAccess, userId } = useAccess();
 
    useEffect(() => {
       if (session.status === "authenticated" && accessStatus === "checking") {
@@ -30,7 +30,7 @@ const Page = () => {
                headers: {
                   Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
                },
-               body: new URLSearchParams({category: match[1], userid : 1})
+               body: new URLSearchParams({category: match[1], userid : userId})
             });
             const json = await data.json();
 
