@@ -6,8 +6,6 @@ function DashboardCardEarly({startDate, endDate, categoryId}) {
   const { userPubId } = useAccess();
   const [earlyBirds, setEarlyBirds] = useState([]);
 
-  console.log(categoryId)
-
   useEffect(() => {
     const fetchEarly = async () => {
       const data = await fetch('https://performo.in/api/early_offer.php', {
@@ -23,7 +21,7 @@ function DashboardCardEarly({startDate, endDate, categoryId}) {
     fetchEarly();
   }, [startDate, endDate, categoryId])
 
-  return (
+  return ( earlyBirds.length > 0 &&
     <div className={styles.main_card}>
       <span className={styles.dcard_ttl}>EARLY BIRD</span>
       <div className={styles.dcard_wrap}>

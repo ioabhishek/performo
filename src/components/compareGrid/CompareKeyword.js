@@ -1,29 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import styles from './compareGrid.module.css';
+import { PulseLoader } from "react-spinners";
 
 const CompareKeyword = ({id}) => {
    const [keywordData, setKeywordData] = useState([]);
-
-   // useEffect(() => {
-   //    const fetchCategory = async () => {
-   //       try {
-   //          const data = await fetch(`${KEYWORD}${id}`);
-   //          if (!data.ok) {
-   //             throw new Error(`HTTP error! Status: ${data.status}`);
-   //          }
-   //          const json = await data.json();
-   //          if (json && Array.isArray(json) && json.length > 0 && json[0].keyword_name) {
-   //             setKeywordData(json[0].keyword_name.split(','));
-   //          } else {
-   //             setKeywordData([]);
-   //             console.error("Invalid data format received");
-   //          }
-   //       } catch (error) {
-   //          console.error("An error occurred while fetching data:", error);
-   //       }
-   //    };
-   //    fetchCategory();
-   // }, [id]);
+   const [status, setStatus] = useState('loading');
 
    useEffect(() => {
       const fetchkw = async () => {
@@ -36,58 +17,33 @@ const CompareKeyword = ({id}) => {
                body: new URLSearchParams({ article_id: id })
             });
             const json = await data.json();
+            json.length === 0 ? setStatus("false") : setStatus("true")
             setKeywordData(json);
          } catch (error) {
-            console.error("An error occurred:", error);
+            // console.error("An error occurred:", error);
          }
       };
     
       fetchkw();
-   }, []);
+   }, [id]);
 
-   // dummy keyword
-   // const dummyKeyword = [
-   //    {
-   //       "keyword_name": "bollywood",
-   //       "keywordfirstseendate": "2023-10-19 06:34:13",
-   //       "keywordlastseendate": null
-   //    },
-   //    {
-   //       "keyword_name": "katrina kaif",
-   //       "keywordfirstseendate": "2023-10-19 06:34:14",
-   //       "keywordlastseendate": "2023-10-19 10:47:59"
-   //    },
-   //    {
-   //       "keyword_name": "tiger 3",
-   //       "keywordfirstseendate": "2023-10-19 06:34:14",
-   //       "keywordlastseendate": null
-   //    },
-   //    {
-   //       "keyword_name": "aditya chopra",
-   //       "keywordfirstseendate": "2023-10-19 06:34:13",
-   //       "keywordlastseendate": null
-   //    },
-   //    {
-   //       "keyword_name": "salman khan",
-   //       "keywordfirstseendate": "2023-10-19 06:34:14",
-   //       "keywordlastseendate": null
-   //    },
-   //    {
-   //       "keyword_name": "yash raj films",
-   //       "keywordfirstseendate": "2023-10-19 06:34:14",
-   //       "keywordlastseendate": null
-   //    }
-   // ]
-
-   if (keywordData.length === 0) {
+   if(status === "loading") {
+      return (
+         <div className={styles.compare_tab_itm}>
+            <PulseLoader
+               color="#696CFF"
+               size={10}
+               data-textid="Loader"
+            />
+         </div>
+      ); 
+   } else if (status === "false") {
       return (
          <div className={styles.compare_tab_itm}>
             <span className='loading_text'>No data...</span>
          </div>
       ); 
-   }
-
-   return (
+   } else return (
       <div className={styles.compare_tab_itm}>
          {
             keywordData?.map((keyword, index) => (

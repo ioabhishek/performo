@@ -19,7 +19,7 @@ const DashboardKeyword = ({ startDate, endDate }) => {
     fetchTopKeywords();
   }, [startDate, endDate])
 
-  return (
+  return (topKeywords.length > 0 &&
     <div className={styles.main_card}>
       <span className={styles.dcard_ttl}>TOP KEYWORDS</span>
       <div className={styles.dcard_wrap}>

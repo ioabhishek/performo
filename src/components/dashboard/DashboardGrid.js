@@ -9,18 +9,6 @@ import DashboardCardMissed from './DashboardCardMissed';
 import DashboardCardEarly from './DashboardCardEarly';
 const DashboardGrid = ({ startDate, endDate, categoryId }) => {
 
-  // if (!positions || !mpositions || !topKeywords || !leggards || !missedTrain || !earlyBirds) {
-  //   return (
-  //     <div className='loading_wrap'>
-  //       <PulseLoader
-  //         color="#696CFF"
-  //         size={20}
-  //         data-textid="Loader"
-  //       />
-  //     </div>
-  //   );
-  // }
-
   return (
     <div className={styles.main_grid}>
       <DashboardCardRank startDate={startDate} endDate={endDate} categoryId={categoryId}/>

@@ -44,8 +44,6 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                const endTime = performance.now();
                setLoadingTime(endTime - startTime);
 
-               console.log(searchInput)
-
                if (Array.isArray(json) && json.length === 0) {
                   setArticles([]);
                } else {

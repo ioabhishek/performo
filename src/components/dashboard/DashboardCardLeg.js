@@ -22,7 +22,7 @@ const DashboardCardLeg = ({startDate, endDate, categoryId}) => {
     fetchLagaard();
   }, [startDate, endDate, categoryId])
 
-  return (
+  return ( leggards.length > 0 &&
     <div className={styles.main_card}>
       <span className={styles.dcard_ttl}>LEGGARD</span>
       <div className={styles.dcard_wrap}>

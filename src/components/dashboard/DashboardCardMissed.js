@@ -21,7 +21,7 @@ const DashboardCardMissed = ({startDate, endDate, categoryId}) => {
     fetchmissed();
   }, [startDate, endDate, categoryId])
 
-  return (
+  return ( missedTrain.length > 0 &&
       <div className={styles.main_card}>
         <span className={styles.dcard_ttl}>MISSED TRAIN</span>
         <div className={styles.dcard_wrap}>
