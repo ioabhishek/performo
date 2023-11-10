@@ -5,7 +5,7 @@ import { useAccess } from '@/context/accessContext';
 const DashboardCardRank = ({startDate, endDate, categoryId}) => {
   const { userPubId } = useAccess();
   const [positions, setPositions] = useState([]);
-  
+
   useEffect(() => {
     const fetchPosition = async () => {
       const data = await fetch('https://performo.in/api/ranking_position.php', {
@@ -13,7 +13,7 @@ const DashboardCardRank = ({startDate, endDate, categoryId}) => {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId})
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId})
       }); 
       const json = await data.json();
       setPositions(json);

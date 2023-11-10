@@ -13,7 +13,7 @@ function DashboardCardm({startDate, endDate, categoryId}) {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({date_from : startDate, date_to : endDate, publisher_id : 10, category_id: categoryId})
+        body: new URLSearchParams({date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId})
       });
       const json = await data.json();
       setMositions(json);

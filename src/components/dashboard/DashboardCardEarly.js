@@ -13,7 +13,7 @@ function DashboardCardEarly({startDate, endDate, categoryId}) {
         headers: {
             Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         },
-        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : 16, category_id: categoryId })
+        body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId })
       });
       const json = await data.json();
       setEarlyBirds(json)
@@ -21,7 +21,7 @@ function DashboardCardEarly({startDate, endDate, categoryId}) {
     fetchEarly();
   }, [startDate, endDate, categoryId])
 
-  return ( earlyBirds.length > 0 &&
+  return (earlyBirds.length > 0 &&
     <div className={styles.main_card}>
       <span className={styles.dcard_ttl}>EARLY BIRD</span>
       <div className={styles.dcard_wrap}>
