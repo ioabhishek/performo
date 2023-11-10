@@ -75,7 +75,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
          <CompareLabel publisher={publisher} />
          <div>
             {loadingTime !== null && (
-               <p>Data loaded in {loadingTime.toFixed(2)} milliseconds</p>
+               <p className={styles.ltime_txt}>Data loaded in {loadingTime.toFixed(2)} milliseconds</p>
             )}
          </div>
          {selected && articles?.map((article, index) => (
@@ -91,7 +91,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
             />
          ))}
          {
-            articles.length && (
+            articles.length >= 10 && (
                <button className={styles.show_more_btn} onClick={loadMoreArticles}>
                   Load More
                </button>

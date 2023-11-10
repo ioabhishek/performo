@@ -39,7 +39,7 @@ const CompareCard = ({ id, title, content, image, arturl, author, pubdate }) => 
             <h3 className={styles.compare_card_ttl}>{title}</h3>
             <h4 className={styles.compare_card_sttl}>{content}</h4>
          </Link>
-         <div className={styles.compare_card_dauth}>By Author {author} | {formattedDate}</div>
+         <div className={styles.compare_card_dauth}>{author ? `By ${author} | ` : formattedDate} </div>
          <CompareButtonCard id={id} />
       </div>
    );
