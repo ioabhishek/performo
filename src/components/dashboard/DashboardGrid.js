@@ -9,6 +9,8 @@ import DashboardCardMissed from './DashboardCardMissed';
 import DashboardCardEarly from './DashboardCardEarly';
 const DashboardGrid = ({ startDate, endDate, categoryId }) => {
 
+  // console.log(categoryId)
+
   return (
     <div className={styles.main_grid}>
       <DashboardCardRank startDate={startDate} endDate={endDate} categoryId={categoryId}/>

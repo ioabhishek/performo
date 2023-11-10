@@ -96,7 +96,8 @@ const CompareButtonCard = ({id}) => {
             {selectedComponentIndex === 0 && <CompareRanking ranking={ranking}/>}
             {selectedComponentIndex === 1 && <CompareKeyword id = {id}/>}
          </div>
-         <div className={styles.rank_no}>{latestRanking}</div>
+         
+         {latestRanking && <div className={styles.rank_no}>{latestRanking}</div>} 
       </>
    );
 };

@@ -4,6 +4,7 @@ import LineChart from '@/utils/LineChart';
 
 const CompareRanking = ({ ranking }) => {
 
+
    const formattedRankingData = ranking?.map((data) => {
       const rankDate = new Date(data.rank_datetime);
       const day = rankDate.getDate().toString();

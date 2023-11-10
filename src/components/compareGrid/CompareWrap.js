@@ -7,38 +7,42 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
    const [articles, setArticles] = useState([]);
    const [loadingTime, setLoadingTime] = useState(null);
    const [pageNum, setPageNum] = useState(10);
+   const [isSearchRequest, setIsSearchRequest] = useState(false);
 
    useEffect(() => {
-      if(selected) {
+      if (selected) {
          const fetchArticles = async () => {
             try {
                const startTime = performance.now();
-               let apiEndpoint = 'https://performo.in/api/all_article.php'
+               let apiEndpoint = 'https://performo.in/api/all_article.php';
 
                if (searchInput) {
-                  apiEndpoint = 'https://performo.in/api/search_keyword.php'
+                  apiEndpoint = 'https://performo.in/api/search_keyword.php';
                }
 
                let json;
 
-               if(searchInput) {
+               if (searchInput) {
                   const data = await fetch(apiEndpoint, {
                      method: 'POST',
                      headers: {
                         Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
                      },
-                     body: new URLSearchParams({publisher_id : publisherid, category_id : categoryid, keywords : searchInput, })
+                     body: new URLSearchParams({ publisher_id: publisherid, category_id: categoryid, keywords: searchInput, })
                   });
                   json = await data.json();
+                  setArticles([]);
+                  setIsSearchRequest(true);
                } else {
                   const data = await fetch(apiEndpoint, {
                      method: 'POST',
                      headers: {
                         Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
                      },
-                     body: new URLSearchParams({publisher_id : publisherid, category_id : categoryid, page_num : pageNum, })
+                     body: new URLSearchParams({ publisher_id: publisherid, category_id: categoryid, page_num: pageNum, })
                   });
                   json = await data.json();
+                  setIsSearchRequest(false);
                }
 
                const endTime = performance.now();
@@ -48,13 +52,11 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                   setArticles([]);
                } else {
                   if (Array.isArray(json)) {
-                    setArticles((prevArticles) => [...prevArticles, ...json]);
+                     setArticles((prevArticles) => (isSearchRequest ? [...json] : [...prevArticles, ...json]));
                   } else if (typeof json === "object") {
-                    setArticles([json]);
+                     setArticles([json]);
                   }
                }
-               
-               
             } catch (error) {
                // console.error('An error occurred while fetching data:', error);
             }
@@ -62,7 +64,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
 
          fetchArticles();
       }
-   }, [selected, searchInput, publisherid, categoryid, pageNum]);
+   }, [selected, searchInput, publisherid, categoryid, pageNum, isSearchRequest]);
 
    const loadMoreArticles = () => {
       setPageNum(pageNum + 10);

@@ -9,11 +9,9 @@ const DashboardMainWrap = () => {
   const [date, setDate] = useState(formattedDate);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [catgList, setCatgList] = useState([])
-  const [categoryId, setCategoryId] = useState('336fdcf7d540e4b430a890b63da159c9');
+  const [categoryId, setCategoryId] = useState('');
   const startDate = date.split(" - ")[0]
   const endDate = date.split(" - ")[1] ? date.split(" - ")[1] : date.split(" - ")[0]
-
-  // console.log(selectedCategory)
 
   useEffect(() => {
     const fetchCatg = async () => {
@@ -31,12 +29,17 @@ const DashboardMainWrap = () => {
       }
     };
     fetchCatg();
+  }, [])
+
+  useEffect(() => {
     catgList.forEach((category) => {
       if (category.category_name === selectedCategory) {
         setCategoryId(category.category_id);
       }
     });
-  }, [setSelectedCategory])
+  }, [selectedCategory, catgList])
+  
+  // console.log(categoryId)
 
   return (
     <>
