@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./selectStrip.module.css";
 import SelectButton from "@/components/button/SelectButton";
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPublishers } from "@/redux/slice";
 
 const SelectButtons = ({
    selectedButtons,
@@ -8,26 +10,33 @@ const SelectButtons = ({
    savedData,
    setSavedData,
 }) => {
-   const [pubList, setPubList] = useState([]);
-
-   useEffect(() => {
-      const fetchPubs = async () => {
-         try {
-            const data = await fetch('https://performo.in/api/get_publisher.php', {
-               method: 'POST',
-               headers: {
-                     Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-               },
-            });
-            const json = await data.json();
-            setPubList(json);
-         } catch (error) {
-            // console.error('Error fetching publishers:', error);
-         }
-      };
+   // const [pubList, setPubList] = useState([]);
+   const dispatch = useDispatch();
+   const pubList = useSelector((state) => state.data);
    
-      fetchPubs();
-   }, []);
+   useEffect(() => {
+      // Dispatch the fetchPublishers action when the component mounts
+      dispatch(fetchPublishers());
+   }, [dispatch]);
+
+   // useEffect(() => {
+   //    const fetchPubs = async () => {
+   //       try {
+   //          const data = await fetch('https://performo.in/api/get_publisher.php', {
+   //             method: 'POST',
+   //             headers: {
+   //                   Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+   //             },
+   //          });
+   //          const json = await data.json();
+   //          setPubList(json);
+   //       } catch (error) {
+   //          // console.error('Error fetching publishers:', error);
+   //       }
+   //    };
+   
+   //    fetchPubs();
+   // }, []);
    
 
    const renderMenuItems = () => {
