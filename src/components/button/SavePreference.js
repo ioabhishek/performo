@@ -25,11 +25,11 @@ function Button({selectedButtons}) {
          body: new URLSearchParams({userid: userId, category : match[1], sources : selectedButtons.join(',') })
       });
     
-      if (response.ok) {
-         const result = await response.json();
-      } else {
-         // console.error('Error:', response.status, response.statusText);
-      }
+      // if (response.ok) {
+      //    const result = await response.json();
+      // } else {
+      //    console.error('Error:', response.status, response.statusText);
+      // }
    }
 
    const handleSaveClick = () => {
