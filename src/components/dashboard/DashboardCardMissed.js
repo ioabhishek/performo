@@ -21,16 +21,22 @@ const DashboardCardMissed = ({startDate, endDate, categoryId}) => {
     fetchmissed();
   }, [startDate, endDate, categoryId])
 
-  return ( missedTrain.length > 0 &&
+  return (
       <div className={styles.main_card}>
         <span className={styles.dcard_ttl}>MISSED TRAIN</span>
-        <div className={styles.dcard_wrap}>
-          {
-            missedTrain.map((missed, index) => (
-              <span key={index}>{missed.missed_train}</span>
-            ))
-          }
-        </div>
+        {missedTrain.length>0 ? (
+          <div className={styles.dcard_wrap}>
+            {
+              missedTrain.map((missed, index) => (
+                <span key={index}>{missed.missed_train}</span>
+              ))
+            }
+          </div>
+        ): (
+          <div className={styles.dcard_wrap}>
+            <span>No Data...</span>
+          </div>
+        )}
       </div>
     )
   }

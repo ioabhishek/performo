@@ -19,18 +19,23 @@ const DashboardKeyword = ({ startDate, endDate }) => {
     fetchTopKeywords();
   }, [startDate, endDate])
 
-  return (topKeywords.length > 0 &&
+  return (
     <div className={styles.main_card}>
       <span className={styles.dcard_ttl}>TOP KEYWORDS</span>
-      <div className={styles.dcard_wrap}>
-        {
-          topKeywords?.map((keyword, index) => (
+      {topKeywords.length > 0 ? (
+        <div className={styles.dcard_wrap}>
+          {topKeywords.map((keyword, index) => (
             <span key={index}>#{keyword.topkeycount}</span>
-          ))
-        }
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className={styles.dcard_wrap}>
+          <span>No Data...</span>
+        </div>
+      )}
     </div>
-  )
+  );
+  
 }
 
 export default DashboardKeyword

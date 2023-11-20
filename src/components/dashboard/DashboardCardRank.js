@@ -23,14 +23,30 @@ const DashboardCardRank = ({startDate, endDate, categoryId}) => {
 
   return (
     <>
-      {
-        positions.map((position, index) => (
-          <div key={index} className={styles.main_card}>
-            <span className={styles.dcard_ttl}>TOP {position.rank}</span>
-            <span>{position.rankcount}</span>
-          </div>
-        ))
-      }
+      <div className={styles.main_card}>
+        <span className={styles.dcard_ttl}>TOP 1</span>
+        {
+          positions.slice(0,1).map((position) => (
+              <span key={position}>{position.rankcount}</span>
+          ))
+        }
+      </div>
+      <div className={styles.main_card}>
+        <span className={styles.dcard_ttl}>TOP 2</span>
+        {
+          positions.slice(1,2).map((position) => (
+              <span key={position}>{position.rankcount}</span>
+          ))
+        }
+      </div>
+      <div className={styles.main_card}>
+        <span className={styles.dcard_ttl}>TOP 3</span>
+        {
+          positions.slice(2,3).map((position) => (
+              <span key={position}>{position.rankcount}</span>
+          ))
+        }
+      </div>
     </>
   )
 }

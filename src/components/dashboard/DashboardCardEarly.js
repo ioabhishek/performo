@@ -21,16 +21,23 @@ function DashboardCardEarly({startDate, endDate, categoryId}) {
     fetchEarly();
   }, [startDate, endDate, categoryId])
 
-  return (earlyBirds.length > 0 &&
+  return (
     <div className={styles.main_card}>
       <span className={styles.dcard_ttl}>EARLY BIRD</span>
-      <div className={styles.dcard_wrap}>
-        {
-          earlyBirds.map((earlyBird, index) => (
-            <span key={index}>{earlyBird.early_keyword_name}</span>
-          ))
-        }
-      </div>
+      {earlyBirds.length>0? (
+        <div className={styles.dcard_wrap}>
+          {
+            earlyBirds.map((earlyBird, index) => (
+              <span key={index}>{earlyBird.early_keyword_name}</span>
+            ))
+          }
+        </div>
+        ) : (
+        <div className={styles.dcard_wrap}>
+          <span>No Data...</span>
+        </div>
+        )
+      }
     </div>
   )
 }
