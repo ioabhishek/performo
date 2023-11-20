@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { PulseLoader } from "react-spinners";
 import { useSession } from "next-auth/react";
 import { useAccess } from "@/context/accessContext";
+import { redirect } from 'next/navigation';
 
 const GetAccess = () => {
    const {status, data:session} = useSession();
@@ -50,7 +51,7 @@ const GetAccess = () => {
       }
    }, [session, accessStatus, checkAccess]);
 
-   if (accessStatus === "authenticated" || accessStatus === "checking") {
+   if (accessStatus === "checking") {
       return (
          <div className='loading_wrap'>
             <PulseLoader
@@ -70,6 +71,9 @@ const GetAccess = () => {
             <Link href="/login">Back to Login</Link>
          </div>
       )
+   }
+   else{
+      redirect('/')
    }
 
 }
