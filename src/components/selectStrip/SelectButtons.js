@@ -10,34 +10,12 @@ const SelectButtons = ({
    savedData,
    setSavedData,
 }) => {
-   // const [pubList, setPubList] = useState([]);
    const dispatch = useDispatch();
    const pubList = useSelector((state) => state.data);
    
    useEffect(() => {
-      // Dispatch the fetchPublishers action when the component mounts
       dispatch(fetchPublishers());
    }, [dispatch]);
-
-   // useEffect(() => {
-   //    const fetchPubs = async () => {
-   //       try {
-   //          const data = await fetch('https://performo.in/api/get_publisher.php', {
-   //             method: 'POST',
-   //             headers: {
-   //                   Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-   //             },
-   //          });
-   //          const json = await data.json();
-   //          setPubList(json);
-   //       } catch (error) {
-   //          // console.error('Error fetching publishers:', error);
-   //       }
-   //    };
-   
-   //    fetchPubs();
-   // }, []);
-   
 
    const renderMenuItems = () => {
       return pubList.map((publisher) => {

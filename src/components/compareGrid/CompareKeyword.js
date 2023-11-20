@@ -46,9 +46,9 @@ const CompareKeyword = ({id}) => {
    } else return (
       <div className={styles.compare_tab_itm}>
          {
-            keywordData?.map((keyword, index) => (
+            keywordData?.map((keyword) => (
                <>
-                  <span key={index}>#{keyword?.keyword_name}</span>
+                  <span key={keyword}>#{keyword?.keyword_name}</span>
                </>
                
             ))

@@ -4,34 +4,18 @@ import CompareWrap from './CompareWrap';
 import { usePathname } from 'next/navigation';
 import { useSearchContext } from "@/utils/searContext";
 import { PulseLoader } from "react-spinners";
+import { useSelector } from 'react-redux'
 
 const CompareGrid = ({ selectedButtons, savedData }) => {
-   const [pubList, setPubList] = useState([]);
    const [catgList, setCatgList] = useState([]);
    const [categoryId, setCategoryId] = useState(null);
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
    const decodedParam = decodeURIComponent(match[1]);
-
+   const pubList = useSelector((state) => state.data);
    const { searchInput } = useSearchContext();
 
    useEffect(() => {
-      const fetchPubs = async () => {
-         try {
-            const data = await fetch('https://performo.in/api/get_publisher.php', {
-               method: 'POST',
-               headers: {
-                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-               },
-            });
-            const json = await data.json();
-            setPubList(json);
-         } catch (error) {
-            // console.error('Error fetching publishers:', error);
-         }
-      };
-      fetchPubs();
-    
       const fetchCatg = async () => {
          try {
 

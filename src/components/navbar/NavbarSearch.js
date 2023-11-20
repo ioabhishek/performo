@@ -25,14 +25,7 @@ const NavbarSearch = () => {
         value={inputText}
         onChange={handleInputChange}
       />
-      <button type="submit">
-        <Image
-          src="/search.svg"
-          alt="save"
-          width={18}
-          height={18}
-         />
-      </button>
+      <button className={styles.search_btn} type="submit">Search</button>
     </form>
   );
 };

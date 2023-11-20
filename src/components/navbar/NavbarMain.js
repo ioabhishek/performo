@@ -23,7 +23,7 @@ const NavbarMain = () => {
     return (
       <nav className={styles.main_navbar}>
         <NavbarSearch/>
-        <NavbarCTAbutton/>
+        {/* <NavbarCTAbutton/> */}
         <UserProfile/>
       </nav>
     ) 
