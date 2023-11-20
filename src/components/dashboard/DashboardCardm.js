@@ -21,34 +21,46 @@ function DashboardCardm({startDate, endDate, categoryId}) {
     fetchMposition();
   }, [startDate, endDate, categoryId])
 
-  // console.log(mpositions.slice(0,1).length)
-
   return (
     <>
       <div className={styles.main_card}>
         <span className={styles.dcard_ttl}>TOP 1</span>
-        {
-          mpositions.slice(0,1).map((mposition) => (
+        {mpositions.slice(0, 1).length > 0 ? (
+          mpositions.slice(0, 1).map((mposition) => (
             <span key={mposition}>{mposition.rank_minute} min</span>
           ))
-        }
+        ) : (
+          <div className={styles.dcard_wrap}>
+            <span>No Data...</span>
+          </div>
+        )}
       </div>
       <div className={styles.main_card}>
-        <span className={styles.dcard_ttl}>TOP 2</span>
-        {
+        <span className={styles.dcard_ttl}>TOP 1</span>
+        {mpositions.slice(1, 2).length > 0 ? (
           mpositions.slice(1,2).map((mposition) => (
-            <span key={mposition}>{mposition.rank_minute} min</span> 
+            <span key={mposition}>{mposition.rank_minute} min</span>
           ))
-        }
+        ) : (
+          <div className={styles.dcard_wrap}>
+            <span>No Data...</span>
+          </div>
+        )}
       </div>
       <div className={styles.main_card}>
-        <span className={styles.dcard_ttl}>TOP 3</span>
-        {
+        <span className={styles.dcard_ttl}>TOP 1</span>
+        {mpositions.slice(2, 3).length > 0 ? (
           mpositions.slice(2,3).map((mposition) => (
             <span key={mposition}>{mposition.rank_minute} min</span>
           ))
-        }
+        ) : (
+          <div className={styles.dcard_wrap}>
+            <span>No Data...</span>
+          </div>
+        )}
       </div>
+
+      
     </>
   )
 }
