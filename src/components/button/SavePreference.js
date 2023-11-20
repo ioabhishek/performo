@@ -3,33 +3,33 @@ import Image from 'next/image';
 import styles from './button.module.css'
 import { usePathname } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
+import { useAccess } from '@/context/accessContext';
 
 function Button({selectedButtons}) {
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
+   const { userId } = useAccess();
 
    async function savePublisherData() {
-      const data = {
-         userid: '1',
-         category: match[1],
-         sources: selectedButtons.join(',')
-      };
+      // const data = {
+      //    userid: '1',
+      //    category: match[1],
+      //    sources: selectedButtons.join(',')
+      // };
 
-      const url = `https://performo.in/api/save_publisher.php?token_key=@123abcd1366&userid=${data.userid}&category=${data.category}&sources=${data.sources}`;
-    
-      const response = await fetch(url, {
+      const response = await fetch('https://performo.in/api/save_publisher.php', {
          method: 'POST',
          headers: {
-            'Content-Type': 'application/json',
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
          },
-         body: JSON.stringify(data),
+         body: new URLSearchParams({userid: userId, category : match[1], sources : selectedButtons.join(',') })
       });
     
-      if (response.ok) {
-         const result = await response.json();
-      } else {
-         console.error('Error:', response.status, response.statusText);
-      }
+      // if (response.ok) {
+      //    const result = await response.json();
+      // } else {
+      //    console.error('Error:', response.status, response.statusText);
+      // }
    }
 
    const handleSaveClick = () => {

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./selectStrip.module.css";
 import SelectButton from "@/components/button/SelectButton";
-import { PUBLISHER } from "../../utils/constants";
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPublishers } from "@/redux/slice";
 
 const SelectButtons = ({
    selectedButtons,
@@ -9,25 +10,12 @@ const SelectButtons = ({
    savedData,
    setSavedData,
 }) => {
-   const [pubList, setPubList] = useState([]);
-
+   const dispatch = useDispatch();
+   const pubList = useSelector((state) => state.data);
+   
    useEffect(() => {
-      const fetchPubs = async () => {
-         try {
-            const data = await fetch(PUBLISHER);
-            if (!data.ok) {
-               throw new Error(`Failed to fetch data (status code: ${data.status})`);
-            }
-            const json = await data.json();
-            setPubList(json);
-         } catch (error) {
-            // console.error('Error fetching publishers:', error);
-         }
-      };
-   
-      fetchPubs();
-   }, []);
-   
+      dispatch(fetchPublishers());
+   }, [dispatch]);
 
    const renderMenuItems = () => {
       return pubList.map((publisher) => {

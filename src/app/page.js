@@ -12,7 +12,6 @@ export default function Home() {
   const session = useSession();
 
   if (session.status === "loading") {
-    // return <div>Loading...</div>;
     return (
       <div className="signinbox">
         <PulseLoader
@@ -23,17 +22,6 @@ export default function Home() {
       </div>
     )
   }
-
-  // const {status, data: session} =  useSession({
-  //   required: true,
-  //   onUnauthenticated() {
-  //     redirect('/login')
-  //   }
-  // });
-
-  // if (status === "loading" || !session) {
-  //   return null;
-  // }
 
   if (session.status === "authenticated") {
     return (

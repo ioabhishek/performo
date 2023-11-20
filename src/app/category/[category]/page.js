@@ -3,7 +3,6 @@ import React, {useState, useEffect} from "react";
 import SelectStrip from "@/components/selectStrip/SelectStrip";
 import CompareGrid from "@/components/compareGrid/CompareGrid";
 import useButtonSelection from "@/hooks/useButtonSelection";
-import { UPREFS } from "@/utils/constants";
 import { redirect, usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react'
 import { useAccess } from '@/context/accessContext';
@@ -14,7 +13,7 @@ const Page = () => {
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
    const session = useSession();
-   const { accessStatus, checkAccess } = useAccess();
+   const { accessStatus, checkAccess, userId } = useAccess();
 
    useEffect(() => {
       if (session.status === "authenticated" && accessStatus === "checking") {
@@ -26,11 +25,15 @@ const Page = () => {
    useEffect(() => {
       const fetchPref = async () => {
          try {
-            const data = await fetch(`${UPREFS}${match[1]}&userid=1`);
-            if (!data.ok) {
-               throw new Error(`Failed to fetch data. Status: ${data.status}`);
-            }
+            const data = await fetch('https://performo.in/api/get_user_preference.php', {
+               method: 'POST',
+               headers: {
+                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+               },
+               body: new URLSearchParams({category: match[1], userid : userId})
+            });
             const json = await data.json();
+
             if (Array.isArray(json) && json.length === 0) {
                setSavedData([]);
             } else {

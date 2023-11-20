@@ -15,7 +15,12 @@ const SidebarMenu = () => {
 
   useEffect(() => {
     const fetchCategory = async () => {
-      const data = await fetch(CATEGORY);
+      const data = await fetch('https://performo.in/api/get_category.php', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        },
+      });
       const json = await data.json();
       setMenuList(json);
       setJson(json);

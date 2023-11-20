@@ -3,39 +3,45 @@ import styles from './compareGrid.module.css';
 import CompareButton from '../button/CompareButton';
 import CompareRanking from './CompareRanking';
 import CompareKeyword from './CompareKeyword';
-import { RANKING } from '@/utils/constants';
 
 const CompareButtonCard = ({id}) => {
 
    const [selectedComponentIndex, setSelectedComponentIndex] = useState(null);
-   const [latestRanking, setLatestRanking] = useState(null);
    const [ranking, setRanking] = useState([]);
+   const [latestRanking, setLatestRanking] = useState(null);
    const [buttonInfo, setButtonInfo] = useState([
       { label: 'Ranking' },
       { label: 'Keyword' },
    ]);
 
-   // useEffect(() => {
-   //    const fetchRanking = async () => {
-   //       try {
-   //          const data = await fetch(`${RANKING}${id}`);
-   //          if (!data.ok) {
-   //             throw new Error(`HTTP error! Status: ${data.status}`);
-   //          }
-   //          const json = await data.json();
-   //          if(json.length === 0) {
-   //             setRanking([])
-   //             setLatestRanking(null)
-   //          } else {
-   //             setRanking(json)
-   //             setLatestRanking(json[0].rank)
-   //          }
-   //       } catch (error) {
-   //          console.error("An error occurred while fetching data:", error);
-   //       }
-   //    }
-   //    fetchRanking()
-   // }, [id]);
+   useEffect(() => {
+      const fetchRanking = async () => {
+         try {
+            const data = await fetch('https://performo.in/api/article_ranking.php', {
+               method: 'POST',
+               headers: {
+                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+               },
+               body: new URLSearchParams({ article_id: id })
+            });
+
+            if (!data.ok) {
+               throw new Error(`HTTP error! Status: ${data.status}`);
+            }
+            const json = await data.json();
+            if(json.length === 0) {
+               setRanking([])
+               setLatestRanking(null)
+            } else {
+               setRanking(json)
+               setLatestRanking(json[0].rank)
+            }
+         } catch (error) {
+            console.error("An error occurred while fetching data:", error);
+         }
+      }
+      fetchRanking()
+   }, [id]);
 
 
    const handleButtonClick = (buttonIndex) => {
@@ -87,10 +93,11 @@ const CompareButtonCard = ({id}) => {
             )}
          </div>
          <div className={styles.compare_tab_wrp}>
-            {selectedComponentIndex === 0 && <CompareRanking ranking={rankingData}/>}
+            {selectedComponentIndex === 0 && <CompareRanking ranking={ranking}/>}
             {selectedComponentIndex === 1 && <CompareKeyword id = {id}/>}
          </div>
-         <div className={styles.rank_no}>{latestRanking}</div>
+         
+         {latestRanking && <div className={styles.rank_no}>{latestRanking}</div>} 
       </>
    );
 };

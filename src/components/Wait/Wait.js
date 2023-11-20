@@ -19,9 +19,9 @@ function Wait() {
 
   useEffect(() => {
     if (accessStatus === "authenticated") {
-      window.location.href = "/";
+      redirect('/')
     } else if (accessStatus === "unauthenticated") {
-      window.location.href = "/access";
+      redirect('/access')
     }
   }, [accessStatus]);
 
@@ -35,11 +35,6 @@ function Wait() {
         />
     </div>
   );
-  // if (session.status === "authenticated"){
-  // } else {
-  //   redirect('/login')
-  // }
-
 }
 
 export default Wait;

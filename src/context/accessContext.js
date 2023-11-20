@@ -8,33 +8,38 @@ export const useAccess = () => {
 };
 
 export const AccessProvider = ({ children }) => {
-   const [accessStatus, setAccessStatus] = useState("checking"); // You can use "checking," "authenticated," or "unauthenticated"
+   const [accessStatus, setAccessStatus] = useState("checking");
+   const [userId, setUserId] = useState(null)
+   const [userPubId, setUserPubId] = useState(null)
 
    const checkAccess = async (userEmail) => {
       try {
-         const checkResponse = await fetch("/api/check", {
-            method: "POST",
+         const checkResponse = await fetch('https://performo.in/api/access.php', {
+            method: 'POST',
             headers: {
-               "Content-Type": "application/json",
+               Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
             },
-            body: JSON.stringify({ email: userEmail }),
+            body: new URLSearchParams({email: userEmail})
          });
          const checkData = await checkResponse.json();
 
-         if (checkData.result === "subscriber") {
+         if (checkData.subscriber === "true") {  
             setAccessStatus("authenticated");
+            setUserId(checkData.userid)
+            setUserPubId(checkData.publisher_id)
          } else {
             setAccessStatus("unauthenticated");
          }
       } catch (error) {
-         console.error("Error checking user status:", error);
+         // console.error("Error checking user status:", error);
          setAccessStatus("error");
-         // Handle errors if necessary
       }
    };
 
+   // console.log(userId, userPubName)
+
    return (
-      <AccessContext.Provider value={{ accessStatus, checkAccess }}>
+      <AccessContext.Provider value={{ accessStatus, checkAccess, userId, userPubId }}>
          {children}
       </AccessContext.Provider>
    );

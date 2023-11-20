@@ -33,7 +33,7 @@ li {
 .main_content { padding-left: 210px; padding-top: 0!important; transition: .5s; position: relative; min-height: 100vh; overflow: hidden; }
 .main_wrap { padding: 20px 20px; }
 
-.loading_wrap { display: flex; justify-content: center; align-items: center; width: 100%;}
+.loading_wrap { display: flex; justify-content: center; align-items: center; width: 100%; position: absolute; inset: 0; margin: auto;}
 .loading_text { text-align: center; color: #666666;}
 
 .Toastify__progress-bar--success { background: #696CFF !important;}
