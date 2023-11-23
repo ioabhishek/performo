@@ -6,8 +6,6 @@ const CompareKeyword = ({ id }) => {
    const [keywordData, setKeywordData] = useState([]);
    const [status, setStatus] = useState("loading");
 
-   // console.log(id)
-
    useEffect(() => {
       const fetchkw = async () => {
          try {
@@ -22,30 +20,13 @@ const CompareKeyword = ({ id }) => {
                   body: new URLSearchParams({ article_id: id }),
                }
             );
-
-            // console.log("Response status:", data.status);
-            // console.log(await data.text());
-
-            // if (!data.ok) {
-            //    throw new Error(`HTTP error! Status: ${data.status}`);
-            // }
-
-            const contentType = data.headers.get("content-type");
-
-            // Choose one method based on the content type
-            if (contentType && contentType.includes("application/json")) {
-               const json = await data.json();
-               // console.log("Parsed JSON:", json);
-               setKeywordData(json);
-               setStatus(json.length === 0 ? "false" : "true");
-            } else {
-               const textResponse = await data.text();
-               // console.log("Text Response:", textResponse);
-               // Handle the text response accordingly
-            }
+            const status = (data.status);
+            const json = await data.json();
+            setStatus(json.length > 0 ? true : false);
+            setKeywordData(json);
          } catch (error) {
             console.error("An error occurred:", error);
-            setStatus("false");
+            setStatus(false);
             setKeywordData([]);
          }
       };
@@ -53,15 +34,13 @@ const CompareKeyword = ({ id }) => {
       fetchkw();
    }, [id]);
 
-   // console.log(keywordData, status);
-
    if (status === "loading") {
       return (
          <div className={styles.compare_tab_itm}>
             <PulseLoader color="#696CFF" size={10} data-textid="Loader" />
          </div>
       );
-   } else if (status === "false") {
+   } else if (status === false) {
       return (
          <div className={styles.compare_tab_itm}>
             <span className="loading_text">...</span>
