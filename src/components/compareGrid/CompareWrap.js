@@ -31,9 +31,6 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                      body: new URLSearchParams({ publisher_id: publisherid, category_id: categoryid, keywords: searchInput, })
                   });
                   json = await data.json();
-                  
-                  // console.log(categoryid)
-                  // console.log(json)
 
                   setArticles([]);
                   setIsSearchRequest(true);
