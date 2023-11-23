@@ -31,7 +31,7 @@ const DashboardCardRank = ({startDate, endDate, categoryId}) => {
           ))
         ) : (
           <div className={styles.dcard_wrap}>
-            <span>No Data...</span>
+            <span>...</span>
           </div>
         )}
       </div>
@@ -43,7 +43,7 @@ const DashboardCardRank = ({startDate, endDate, categoryId}) => {
           ))
         ) : (
           <div className={styles.dcard_wrap}>
-            <span>No Data...</span>
+            <span>...</span>
           </div>
         )}
       </div>
@@ -55,7 +55,7 @@ const DashboardCardRank = ({startDate, endDate, categoryId}) => {
           ))
         ) : (
           <div className={styles.dcard_wrap}>
-            <span>No Data...</span>
+            <span>...</span>
           </div>
         )}
       </div>

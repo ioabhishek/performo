@@ -5,6 +5,7 @@ import styles from "./compareGrid.module.css";
 import CompareButtonCard from "./CompareButtonCard";
 
 const CompareCard = ({ id, title, content, image, arturl, author, pubdate,currentrank }) => {
+
    const placeholderImg = "/placeholder.png";
    const imageSrc = image === "Default_Article_JPG" ? placeholderImg : image;
 

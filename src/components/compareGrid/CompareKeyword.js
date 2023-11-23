@@ -6,6 +6,8 @@ const CompareKeyword = ({ id }) => {
    const [keywordData, setKeywordData] = useState([]);
    const [status, setStatus] = useState("loading");
 
+   // console.log(id)
+
    useEffect(() => {
       const fetchkw = async () => {
          try {
@@ -22,10 +24,11 @@ const CompareKeyword = ({ id }) => {
             );
 
             // console.log("Response status:", data.status);
+            // console.log(await data.text());
 
-            if (!data.ok) {
-               throw new Error(`HTTP error! Status: ${data.status}`);
-            }
+            // if (!data.ok) {
+            //    throw new Error(`HTTP error! Status: ${data.status}`);
+            // }
 
             const contentType = data.headers.get("content-type");
 
@@ -61,7 +64,7 @@ const CompareKeyword = ({ id }) => {
    } else if (status === "false") {
       return (
          <div className={styles.compare_tab_itm}>
-            <span className="loading_text">No data...</span>
+            <span className="loading_text">...</span>
          </div>
       );
    } else {

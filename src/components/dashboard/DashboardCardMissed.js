@@ -34,7 +34,7 @@ const DashboardCardMissed = ({startDate, endDate, categoryId}) => {
           </div>
         ): (
           <div className={styles.dcard_wrap}>
-            <span>No Data...</span>
+            <span>...</span>
           </div>
         )}
       </div>
