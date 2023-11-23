@@ -55,8 +55,10 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                   setRegularArticles([]);
                } else {
                   if (isSearchRequest) {
+                     setRegularArticles([]);
                      setSearchArticles(json);
                   } else {
+                     setSearchArticles([]);
                      setRegularArticles((prevArticles) => {
                         const newArticles = [...prevArticles, ...json];
                         const uniqueArticleIds = new Set();
