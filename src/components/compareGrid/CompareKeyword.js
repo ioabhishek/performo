@@ -49,7 +49,7 @@ const CompareKeyword = ({id}) => {
          {
             keywordData?.map((keyword) => (
                <>
-                  <span key={keyword}>#{keyword?.keyword_name}</span>
+                  <span key={keyword.keyword_name}>#{keyword?.keyword_name}</span>
                </>
                
             ))
