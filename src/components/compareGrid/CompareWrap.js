@@ -4,7 +4,8 @@ import CompareCard from "./CompareCard";
 import CompareLabel from "./CompareLabel";
 
 const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput }) => {
-   const [articles, setArticles] = useState([]);
+   const [regularArticles, setRegularArticles] = useState([]);
+   const [searchArticles, setSearchArticles] = useState([]);
    const [loadingTime, setLoadingTime] = useState(null);
    const [pageNum, setPageNum] = useState(10);
    const [isSearchRequest, setIsSearchRequest] = useState(false);
@@ -32,7 +33,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                   });
                   json = await data.json();
 
-                  setArticles([]);
+                  setSearchArticles(json);
                   setIsSearchRequest(true);
                } else {
                   const data = await fetch(apiEndpoint, {
@@ -50,30 +51,29 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                setLoadingTime(endTime - startTime);
 
                if (json.length === 0) {
-                  setArticles([]);
+                  setSearchArticles([]);
+                  setRegularArticles([]);
                } else {
-                  // setArticles((prevArticles) => (isSearchRequest ? [...json] : [...prevArticles, ...json]));
-                  
-                  setArticles((prevArticles) => {
-                     if (isSearchRequest) {
-                        return [...json];
-                     }
-                     const newArticles = [...prevArticles, ...json];
-                     const uniqueArticleIds = new Set();
-                  
-                     const uniqueArticles = newArticles.filter((article) => {
-                        if (uniqueArticleIds.has(article.id)) {
-                           // console.log(`Skipping duplicate article with ID: ${article.id}`);
-                           return false;
-                        }
-                        uniqueArticleIds.add(article.id);
-                        return true;
+                  if (isSearchRequest) {
+                     setSearchArticles(json);
+                  } else {
+                     setRegularArticles((prevArticles) => {
+                        const newArticles = [...prevArticles, ...json];
+                        const uniqueArticleIds = new Set();
+
+                        const uniqueArticles = newArticles.filter((article) => {
+                           if (uniqueArticleIds.has(article.id)) {
+                              return false;
+                           }
+                           uniqueArticleIds.add(article.id);
+                           return true;
+                        });
+                        return uniqueArticles;
                      });
-                     return uniqueArticles;
-                  });  
+                  }
                }
             } catch (error) {
-               // console.error('An error occurred while fetching data:', error);
+               // Handle error
             }
          };
 
@@ -85,17 +85,18 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
       setPageNum(pageNum + 10);
    };
 
-   console.log(articles)
+   // console.log('Regular articles' + regularArticles)
+   // console.log('Search articles' + searchArticles)
 
    return (
       <div className={`${styles.compare_wrap} ${selected ? styles.visible : ''}`}>
          <CompareLabel publisher={publisher} />
-         {articles.length > 0 ? (
+         {(isSearchRequest ? searchArticles : regularArticles).length > 0 ? (
             <div>
                {loadingTime !== null && (
                   <p className={styles.ltime_txt}>Data loaded in {loadingTime.toFixed(2)} milliseconds</p>
                )}
-               {selected && articles?.map((article, index) => (
+               {selected && (isSearchRequest ? searchArticles : regularArticles).map((article, index) => (
                   <CompareCard
                      key={index}
                      id={article.id}
@@ -109,7 +110,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                   />
                ))}
                {
-                  articles.length >= 10 && (
+                  (isSearchRequest ? searchArticles : regularArticles).length >= 10 && (
                      <button className={styles.show_more_btn} onClick={loadMoreArticles}>
                         Load More
                      </button>
