@@ -85,6 +85,8 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
       setPageNum(pageNum + 10);
    };
 
+   console.log(articles)
+
    return (
       <div className={`${styles.compare_wrap} ${selected ? styles.visible : ''}`}>
          <CompareLabel publisher={publisher} />
@@ -103,6 +105,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                      arturl={article.link}
                      author={article.author}
                      pubdate={article.pubdate}
+                     currentrank={article.currentrank}
                   />
                ))}
                {

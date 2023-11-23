@@ -21,7 +21,7 @@ const CompareKeyword = ({ id }) => {
                }
             );
 
-            console.log("Response status:", data.status);
+            // console.log("Response status:", data.status);
 
             if (!data.ok) {
                throw new Error(`HTTP error! Status: ${data.status}`);
@@ -32,12 +32,12 @@ const CompareKeyword = ({ id }) => {
             // Choose one method based on the content type
             if (contentType && contentType.includes("application/json")) {
                const json = await data.json();
-               console.log("Parsed JSON:", json);
+               // console.log("Parsed JSON:", json);
                setKeywordData(json);
                setStatus(json.length === 0 ? "false" : "true");
             } else {
                const textResponse = await data.text();
-               console.log("Text Response:", textResponse);
+               // console.log("Text Response:", textResponse);
                // Handle the text response accordingly
             }
          } catch (error) {
@@ -50,7 +50,7 @@ const CompareKeyword = ({ id }) => {
       fetchkw();
    }, [id]);
 
-   console.log(keywordData, status);
+   // console.log(keywordData, status);
 
    if (status === "loading") {
       return (
