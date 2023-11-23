@@ -1,5 +1,5 @@
 "use client";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import SelectStrip from "@/components/selectStrip/SelectStrip";
 import CompareGrid from "@/components/compareGrid/CompareGrid";
 import useButtonSelection from "@/hooks/useButtonSelection";
@@ -15,6 +15,8 @@ const Page = () => {
    const session = useSession();
    const { accessStatus, checkAccess, userId } = useAccess();
 
+   // console.log(accessStatus)
+
    useEffect(() => {
       if (session.status === "authenticated" && accessStatus === "checking") {
          const userEmail = session.data.user.email;
@@ -25,26 +27,26 @@ const Page = () => {
    useEffect(() => {
       const fetchPref = async () => {
          try {
-            const data = await fetch('https://performo.in/api/get_user_preference.php', {
-               method: 'POST',
-               headers: {
-                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-               },
-               body: new URLSearchParams({category: match[1], userid : userId})
-            });
-            const json = await data.json();
+         const data = await fetch('https://performo.in/api/get_user_preference.php', {
+            method: 'POST',
+            headers: {
+               Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            },
+            body: new URLSearchParams({ category: match[1], userid: userId })
+         });
+         const json = await data.json();
 
-            if (Array.isArray(json) && json.length === 0) {
-               setSavedData([]);
-            } else {
-               setSavedData(json[0].publisher_name.split(','));
-            }
+         if (Array.isArray(json) && json.length === 0) {
+            setSavedData([]);
+         } else {
+            setSavedData(json[0].publisher_name.split(','));
+         }
          } catch (error) {
-            console.error("An error occurred:", error);
+         console.error("An error occurred:", error);
          }
       };
       fetchPref();
-   }, []);
+   }, [userId]);
 
    if (accessStatus === "authenticated"){
       return (
@@ -69,3 +71,4 @@ const Page = () => {
 };
 
 export default Page;
+

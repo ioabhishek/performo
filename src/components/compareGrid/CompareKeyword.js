@@ -17,8 +17,9 @@ const CompareKeyword = ({id}) => {
                body: new URLSearchParams({ article_id: id })
             });
             const json = await data.json();
-            json.length === 0 ? setStatus("false") : setStatus("true")
             setKeywordData(json);
+            setStatus(json.length === 0 ? 'false' : 'true');
+            // json.length === 0 ? setStatus("false") : setStatus("true")
          } catch (error) {
             // console.error("An error occurred:", error);
          }

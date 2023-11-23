@@ -27,7 +27,7 @@ export const AccessProvider = ({ children }) => {
             setAccessStatus("authenticated");
             setUserId(checkData.userid)
             setUserPubId(checkData.publisher_id)
-         } else {
+         } else if (checkData.subscriber === "false") {
             setAccessStatus("unauthenticated");
          }
       } catch (error) {
@@ -35,8 +35,6 @@ export const AccessProvider = ({ children }) => {
          setAccessStatus("error");
       }
    };
-
-   // console.log(userId, userPubName)
 
    return (
       <AccessContext.Provider value={{ accessStatus, checkAccess, userId, userPubId }}>
