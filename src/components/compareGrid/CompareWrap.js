@@ -61,12 +61,14 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                      setSearchArticles([]);
                      setRegularArticles((prevArticles) => {
                         const newArticles = [...prevArticles, ...json];
-                        let uniqueArticles = [...new Set(newArticles)];
-                        // let uniqueArticles = newArticles.filter((value, index, self) => {
-                        //    return self.indexOf(value) === index;
-                        // });
 
-                        // console.log("New articles:", uniqueArticles);
+                        let uniqueArticles = newArticles.filter((article, index, self) => {
+                           const isUnique = self.findIndex((a) => (
+                              a.id === article.id
+                           )) === index;
+
+                           return isUnique
+                        });
                     
                         return uniqueArticles;
                      });
@@ -84,9 +86,6 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
    const loadMoreArticles = () => {
       setPageNum(pageNum + 10);
    };
-
-   // console.log('Regular articles' + regularArticles)
-   // console.log('Search articles' + searchArticles)
 
    return (
       <div className={`${styles.compare_wrap} ${selected ? styles.visible : ''}`}>
