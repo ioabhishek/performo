@@ -39,7 +39,7 @@ function DashboardCardm({startDate, endDate, categoryId}) {
       </div>
 
       <div className={styles.main_card}>
-        <span className={styles.dcard_ttl}>TOP 1</span>
+        <span className={styles.dcard_ttl}>TOP 2</span>
         {mpositions.length > 0 ? (
           mpositions.map((mposition) => (
             mposition.rank === "2" ? <span key={mposition}>{mposition.rank_minute}</span> : <span key={mposition}>...</span>
@@ -52,7 +52,7 @@ function DashboardCardm({startDate, endDate, categoryId}) {
       </div>
 
       <div className={styles.main_card}>
-        <span className={styles.dcard_ttl}>TOP 1</span>
+        <span className={styles.dcard_ttl}>TOP 3</span>
         {mpositions.length > 0 ? (
           mpositions.map((mposition) => (
             mposition.rank === "3" ? <span key={mposition}>{mposition.rank_minute}</span> : <span key={mposition}>...</span>
