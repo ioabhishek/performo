@@ -18,40 +18,18 @@ function DashboardCardm({startDate, endDate, categoryId}) {
       const json = await data.json();
       setMositions(json);
     };
-    fetchMposition();
+    if(startDate && endDate && categoryId) {
+      fetchMposition();
+    }
   }, [startDate, endDate, categoryId])
 
   return (
     <>
       <div className={styles.main_card}>
         <span className={styles.dcard_ttl}>TOP 1</span>
-        {mpositions.slice(0, 1).length > 0 ? (
-          mpositions.slice(0, 1).map((mposition) => (
-            <span key={mposition}>{mposition.rank_minute} min</span>
-          ))
-        ) : (
-          <div className={styles.dcard_wrap}>
-            <span>...</span>
-          </div>
-        )}
-      </div>
-      <div className={styles.main_card}>
-        <span className={styles.dcard_ttl}>TOP 2</span>
-        {mpositions.slice(1, 2).length > 0 ? (
-          mpositions.slice(1,2).map((mposition) => (
-            <span key={mposition}>{mposition.rank_minute} min</span>
-          ))
-        ) : (
-          <div className={styles.dcard_wrap}>
-            <span>...</span>
-          </div>
-        )}
-      </div>
-      <div className={styles.main_card}>
-        <span className={styles.dcard_ttl}>TOP 3</span>
-        {mpositions.slice(2, 3).length > 0 ? (
-          mpositions.slice(2,3).map((mposition) => (
-            <span key={mposition}>{mposition.rank_minute} min</span>
+        {mpositions.length > 0 ? (
+          mpositions.map((mposition) => (
+            mposition.rank === "1" ? <span key={mposition}>{mposition.rank_minute}</span> : <span key={mposition}>...</span>
           ))
         ) : (
           <div className={styles.dcard_wrap}>
@@ -60,7 +38,31 @@ function DashboardCardm({startDate, endDate, categoryId}) {
         )}
       </div>
 
-      
+      <div className={styles.main_card}>
+        <span className={styles.dcard_ttl}>TOP 1</span>
+        {mpositions.length > 0 ? (
+          mpositions.map((mposition) => (
+            mposition.rank === "2" ? <span key={mposition}>{mposition.rank_minute}</span> : <span key={mposition}>...</span>
+          ))
+        ) : (
+          <div className={styles.dcard_wrap}>
+            <span>...</span>
+          </div>
+        )}
+      </div>
+
+      <div className={styles.main_card}>
+        <span className={styles.dcard_ttl}>TOP 1</span>
+        {mpositions.length > 0 ? (
+          mpositions.map((mposition) => (
+            mposition.rank === "3" ? <span key={mposition}>{mposition.rank_minute}</span> : <span key={mposition}>...</span>
+          ))
+        ) : (
+          <div className={styles.dcard_wrap}>
+            <span>...</span>
+          </div>
+        )}
+      </div>
     </>
   )
 }

@@ -18,16 +18,18 @@ const DashboardCardRank = ({startDate, endDate, categoryId}) => {
       const json = await data.json();
       setPositions(json);
     };
-    fetchPosition();
+    if(startDate && endDate && categoryId) {
+      fetchPosition();
+    }
   }, [startDate, endDate, categoryId])
 
   return (
     <>
       <div className={styles.main_card}>
         <span className={styles.dcard_ttl}>TOP 1</span>
-        {positions.slice(0, 1).length > 0 ? (
-          positions.slice(0, 1).map((position) => (
-            <span key={position}>{position.rankcount}</span>
+        {positions.length > 0 ? (
+          positions.map((position) => (
+            position.rank === "1" ? <span key={position}>{position.rankcount}</span> : <span key={position}>...</span>
           ))
         ) : (
           <div className={styles.dcard_wrap}>
@@ -35,11 +37,12 @@ const DashboardCardRank = ({startDate, endDate, categoryId}) => {
           </div>
         )}
       </div>
+
       <div className={styles.main_card}>
-        <span className={styles.dcard_ttl}>TOP 2</span>
-        {positions.slice(1, 2).length > 0 ? (
-          positions.slice(1, 2).map((position) => (
-            <span key={position}>{position.rankcount}</span>
+        <span className={styles.dcard_ttl}>TOP 1</span>
+        {positions.length > 0 ? (
+          positions.map((position) => (
+            position.rank === "2" ? <span key={position}>{position.rankcount}</span> : <span key={position}>...</span>
           ))
         ) : (
           <div className={styles.dcard_wrap}>
@@ -47,11 +50,12 @@ const DashboardCardRank = ({startDate, endDate, categoryId}) => {
           </div>
         )}
       </div>
+
       <div className={styles.main_card}>
-        <span className={styles.dcard_ttl}>TOP 3</span>
-        {positions.slice(2, 3).length > 0 ? (
-          positions.slice(2, 3).map((position) => (
-            <span key={position}>{position.rankcount}</span>
+        <span className={styles.dcard_ttl}>TOP 1</span>
+        {positions.length > 0 ? (
+          positions.map((position) => (
+            position.rank === "3" ? <span key={position}>{position.rankcount}</span> : <span key={position}>...</span>
           ))
         ) : (
           <div className={styles.dcard_wrap}>

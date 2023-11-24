@@ -13,7 +13,7 @@ const DashboardGrid = ({ startDate, endDate, categoryId }) => {
     <div className={styles.main_grid}>
       <DashboardCardRank startDate={startDate} endDate={endDate} categoryId={categoryId}/>
       <DashboardCardm startDate={startDate} endDate={endDate} categoryId={categoryId}/>
-      <DashboardKeyword startDate={startDate} endDate={endDate}/>
+      <DashboardKeyword startDate={startDate} endDate={endDate} categoryId={categoryId}/>
       <DashboardCardEarly startDate={startDate} endDate={endDate} categoryId={categoryId}/>
       <DashboardCardLeg startDate={startDate} endDate={endDate} categoryId={categoryId}/>
       <DashboardCardMissed startDate={startDate} endDate={endDate} categoryId={categoryId}/>

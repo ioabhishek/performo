@@ -18,7 +18,9 @@ const DashboardCardMissed = ({startDate, endDate, categoryId}) => {
       const json = await data.json();
       setMissedTrain(json);
     };
-    fetchmissed();
+    if(startDate && endDate && categoryId) {
+      fetchmissed();
+    }
   }, [startDate, endDate, categoryId])
 
   return (
