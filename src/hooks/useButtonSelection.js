@@ -6,7 +6,6 @@ const useButtonSelection = () => {
    const [selectedButtons, setSelectedButtons] = useState([]);
    const [savedData, setSavedData] = useState([]);
    const { userId } = useAccess();
-
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
 
@@ -53,7 +52,7 @@ const useButtonSelection = () => {
       }
    
       fetchPref();
-   }, []);
+   }, [userId]);
 
    useEffect(() => {
       if (savedData.length > 0 && selectedButtons.length === 0) {

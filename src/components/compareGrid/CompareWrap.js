@@ -61,15 +61,13 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                      setSearchArticles([]);
                      setRegularArticles((prevArticles) => {
                         const newArticles = [...prevArticles, ...json];
-                        const uniqueArticleIds = new Set();
+                        let uniqueArticles = [...new Set(newArticles)];
+                        // let uniqueArticles = newArticles.filter((value, index, self) => {
+                        //    return self.indexOf(value) === index;
+                        // });
 
-                        const uniqueArticles = newArticles.filter((article) => {
-                           if (uniqueArticleIds.has(article.id)) {
-                              return false;
-                           }
-                           uniqueArticleIds.add(article.id);
-                           return true;
-                        });
+                        // console.log("New articles:", uniqueArticles);
+                    
                         return uniqueArticles;
                      });
                   }
