@@ -62,7 +62,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                      setRegularArticles((prevArticles) => {
                         const newArticles = [...prevArticles, ...json];
 
-                        console.log('new articles', newArticles)
+                        // console.log('new articles', newArticles)
                         let uniqueArticles = newArticles.filter((article, index, self) => {
                            const isUnique = self.findIndex((a) => (
                               a.title === article.title
@@ -71,7 +71,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                            
                            return isUnique
                         });
-                        console.log('unique articles', uniqueArticles)
+                        // console.log('unique articles', uniqueArticles)
                     
                         return uniqueArticles;
                      });
