@@ -4,7 +4,8 @@ import Link from "next/link";
 import styles from "./compareGrid.module.css";
 import CompareButtonCard from "./CompareButtonCard";
 
-const CompareCard = ({ id, title, content, image, arturl, author, pubdate }) => {
+const CompareCard = ({ id, title, content, image, arturl, author, pubdate,currentrank }) => {
+
    const placeholderImg = "/placeholder.png";
    const imageSrc = image === "Default_Article_JPG" ? placeholderImg : image;
 
@@ -39,8 +40,9 @@ const CompareCard = ({ id, title, content, image, arturl, author, pubdate }) => 
             <h3 className={styles.compare_card_ttl}>{title}</h3>
             <h4 className={styles.compare_card_sttl}>{content}</h4>
          </Link>
-         <div className={styles.compare_card_dauth}>{author ? `By ${author} | ` : formattedDate} </div>
+         <div className={styles.compare_card_dauth}>{author ? `By ${author} | ${formattedDate}` : formattedDate} </div>
          <CompareButtonCard id={id} />
+         {currentrank && <div className={styles.rank_no}>{currentrank}</div>} 
       </div>
    );
 };

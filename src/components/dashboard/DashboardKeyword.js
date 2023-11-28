@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from './dashboard.module.css'
 
-const DashboardKeyword = ({ startDate, endDate }) => {
+const DashboardKeyword = ({ startDate, endDate, categoryId }) => {
   const [topKeywords, setTopKeyword] = useState([]);
 
   useEffect(() => {
@@ -16,7 +16,9 @@ const DashboardKeyword = ({ startDate, endDate }) => {
       const json = await data.json();
       setTopKeyword(json);
     };
-    fetchTopKeywords();
+    if(startDate && endDate) {
+      fetchTopKeywords();
+    }
   }, [startDate, endDate])
 
   return (
@@ -30,7 +32,7 @@ const DashboardKeyword = ({ startDate, endDate }) => {
         </div>
       ) : (
         <div className={styles.dcard_wrap}>
-          <span>No Data...</span>
+          <span>...</span>
         </div>
       )}
     </div>

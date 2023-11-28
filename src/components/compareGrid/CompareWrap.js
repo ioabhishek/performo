@@ -4,7 +4,8 @@ import CompareCard from "./CompareCard";
 import CompareLabel from "./CompareLabel";
 
 const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput }) => {
-   const [articles, setArticles] = useState([]);
+   const [regularArticles, setRegularArticles] = useState([]);
+   const [searchArticles, setSearchArticles] = useState([]);
    const [loadingTime, setLoadingTime] = useState(null);
    const [pageNum, setPageNum] = useState(10);
    const [isSearchRequest, setIsSearchRequest] = useState(false);
@@ -23,9 +24,6 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                let json;
 
                if (searchInput) {
-                  // console.log(publisherid, categoryid, searchInput)
-                  // console.log(articles)
-
                   const data = await fetch(apiEndpoint, {
                      method: 'POST',
                      headers: {
@@ -34,11 +32,8 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                      body: new URLSearchParams({ publisher_id: publisherid, category_id: categoryid, keywords: searchInput, })
                   });
                   json = await data.json();
-                  
-                  console.log(categoryid)
-                  console.log(json)
 
-                  setArticles([]);
+                  setSearchArticles(json);
                   setIsSearchRequest(true);
                } else {
                   const data = await fetch(apiEndpoint, {
@@ -55,17 +50,35 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                const endTime = performance.now();
                setLoadingTime(endTime - startTime);
 
-               if (Array.isArray(json) && json.length === 0) {
-                  setArticles([]);
+               if (json.length === 0) {
+                  setSearchArticles([]);
+                  setRegularArticles([]);
                } else {
-                  if (Array.isArray(json)) {
-                     setArticles((prevArticles) => (isSearchRequest ? [...json] : [ ...json]));
-                  } else if (typeof json === "object") {
-                     setArticles([json]);
+                  if (isSearchRequest) {
+                     setRegularArticles([]);
+                     setSearchArticles(json);
+                  } else {
+                     setSearchArticles([]);
+                     setRegularArticles((prevArticles) => {
+                        const newArticles = [...prevArticles, ...json];
+
+                        // console.log('new articles', newArticles)
+                        let uniqueArticles = newArticles.filter((article, index, self) => {
+                           const isUnique = self.findIndex((a) => (
+                              a.title === article.title
+                           )) === index;
+
+                           
+                           return isUnique
+                        });
+                        // console.log('unique articles', uniqueArticles)
+                    
+                        return uniqueArticles;
+                     });
                   }
                }
             } catch (error) {
-               // console.error('An error occurred while fetching data:', error);
+               // Handle error
             }
          };
 
@@ -80,30 +93,35 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
    return (
       <div className={`${styles.compare_wrap} ${selected ? styles.visible : ''}`}>
          <CompareLabel publisher={publisher} />
-         <div>
-            {loadingTime !== null && (
-               <p className={styles.ltime_txt}>Data loaded in {loadingTime.toFixed(2)} milliseconds</p>
-            )}
-         </div>
-         {selected && articles?.map((article, index) => (
-            <CompareCard
-               key={index}
-               id={article.id}
-               title={article.title}
-               content={article.title}
-               image={article.mediaurl}
-               arturl={article.link}
-               author={article.author}
-               pubdate={article.pubdate}
-            />
-         ))}
-         {
-            articles.length >= 10 && (
-               <button className={styles.show_more_btn} onClick={loadMoreArticles}>
-                  Load More
-               </button>
-            )
-         }
+         {(isSearchRequest ? searchArticles : regularArticles).length > 0 ? (
+            <div>
+               {loadingTime !== null && (
+                  <p className={styles.ltime_txt}>Data loaded in {loadingTime.toFixed(2)} milliseconds</p>
+               )}
+               {selected && (isSearchRequest ? searchArticles : regularArticles).map((article, index) => (
+                  <CompareCard
+                     key={index}
+                     id={article.id}
+                     title={article.title}
+                     content={article.title}
+                     image={article.mediaurl}
+                     arturl={article.link}
+                     author={article.author}
+                     pubdate={article.pubdate}
+                     currentrank={article.currentrank}
+                  />
+               ))}
+               {
+                  (isSearchRequest ? searchArticles : regularArticles).length >= 10 && (
+                     <button className={styles.show_more_btn} onClick={loadMoreArticles}>
+                        Load More
+                     </button>
+                  )
+               }
+            </div>
+         ) : (
+            <p>No articles available</p>
+         )}
       </div>
    );
 };

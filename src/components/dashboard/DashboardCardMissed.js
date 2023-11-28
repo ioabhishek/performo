@@ -18,7 +18,9 @@ const DashboardCardMissed = ({startDate, endDate, categoryId}) => {
       const json = await data.json();
       setMissedTrain(json);
     };
-    fetchmissed();
+    if(startDate && endDate && categoryId) {
+      fetchmissed();
+    }
   }, [startDate, endDate, categoryId])
 
   return (
@@ -34,7 +36,7 @@ const DashboardCardMissed = ({startDate, endDate, categoryId}) => {
           </div>
         ): (
           <div className={styles.dcard_wrap}>
-            <span>No Data...</span>
+            <span>...</span>
           </div>
         )}
       </div>

@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
 import styles from './getAccess.module.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { PulseLoader } from "react-spinners";
 import { useSession } from "next-auth/react";
 import { useAccess } from "@/context/accessContext";
-import { redirect } from 'next/navigation';
+import { redirect, usePathname } from 'next/navigation';
 
 const GetAccess = () => {
    const {status, data:session} = useSession();
@@ -49,9 +49,9 @@ const GetAccess = () => {
          const userEmail = session.user.email;
          checkAccess(userEmail);
       }
-   }, [session, accessStatus, checkAccess]);
+   }, [status, session, accessStatus, checkAccess]);
 
-   if (accessStatus === "checking") {
+   if (accessStatus === "authenticated" || accessStatus === "checking") {
       return (
          <div className='loading_wrap'>
             <PulseLoader

@@ -18,7 +18,9 @@ function DashboardCardEarly({startDate, endDate, categoryId}) {
       const json = await data.json();
       setEarlyBirds(json)
     };
-    fetchEarly();
+    if(startDate && endDate && categoryId) {
+      fetchEarly();
+    }
   }, [startDate, endDate, categoryId])
 
   return (
@@ -34,7 +36,7 @@ function DashboardCardEarly({startDate, endDate, categoryId}) {
         </div>
         ) : (
         <div className={styles.dcard_wrap}>
-          <span>No Data...</span>
+          <span>...</span>
         </div>
         )
       }

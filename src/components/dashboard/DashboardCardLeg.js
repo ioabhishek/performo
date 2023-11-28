@@ -19,7 +19,9 @@ const DashboardCardLeg = ({startDate, endDate, categoryId}) => {
       const json = await data.json();
       setLeggards(json)
     };
-    fetchLagaard();
+    if(startDate && endDate && categoryId) {
+      fetchLagaard();
+    }
   }, [startDate, endDate, categoryId])
 
   return (
@@ -35,7 +37,7 @@ const DashboardCardLeg = ({startDate, endDate, categoryId}) => {
         </div>
       ): (
         <div className={styles.dcard_wrap}>
-          <span>No Data...</span>
+          <span>...</span>
         </div>
       )}
     </div>

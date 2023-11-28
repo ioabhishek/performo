@@ -27,7 +27,7 @@ const CompareAuthor = ({id}) => {
    if (authorData.length === 0) {
       return (
          <div className={styles.compare_tab_itm}>
-            <span className='loading_text'>No data...</span>
+            <span className='loading_text'>...</span>
          </div>
       ); 
    }
