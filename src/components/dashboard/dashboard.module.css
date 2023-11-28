@@ -41,4 +41,4 @@
 .footer{margin-top:5px;display:flex;flex-direction:row;justify-content:space-between}
 .ant-calendar-picker-clear{opacity:1}
 :where(.css-dev-only-do-not-override-pr0fja).ant-picker-focused { border-color: #696CFF; box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);  outline: 0; }
-
+#getdetails{margin-left: 30px;}

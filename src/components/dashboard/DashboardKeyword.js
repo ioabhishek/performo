@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from './dashboard.module.css'
 
-const DashboardKeyword = ({ startDate, endDate, categoryId }) => {
+const DashboardKeyword = ({ startDate, endDate, categoryId,counter }) => {
   const [topKeywords, setTopKeyword] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const DashboardKeyword = ({ startDate, endDate, categoryId }) => {
     if(startDate && endDate) {
       fetchTopKeywords();
     }
-  }, [startDate, endDate])
+  }, [counter])
 
   return (
     <div className={styles.main_card}>

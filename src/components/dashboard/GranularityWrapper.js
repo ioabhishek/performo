@@ -6,8 +6,10 @@ import DateRangeSelector from './DateRangeSelector'
 import UserProfile from '../navbar/UserProfile'
 
 
-const GranularityWrapper = ({date, setDate, selectedCategory, setSelectedCategory}) => {
-
+const GranularityWrapper = ({date, setDate, selectedCategory, setSelectedCategory,counter,setCounter}) => {
+function increment() {
+  setCounter(counter + 1);
+}
   return (
     <div className={styles.top_strip}>
       {/* <span className={styles.tstrip_label}>Granularity</span> */}
@@ -17,7 +19,7 @@ const GranularityWrapper = ({date, setDate, selectedCategory, setSelectedCategor
       <DateRangeSelector  date={date} setDate={setDate}/>
       <span className={styles.tstrip_label}>Select Category</span>
       <CategorySelector selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
-      {/* <button className={styles.details_btn}>Get Details</button> */}
+      <button className={styles.button} onClick={increment} id={styles.getdetails}>Get Details</button>
       <UserProfile/>
     </div>
   )

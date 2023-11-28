@@ -5,15 +5,17 @@ import DashboardGrid from "./DashboardGrid";
 const DashboardMainWrap = () => {
   const formatDate = new Date().toLocaleDateString();
   const parts = formatDate.split('/');
-  const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+  const formattedDate = `${parts[2]}-${parts[0]}-${parts[1]}`;
   const [date, setDate] = useState(formattedDate);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [catgList, setCatgList] = useState([])
+  const [counter, setCounter] = useState(0);
   const [categoryId, setCategoryId] = useState('');
   const startDate = date.split(" - ")[0]
   const endDate = date.split(" - ")[1] ? date.split(" - ")[1] : date.split(" - ")[0]
 
   useEffect(() => {
+   
     const fetchCatg = async () => {
       try {
         const data = await fetch('https://performo.in/api/get_category.php', {
@@ -24,6 +26,7 @@ const DashboardMainWrap = () => {
         });
         const json = await data.json();
         setCatgList(json);
+        console.log(parts)
       } catch (error) {
         //  console.error('Error fetching categories:', error);
       }
@@ -48,11 +51,14 @@ const DashboardMainWrap = () => {
         setDate={setDate}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
+        counter={counter}
+        setCounter={setCounter}
       />
       <DashboardGrid
         startDate={startDate}
         endDate={endDate}
         categoryId={categoryId}
+        counter={counter}
       />
     </>
   );
