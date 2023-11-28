@@ -59,7 +59,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                   setArticles([]);
                } else {
                   if (Array.isArray(json)) {
-                     setArticles((prevArticles) => (isSearchRequest ? [...json] : [...prevArticles, ...json]));
+                     setArticles((prevArticles) => (isSearchRequest ? [...json] : [ ...json]));
                   } else if (typeof json === "object") {
                      setArticles([json]);
                   }
