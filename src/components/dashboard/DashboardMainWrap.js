@@ -16,7 +16,11 @@ const DashboardMainWrap = () => {
   const endDateObj = new Date(endDate);
   const startDateObj = new Date(endDateObj.getFullYear(), endDateObj.getMonth() - 1, endDateObj.getDate());
 
-  const startDate = startDateObj.toISOString().split('T')[0];
+  // const startDate = startDateObj.toISOString().split('T')[0];
+
+  const startDate = "2023-10-01"
+
+  // console.log(startDate)
 
   // const startDate = date.split(" - ")[0]
   // const endDate = date.split(" - ")[1] ? date.split(" - ")[1] : date.split(" - ")[0]
@@ -33,8 +37,8 @@ const DashboardMainWrap = () => {
         });
         const json = await data.json();
         setCatgList(json);
-        console.log(startDate)
-        console.log(startDateObj)
+        // console.log(startDate)
+        // console.log(startDateObj)
       } catch (error) {
         //  console.error('Error fetching categories:', error);
       }
