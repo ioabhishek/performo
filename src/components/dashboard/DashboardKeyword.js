@@ -4,11 +4,11 @@ import styles from './dashboard.module.css'
 const DashboardKeyword = ({ startDate, endDate, categoryId,counter }) => {
   const [topKeywords, setTopKeyword] = useState([]);
   if(counter === 0) {
-    const endDateObj = new Date(endDate);
-      const startMonth =  endDateObj.getMonth() - 1;
-    const startDateObj = new Date(endDateObj.getFullYear(), startMonth, endDateObj.getDate());
+    const formatDate = new Date().toLocaleDateString();
+  const parts = formatDate.split('/');
+  const formattedDate = `${parts[2]}-${parts[1]-1}-${parts[0]}`
     
-     startDate = startDateObj.toISOString().split('T')[0];
+     startDate = formattedDate;
   }
   useEffect(() => {
     const fetchTopKeywords = async () => {
