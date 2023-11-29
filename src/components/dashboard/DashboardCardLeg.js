@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './dashboard.module.css'
 import { useAccess } from '@/context/accessContext';
 
-const DashboardCardLeg = ({startDate, endDate, categoryId}) => {
+const DashboardCardLeg = ({startDate, endDate, categoryId,counter}) => {
   const { userPubId } = useAccess();
   const [leggards, setLeggards] = useState([]);
 
@@ -22,7 +22,7 @@ const DashboardCardLeg = ({startDate, endDate, categoryId}) => {
     if(startDate && endDate && categoryId) {
       fetchLagaard();
     }
-  }, [startDate, endDate, categoryId])
+  }, [counter])
 
   return (
     <div className={styles.main_card}>

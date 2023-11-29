@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './dashboard.module.css'
 import { useAccess } from '@/context/accessContext';
 
-const DashboardCardMissed = ({startDate, endDate, categoryId}) => {
+const DashboardCardMissed = ({startDate, endDate, categoryId,counter}) => {
   const { userPubId } = useAccess();
   const [missedTrain, setMissedTrain] = useState([]);
 
@@ -21,7 +21,7 @@ const DashboardCardMissed = ({startDate, endDate, categoryId}) => {
     if(startDate && endDate && categoryId) {
       fetchmissed();
     }
-  }, [startDate, endDate, categoryId])
+  }, [counter])
 
   return (
       <div className={styles.main_card}>

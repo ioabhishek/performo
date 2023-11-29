@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './dashboard.module.css'
 import { useAccess } from '@/context/accessContext';
 
-function DashboardCardEarly({startDate, endDate, categoryId}) {
+function DashboardCardEarly({startDate, endDate, categoryId,counter}) {
   const { userPubId } = useAccess();
   const [earlyBirds, setEarlyBirds] = useState([]);
 
@@ -21,7 +21,7 @@ function DashboardCardEarly({startDate, endDate, categoryId}) {
     if(startDate && endDate && categoryId) {
       fetchEarly();
     }
-  }, [startDate, endDate, categoryId])
+  }, [counter])
 
   return (
     <div className={styles.main_card}>
