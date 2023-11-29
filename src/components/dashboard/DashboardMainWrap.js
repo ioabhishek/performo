@@ -14,12 +14,14 @@ const DashboardMainWrap = () => {
   const [counter, setCounter] = useState(0);
   const [categoryId, setCategoryId] = useState('');
 
-  const endDate = date.split(" - ")[1] ? date.split(" - ")[1] : date.split(" - ")[0];
-  const endDateObj = new Date(endDate);
-  const startMonth =  endDateObj.getMonth() - 1;
-const startDateObj = new Date(endDateObj.getFullYear(), startMonth, endDateObj.getDate());
+//   const endDate = date.split(" - ")[1] ? date.split(" - ")[1] : date.split(" - ")[0];
+//   const endDateObj = new Date(endDate);
+//   const startMonth =  endDateObj.getMonth() - 1;
+// const startDateObj = new Date(endDateObj.getFullYear(), startMonth, endDateObj.getDate());
 
-const startDate = startDateObj.toISOString().split('T')[0];
+// const startDate = startDateObj.toISOString().split('T')[0];
+const startDate = date.split(" - ")[0]
+  const endDate = date.split(" - ")[1] ? date.split(" - ")[1] : date.split(" - ")[0]
 
   // const startDate =  date.split(" - ")[0] ? date.split(" - ")[0] : date.split(" - ")[0];
 

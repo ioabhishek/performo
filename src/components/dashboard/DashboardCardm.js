@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './dashboard.module.css'
 import { useAccess } from '@/context/accessContext';
 
-function DashboardCardm({startDate, endDate, categoryId}) {
+function DashboardCardm({startDate, endDate, categoryId,counter}) {
   const { userPubId } = useAccess();
   const [mpositions, setMositions] = useState([]);
 
@@ -21,7 +21,7 @@ function DashboardCardm({startDate, endDate, categoryId}) {
     if(startDate && endDate && categoryId) {
       fetchMposition();
     }
-  }, [startDate, endDate, categoryId])
+  }, [counter])
 
   return (
     <>

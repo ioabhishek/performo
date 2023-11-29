@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import styles from './dashboard.module.css';
 import { useAccess } from '@/context/accessContext';
 
-const DashboardCardRank = ({startDate, endDate, categoryId}) => {
+const DashboardCardRank = ({startDate, endDate, categoryId,counter}) => {
   const { userPubId } = useAccess();
   const [positions, setPositions] = useState([]);
 
@@ -21,7 +21,7 @@ const DashboardCardRank = ({startDate, endDate, categoryId}) => {
     if(startDate && endDate && categoryId) {
       fetchPosition();
     }
-  }, [startDate, endDate, categoryId])
+  }, [counter])
 
   return (
     <>
