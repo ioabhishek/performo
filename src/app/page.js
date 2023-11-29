@@ -4,10 +4,6 @@ import { redirect } from 'next/navigation';
 import { useSession } from 'next-auth/react'
 import { PulseLoader } from "react-spinners";
 
-import styles from './page.module.css'
-
-import Signin from '@/components/signInPage/Signin'
-import Signup from '@/components/signInPage/Signup'
 export default function Home() {
   const session = useSession();
 
