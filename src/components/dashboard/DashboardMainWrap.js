@@ -3,7 +3,7 @@ import GranularityWrapper from "./GranularityWrapper";
 import DashboardGrid from "./DashboardGrid";  
 
 const DashboardMainWrap = () => {
-  const formatDate = new Date().toLocaleDateString();
+  const formatDate = new Date().toLocaleDateString("en-GB");
   const parts = formatDate.split('/');
   const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
   
