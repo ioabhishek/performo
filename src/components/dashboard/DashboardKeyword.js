@@ -3,7 +3,13 @@ import styles from './dashboard.module.css'
 
 const DashboardKeyword = ({ startDate, endDate, categoryId,counter }) => {
   const [topKeywords, setTopKeyword] = useState([]);
-
+  if(counter === 0) {
+    const formatDate = new Date().toLocaleDateString();
+  const parts = formatDate.split('/');
+  const formattedDate = `${parts[2]}-${parts[1]-1}-${parts[0]}`
+    
+     startDate = formattedDate;
+  }
   useEffect(() => {
     const fetchTopKeywords = async () => {
       const data = await fetch('https://performo.in/api/top_keyword.php', {
