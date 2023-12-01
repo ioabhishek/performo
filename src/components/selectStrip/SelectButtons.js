@@ -3,7 +3,7 @@ import styles from "./selectStrip.module.css";
 import SelectButton from "@/components/button/SelectButton";
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPublishers } from "@/redux/slice";
-
+import { useAccess } from '@/context/accessContext';
 const SelectButtons = ({
    selectedButtons,
    handleButtonSelect,
@@ -12,9 +12,9 @@ const SelectButtons = ({
 }) => {
    const dispatch = useDispatch();
    const pubList = useSelector((state) => state.data);
-   
+   const { token } = useAccess();
    useEffect(() => {
-      dispatch(fetchPublishers());
+      dispatch(fetchPublishers(token));
    }, [dispatch]);
 
    const renderMenuItems = () => {

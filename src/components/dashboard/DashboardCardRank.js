@@ -5,13 +5,13 @@ import { useAccess } from '@/context/accessContext';
 const DashboardCardRank = ({startDate, endDate, categoryId,counter}) => {
   const { userPubId } = useAccess();
   const [positions, setPositions] = useState([]);
-
+  const { token } = useAccess();
   useEffect(() => {
     const fetchPosition = async () => {
       const data = await fetch('https://performo.in/api/ranking_position.php', {
         method: 'POST',
         headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            Authorization: token
         },
         body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId})
       }); 

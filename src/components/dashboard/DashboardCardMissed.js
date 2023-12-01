@@ -4,6 +4,7 @@ import { useAccess } from '@/context/accessContext';
 
 const DashboardCardMissed = ({startDate, endDate, categoryId,counter}) => {
   const { userPubId } = useAccess();
+  const { token } = useAccess();
   const [missedTrain, setMissedTrain] = useState([]);
 
   useEffect(() => {
@@ -11,7 +12,7 @@ const DashboardCardMissed = ({startDate, endDate, categoryId,counter}) => {
       const data = await fetch('https://performo.in/api/missed_train.php', {
         method: 'POST',
         headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            Authorization: token
         },
         body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId})
       });

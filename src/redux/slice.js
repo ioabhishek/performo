@@ -1,10 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const fetchPublishers = createAsyncThunk('data/fetchPublishers', async () => {
+
+const fetchPublishers = createAsyncThunk('data/fetchPublishers', async (token) => {
+   
+   console.log(token)
    const response = await fetch('https://performo.in/api/get_publisher.php', {
       method: 'POST',
       headers: {
-         Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+         Authorization: token
       },
    });
    const data = await response.json();

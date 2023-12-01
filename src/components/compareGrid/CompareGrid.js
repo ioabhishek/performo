@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useSearchContext } from "@/utils/searContext";
 import { PulseLoader } from "react-spinners";
 import { useSelector } from 'react-redux'
-
+import { useAccess } from '@/context/accessContext';
 const CompareGrid = ({ selectedButtons, savedData }) => {
    const [catgList, setCatgList] = useState([]);
    const [categoryId, setCategoryId] = useState(null);
@@ -14,7 +14,7 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
    const decodedParam = decodeURIComponent(match[1]);
    const pubList = useSelector((state) => state.data);
    const { searchInput } = useSearchContext();
-
+   const { token } = useAccess();
    useEffect(() => {
       const fetchCatg = async () => {
          try {
@@ -22,7 +22,7 @@ const CompareGrid = ({ selectedButtons, savedData }) => {
             const data = await fetch('https://performo.in/api/get_category.php', {
                method: 'POST',
                headers: {
-                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                  Authorization: token
                },
             });
             const json = await data.json();

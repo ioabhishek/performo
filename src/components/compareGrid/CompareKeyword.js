@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./compareGrid.module.css";
 import { PulseLoader } from "react-spinners";
-
+import { useAccess } from '@/context/accessContext';
 const CompareKeyword = ({ id }) => {
    const [keywordData, setKeywordData] = useState([]);
    const [status, setStatus] = useState("loading");
-
+   const { token } = useAccess();
    useEffect(() => {
       const fetchkw = async () => {
          try {
@@ -15,7 +15,7 @@ const CompareKeyword = ({ id }) => {
                   method: "POST",
                   headers: {
                      Authorization:
-                        "Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                        token
                   },
                   body: new URLSearchParams({ article_id: id }),
                }
