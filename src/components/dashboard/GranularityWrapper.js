@@ -15,9 +15,9 @@ function increment() {
       {/* <span className={styles.tstrip_label}>Granularity</span> */}
       {/* <DurationWrapper /> */}
 
-      <span className={styles.tstrip_label}>Select Date</span>
+      <span className={styles.tstrip_label}>Date</span>
       <DateRangeSelector  date={date} setDate={setDate}/>
-      <span className={styles.tstrip_label}>Select Category</span>
+      <span className={styles.tstrip_label}>Category</span>
       <CategorySelector selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
       <button className={styles.button} onClick={increment} id={styles.getdetails}>Get Details</button>
       <UserProfile/>

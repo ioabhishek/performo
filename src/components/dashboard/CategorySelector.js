@@ -29,7 +29,7 @@ const CategorySelector = ({selectedCategory, setSelectedCategory}) => {
 
   return (
     <select className={styles.select_options} id="selectOptions" value={selectedCategory} onChange={handleCategoryChange}>
-      <option value="">Select Category</option>
+      <option value="">Category</option>
       {
         category?.map((item) => (
           <option  key={item.category_id} >{item.category_name}</option>
