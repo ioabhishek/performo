@@ -29,7 +29,7 @@ const DashboardCardRank = ({startDate, endDate, categoryId,counter}) => {
         <span className={styles.dcard_ttl}>TOP 1</span>
         {positions.length > 0 ? (
           positions.map((position) => (
-            position.rank === "1" ? <span key={position}>{position.rankcount}</span> : <span key={position}>...</span>
+            position.rank === "1" ? <span key={position}>{position.rankcount}</span> :<></>
           ))
         ) : (
           <div className={styles.dcard_wrap}>
@@ -42,7 +42,7 @@ const DashboardCardRank = ({startDate, endDate, categoryId,counter}) => {
         <span className={styles.dcard_ttl}>TOP 2</span>
         {positions.length > 0 ? (
           positions.map((position) => (
-            position.rank === "2" ? <span key={position}>{position.rankcount}</span> : <span key={position}>...</span>
+            position.rank === "2" ? <span key={position}>{position.rankcount}</span> : <></>
           ))
         ) : (
           <div className={styles.dcard_wrap}>
@@ -55,7 +55,7 @@ const DashboardCardRank = ({startDate, endDate, categoryId,counter}) => {
         <span className={styles.dcard_ttl}>TOP 3</span>
         {positions.length > 0 ? (
           positions.map((position) => (
-            position.rank === "3" ? <span key={position}>{position.rankcount}</span> : <span key={position}>...</span>
+            position.rank === "3" ? <span key={position}>{position.rankcount}</span> : <></>
           ))
         ) : (
           <div className={styles.dcard_wrap}>
