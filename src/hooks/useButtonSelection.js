@@ -8,14 +8,14 @@ const useButtonSelection = () => {
    const { userId } = useAccess();
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
-
+   const { token } = useAccess();
    useEffect(() => {
       const fetchPref = async () => {
          try {
             const data = await fetch('https://performo.in/api/get_user_preference.php', {
                method: 'POST',
                headers: {
-                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                  Authorization: token
                },
                body: new URLSearchParams({category: match[1], userid : userId})
             });

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styles from './dashboard.module.css'
-
+import { useAccess } from '@/context/accessContext';
 const DashboardKeyword = ({ startDate, endDate, categoryId,counter }) => {
   const [topKeywords, setTopKeyword] = useState([]);
+  const { token } = useAccess();
   if(counter === 0) {
     const formatDate = new Date().toLocaleDateString("en-GB");
   const parts = formatDate.split('/');
@@ -15,7 +16,7 @@ const DashboardKeyword = ({ startDate, endDate, categoryId,counter }) => {
       const data = await fetch('https://performo.in/api/top_keyword.php', {
         method: 'POST',
         headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            Authorization: token
         },
         body: new URLSearchParams({date_from : startDate, date_to : endDate})
       });

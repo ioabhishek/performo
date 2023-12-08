@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import styles from './compareGrid.module.css';
-
+import { useAccess } from '@/context/accessContext';
 const CompareAuthor = ({id}) => {
    const [authorData, setAuthorData] = useState([]);
-
+   const { token } = useAccess();
    useEffect(() => {
       const fetchCategory = async () => {
          try {
             const data = await fetch(apiEndpoint, {
                method: 'POST',
                headers: {
-                  Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                  Authorization: token
                },
                body: new URLSearchParams({ article_id: id })
             });

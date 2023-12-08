@@ -5,13 +5,13 @@ import { useAccess } from '@/context/accessContext';
 function DashboardCardEarly({startDate, endDate, categoryId,counter}) {
   const { userPubId } = useAccess();
   const [earlyBirds, setEarlyBirds] = useState([]);
-
+  const { token } = useAccess();
   useEffect(() => {
     const fetchEarly = async () => {
       const data = await fetch('https://performo.in/api/early_offer.php', {
         method: 'POST',
         headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            Authorization: token
         },
         body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId })
       });

@@ -9,7 +9,7 @@ function Button({selectedButtons}) {
    const pathname = usePathname();
    const match = pathname.match(/\/category\/(.+)/);
    const { userId } = useAccess();
-
+   const { token } = useAccess();
    async function savePublisherData() {
       // const data = {
       //    userid: '1',
@@ -20,7 +20,7 @@ function Button({selectedButtons}) {
       const response = await fetch('https://performo.in/api/save_publisher.php', {
          method: 'POST',
          headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            Authorization: token
          },
          body: new URLSearchParams({userid: userId, category : match[1], sources : selectedButtons.join(',') })
       });

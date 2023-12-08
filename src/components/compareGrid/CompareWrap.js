@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import styles from "./compareGrid.module.css";
 import CompareCard from "./CompareCard";
 import CompareLabel from "./CompareLabel";
-
+import { useAccess } from '@/context/accessContext';
 const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput }) => {
    const [regularArticles, setRegularArticles] = useState([]);
    const [searchArticles, setSearchArticles] = useState([]);
    const [loadingTime, setLoadingTime] = useState(null);
    const [pageNum, setPageNum] = useState(10);
    const [isSearchRequest, setIsSearchRequest] = useState(false);
-
+   const { token } = useAccess();
    useEffect(() => {
       if (selected) {
          const fetchArticles = async () => {
@@ -27,7 +27,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                   const data = await fetch(apiEndpoint, {
                      method: 'POST',
                      headers: {
-                        Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                        Authorization:token
                      },
                      body: new URLSearchParams({ publisher_id: publisherid, category_id: categoryid, keywords: searchInput, })
                   });
@@ -39,7 +39,7 @@ const CompareWrap = ({ publisher, publisherid, categoryid, selected, searchInput
                   const data = await fetch(apiEndpoint, {
                      method: 'POST',
                      headers: {
-                        Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                        Authorization: token
                      },
                      body: new URLSearchParams({ publisher_id: publisherid, category_id: categoryid, page_num: pageNum, })
                   });

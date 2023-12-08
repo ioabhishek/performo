@@ -6,13 +6,13 @@ import { useAccess } from '@/context/accessContext';
 const DashboardCardLeg = ({startDate, endDate, categoryId,counter}) => {
   const { userPubId } = useAccess();
   const [leggards, setLeggards] = useState([]);
-
+  const { token } = useAccess();
   useEffect(() => {
     const fetchLagaard = async () => {
       const data = await fetch('https://performo.in/api/leggard.php', {
         method: 'POST',
         headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            Authorization: token
         },
         body: new URLSearchParams({ date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId })
       });

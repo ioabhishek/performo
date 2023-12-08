@@ -6,19 +6,20 @@ import styles from './sidebar.module.css';
 import { usePathname } from 'next/navigation';
 import { CATEGORY } from '../../utils/constants';
 import { PulseLoader } from "react-spinners";
-
+import { useAccess } from '@/context/accessContext';
 const SidebarMenu = () => {
   const pathname = usePathname();
   const [menuList, setMenuList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [json1, setJson] = useState([]);
-
+  const { token } = useAccess();
   useEffect(() => {
+   
     const fetchCategory = async () => {
       const data = await fetch('https://performo.in/api/get_category.php', {
         method: 'POST',
         headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            Authorization: token
         },
       });
       const json = await data.json();

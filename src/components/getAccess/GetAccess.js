@@ -11,7 +11,7 @@ import { redirect, usePathname } from 'next/navigation';
 const GetAccess = () => {
    const {status, data:session} = useSession();
    const { accessStatus, checkAccess } = useAccess();
-
+   const { token } = useAccess();
    const handleSubmit = (e) => {
       e.preventDefault();
       toast.success('Request sent!', {
@@ -31,7 +31,7 @@ const GetAccess = () => {
                const data = await fetch('https://performo.in/api/request.php', {
                   method: 'POST',
                   headers: {
-                        Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                        Authorization: token
                   },
                   body: new URLSearchParams({ email : userEmail })
                });

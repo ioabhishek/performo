@@ -2,17 +2,18 @@
 import React, { useState, useEffect } from 'react'
 import styles from './dashboard.module.css'
 import { CATEGORY } from '@/utils/constants'
-
+import { useAccess } from '@/context/accessContext';
 const CategorySelector = ({selectedCategory, setSelectedCategory}) => {
   const [category, setCategory] = useState([]);
-
+  const { token } = useAccess();
   useEffect(() => {
+    
     const fetchCategory = async () => {
 
       const data = await fetch('https://performo.in/api/get_category.php', {
         method: 'POST',
         headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            Authorization: token
         },
       });
       const json = await data.json();

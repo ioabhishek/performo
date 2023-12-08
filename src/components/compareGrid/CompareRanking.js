@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styles from './compareGrid.module.css';
 import LineChart from '@/utils/LineChart';
 import { PulseLoader } from 'react-spinners';
-
+import { useAccess } from '@/context/accessContext';
 const CompareRanking = ({ id }) => {
    const [ranking, setRanking] = useState([]);
+   const token = useAccess();
    const [status, setStatus] = useState('loading');
    const [formattedRankingData, setFormattedRankingData] = useState([]);
    const [rankingData, setRankingData] = useState({
@@ -35,7 +36,7 @@ const CompareRanking = ({ id }) => {
             method: 'POST',
             headers: {
                Authorization:
-               'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+               token
             },
             body: new URLSearchParams({ article_id: id }),
          });

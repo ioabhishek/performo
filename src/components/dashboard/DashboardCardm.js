@@ -5,13 +5,13 @@ import { useAccess } from '@/context/accessContext';
 function DashboardCardm({startDate, endDate, categoryId,counter}) {
   const { userPubId } = useAccess();
   const [mpositions, setMositions] = useState([]);
-
+  const { token } = useAccess();
   useEffect(() => {
     const fetchMposition = async () => {
       const data = await fetch('https://performo.in/api/ranking_position_time.php', {
         method: 'POST',
         headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            Authorization: token
         },
         body: new URLSearchParams({date_from : startDate, date_to : endDate, publisher_id : userPubId, category_id: categoryId})
       });
@@ -55,6 +55,7 @@ function DashboardCardm({startDate, endDate, categoryId,counter}) {
         <span className={styles.dcard_ttl}>TOP 3</span>
         {mpositions.length > 0 ? (
           mpositions.map((mposition) => (
+            mposition.rank === "3" ? <span key={mposition}>{mposition.rank_minute}</span> : <></>
             mposition.rank === "3" ? <span key={mposition}>{mposition.rank_minute}</span> : <></>
           ))
         ) : (

@@ -14,7 +14,7 @@ const Page = () => {
    const match = pathname.match(/\/category\/(.+)/);
    const session = useSession();
    const { accessStatus, checkAccess, userId } = useAccess();
-
+   const { token } = useAccess();
    // console.log(accessStatus)
 
    useEffect(() => {
@@ -30,7 +30,7 @@ const Page = () => {
          const data = await fetch('https://performo.in/api/get_user_preference.php', {
             method: 'POST',
             headers: {
-               Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+               Authorization: token
             },
             body: new URLSearchParams({ category: match[1], userid: userId })
          });

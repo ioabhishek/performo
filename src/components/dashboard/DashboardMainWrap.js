@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import GranularityWrapper from "./GranularityWrapper";
 import DashboardGrid from "./DashboardGrid";  
-
+import { useAccess } from '@/context/accessContext';
 const DashboardMainWrap = () => {
   const formatDate = new Date().toLocaleDateString("en-GB");
   const parts = formatDate.split('/');
   const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-  
+  const { token } = useAccess();
   const [date, setDate] = useState(formattedDate);
   
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -36,7 +36,7 @@ const DashboardMainWrap = () => {
         const data = await fetch('https://performo.in/api/get_category.php', {
           method: 'POST',
           headers: {
-            Authorization: 'Bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            Authorization: token
           },
         });
         const json = await data.json();
