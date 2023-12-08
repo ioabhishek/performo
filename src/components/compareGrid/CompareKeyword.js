@@ -7,6 +7,7 @@ const CompareKeyword = ({ id }) => {
    const [status, setStatus] = useState("loading");
    const { token } = useAccess();
    useEffect(() => {
+      console.log(token)
       const fetchkw = async () => {
          try {
             const data = await fetch(
