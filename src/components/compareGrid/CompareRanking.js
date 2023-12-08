@@ -5,7 +5,7 @@ import { PulseLoader } from 'react-spinners';
 import { useAccess } from '@/context/accessContext';
 const CompareRanking = ({ id }) => {
    const [ranking, setRanking] = useState([]);
-   const token = useAccess();
+   const {token} = useAccess();
    const [status, setStatus] = useState('loading');
    const [formattedRankingData, setFormattedRankingData] = useState([]);
    const [rankingData, setRankingData] = useState({
@@ -30,6 +30,7 @@ const CompareRanking = ({ id }) => {
    });
 
    useEffect(() => {
+      console.log(token)
       const fetchRanking = async () => {
          try {
          const data = await fetch('https://performo.in/api/article_ranking.php', {
