@@ -29,7 +29,7 @@ function DashboardCardm({startDate, endDate, categoryId,counter}) {
         <span className={styles.dcard_ttl}>TOP 1</span>
         {mpositions.length > 0 ? (
           mpositions.map((mposition) => (
-            mposition.rank === "1" ? <span key={mposition}>{mposition.rank_minute}</span> : <span key={mposition}>...</span>
+            mposition.rank === "1" ? <span key={mposition}>{mposition.rank_minute}</span> : <></>
           ))
         ) : (
           <div className={styles.dcard_wrap}>
@@ -42,7 +42,7 @@ function DashboardCardm({startDate, endDate, categoryId,counter}) {
         <span className={styles.dcard_ttl}>TOP 2</span>
         {mpositions.length > 0 ? (
           mpositions.map((mposition) => (
-            mposition.rank === "2" ? <span key={mposition}>{mposition.rank_minute}</span> : <span key={mposition}>...</span>
+            mposition.rank === "2" ? <span key={mposition}>{mposition.rank_minute}</span> : <></>
           ))
         ) : (
           <div className={styles.dcard_wrap}>
@@ -55,7 +55,7 @@ function DashboardCardm({startDate, endDate, categoryId,counter}) {
         <span className={styles.dcard_ttl}>TOP 3</span>
         {mpositions.length > 0 ? (
           mpositions.map((mposition) => (
-            mposition.rank === "3" ? <span key={mposition}>{mposition.rank_minute}</span> : <span key={mposition}>...</span>
+            mposition.rank === "3" ? <span key={mposition}>{mposition.rank_minute}</span> : <></>
           ))
         ) : (
           <div className={styles.dcard_wrap}>
