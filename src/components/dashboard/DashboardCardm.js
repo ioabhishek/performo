@@ -56,7 +56,7 @@ function DashboardCardm({startDate, endDate, categoryId,counter}) {
         {mpositions.length > 0 ? (
           mpositions.map((mposition) => (
             mposition.rank === "3" ? <span key={mposition}>{mposition.rank_minute}</span> : <></>
-            mposition.rank === "3" ? <span key={mposition}>{mposition.rank_minute}</span> : <></>
+          
           ))
         ) : (
           <div className={styles.dcard_wrap}>
