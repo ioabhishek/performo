@@ -115,12 +115,11 @@ const CompareWrap = ({
   const loadMoreArticles = () => {
     setPageNum(pageNum + 10);
   };
-useEffect(() => {
-   setTimeout(() => {
+  useEffect(() => {
+    setTimeout(() => {
       setShowloader(false);
-    }, 5000)
-
-}, [showloader])
+    }, 7000);
+  }, [showloader]);
   return (
     <div className={`${styles.compare_wrap} ${selected ? styles.visible : ""}`}>
       <CompareLabel publisher={publisher} />
@@ -154,16 +153,12 @@ useEffect(() => {
             </button>
           )}
         </div>
+      ) : showloader ? (
+        <PulseLoader color="#696CFF" size={10} data-textid="Loader" />
       ) : (
-        
-         
-          (showloader ? (
-            <PulseLoader color="#696CFF" size={10} data-textid="Loader" />
-          ):((isSearchRequest ? searchArticles : regularArticles).length ===
-          0) && <p>No articles available</p>
-)
-          
-        
+        (isSearchRequest ? searchArticles : regularArticles).length === 0 && (
+          <p>No articles available</p>
+        )
       )}
     </div>
   );

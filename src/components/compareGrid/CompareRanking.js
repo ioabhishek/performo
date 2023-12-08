@@ -30,7 +30,7 @@ const CompareRanking = ({ id }) => {
    });
 
    useEffect(() => {
-      console.log(token)
+      
       const fetchRanking = async () => {
          try {
          const data = await fetch('https://performo.in/api/article_ranking.php', {
@@ -58,13 +58,21 @@ const CompareRanking = ({ id }) => {
 
    useEffect(() => {
       const formattedData = ranking.map((data) => {
-         const rankDate = new Date(data.rank_datetime);
-         const day = rankDate.getDate().toString();
-         return {
-         rank: data.rank,
-         rank_datetime: day,
-         };
+        const rankDate = new Date(data.rank_datetime);
+        const day = rankDate.getDate().toString();
+        const time = `${rankDate.getHours()}:${rankDate.getMinutes()}`;
+        const month = rankDate.getMonth()+1 ;
+        
+        const formattedDateTime = `${day}/${month}-${time}`;
+    
+        return {
+          rank: data.rank,
+          rank_datetime: formattedDateTime,
+        };
       });
+    
+      
+   
 
       setFormattedRankingData(formattedData);
    }, [ranking]);

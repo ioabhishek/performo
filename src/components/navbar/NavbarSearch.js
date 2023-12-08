@@ -17,6 +17,11 @@ const NavbarSearch = () => {
     setSearchInput(inputText);
   };
 
+  const clearer = () => {
+    setInputText('');
+    setSearchInput('');
+  };
+
   return (
     <form className={styles.nav_search} onSubmit={handleSubmit}>
       <input
@@ -26,6 +31,7 @@ const NavbarSearch = () => {
         onChange={handleInputChange}
       />
       <button className={styles.search_btn} type="submit">Search</button>
+      <button className={styles.search_btn} onClick={clearer}>Clear</button>
     </form>
   );
 };

@@ -17,6 +17,6 @@
 
 .user_options { position: absolute; top: 50px; z-index: 999; right: 0; background-color: #ffffff; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; }
 
-.search_btn { background-color: #fafafa; border: 1px solid rgba(0,0,0,.1); cursor: pointer; padding: 5px 10px; border-radius: 6px; font: 400 14px/14px 'Inter', sans-serif;}
+.search_btn { background-color: #fafafa; border: 1px solid rgba(0,0,0,.1); cursor: pointer; padding: 5px 10px; border-radius: 6px; font: 400 14px/14px 'Inter', sans-serif;margin-left: 5px;}
 
 /* border-left: 1px solid #E4E7ED; */
