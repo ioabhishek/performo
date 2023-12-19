@@ -6,6 +6,13 @@ function DashboardCardEarly({startDate, endDate, categoryId,counter}) {
   const { userPubId } = useAccess();
   const [earlyBirds, setEarlyBirds] = useState([]);
   const { token } = useAccess();
+  if(counter === 1) {
+    const formatDate = new Date().toLocaleDateString("en-GB");
+  const parts = formatDate.split('/');
+  const formattedDate = `${parts[2]}-${parts[1]-1}-${parts[0]}`
+    
+     startDate = formattedDate;
+  }
   useEffect(() => {
     const fetchEarly = async () => {
       const data = await fetch('https://performo.in/api/early_offer.php', {
@@ -18,9 +25,16 @@ function DashboardCardEarly({startDate, endDate, categoryId,counter}) {
       const json = await data.json();
       setEarlyBirds(json)
     };
-    if(startDate && endDate && categoryId) {
-      fetchEarly();
-    }
+    console.log(startDate, endDate, categoryId)
+
+      if(startDate && endDate&& categoryId ) {
+        fetchEarly();
+       
+      }
+    
+   
+
+   
   }, [counter])
 
   return (

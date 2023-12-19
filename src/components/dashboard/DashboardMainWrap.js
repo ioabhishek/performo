@@ -54,6 +54,9 @@ const DashboardMainWrap = () => {
     catgList.forEach((category) => {
       if (category.category_name === selectedCategory) {
         setCategoryId(category.category_id);
+       if(counter === 0){
+        setCounter(counter+1);
+       }
       }
     });
   }, [selectedCategory, catgList])
@@ -65,6 +68,8 @@ const DashboardMainWrap = () => {
       <GranularityWrapper
         date={date}
         setDate={setDate}
+        startDate={startDate}
+        endDate={endDate}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
         counter={counter}

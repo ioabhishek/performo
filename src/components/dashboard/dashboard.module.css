@@ -1,3 +1,4 @@
+
 .main_content { padding-left: 210px; padding-top: 0!important; transition: .5s; position: relative; min-height: 100vh; overflow: hidden;  }
 .main_wrap { padding: 20px 20px; }
 
@@ -53,3 +54,5 @@
     .select_options option { font-size: 12px;}
     .button{background-color:#fff;color:#000;border:none;padding:8px 15px;cursor:pointer;transition:background-color .3s ease;box-sizing:border-box;font:400 14px/24px Inter,sans-serif;color:#333;padding:2px 15px;cursor:pointer;border:1px solid #d9d9fd;border-radius:8px;margin:0}
   }
+
+  

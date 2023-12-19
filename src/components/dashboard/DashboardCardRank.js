@@ -6,6 +6,15 @@ const DashboardCardRank = ({startDate, endDate, categoryId,counter}) => {
   const { userPubId } = useAccess();
   const [positions, setPositions] = useState([]);
   const { token } = useAccess();
+
+  if(counter === 1) {
+    const formatDate = new Date().toLocaleDateString("en-GB");
+  const parts = formatDate.split('/');
+  const formattedDate = `${parts[2]}-${parts[1]-1}-${parts[0]}`
+    
+     startDate = formattedDate;
+  }
+
   useEffect(() => {
     const fetchPosition = async () => {
       const data = await fetch('https://performo.in/api/ranking_position.php', {

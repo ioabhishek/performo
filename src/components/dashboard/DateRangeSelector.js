@@ -10,22 +10,28 @@ import { DatePicker, Radio, Space } from "antd";
 const { RangePicker } = DatePicker;
 const inter = Inter({ subsets: ["latin"] });
 
-const DateRangeSelector = ({date, setDate}) => {
+const DateRangeSelector = ({date, setDate,startDate,endDate}) => {
   const [size, setSize] = useState("middle");
   const [showRangePicker, setShowRangePicker] = useState(false);
-  var moment1 = moment(date, "YYYY/MM/DD");
-  
+  var moment1 = moment(date, "YYYY-MM-DD");
+  setDate(startDate + " " + "-" + " " + endDate)
   const toggleRangePicker = () => {
     setShowRangePicker(!showRangePicker);
   };
   
   const clear = () => {
-    setDate(new Date().toLocaleDateString());
+    const formatDate = new Date().toLocaleDateString("en-GB");
+    const parts = formatDate.split('/');
+    const formattedDate = `${parts[2]}-${parts[1]-1}-${parts[0]}`
+      
+       const sd = formattedDate;
+       const ed = `${parts[2]}-${parts[1]}-${parts[0]}`
+    setDate(sd + " " + "-" + " " + ed);
     moment1=null;
   };
-  const apply = () => {
-    setShowRangePicker(false);
-  };
+  // const apply = () => {
+  //   setShowRangePicker(false);
+  // };
 
   return (
     <div>
@@ -46,8 +52,10 @@ const DateRangeSelector = ({date, setDate}) => {
                   if (values && values.length > 1) {
                     const startDate = values[0].format("YYYY-MM-DD");
                     const endDate = values[1].format("YYYY-MM-DD");
+                    setShowRangePicker(false);
                     setDate(
                       startDate + " " + "-" + " " + endDate
+                      
                     );
                   }
                 }}
@@ -59,11 +67,11 @@ const DateRangeSelector = ({date, setDate}) => {
                   clear
                 </button>
               )}
-               {showRangePicker && (
+               {/* {showRangePicker && (
                 <button className={styles.button} onClick={apply}>
                   apply
                 </button>
-              )}
+              )} */}
             </div>
           </div>
         )}

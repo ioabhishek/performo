@@ -6,7 +6,13 @@ const DashboardCardMissed = ({startDate, endDate, categoryId,counter}) => {
   const { userPubId } = useAccess();
   const { token } = useAccess();
   const [missedTrain, setMissedTrain] = useState([]);
-
+  if(counter === 1) {
+    const formatDate = new Date().toLocaleDateString("en-GB");
+  const parts = formatDate.split('/');
+  const formattedDate = `${parts[2]}-${parts[1]-1}-${parts[0]}`
+    
+     startDate = formattedDate;
+  }
   useEffect(() => {
     const fetchmissed = async () => {
       const data = await fetch('https://performo.in/api/missed_train.php', {

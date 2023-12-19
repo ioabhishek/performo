@@ -4,7 +4,7 @@ import { useAccess } from '@/context/accessContext';
 const DashboardKeyword = ({ startDate, endDate, categoryId,counter }) => {
   const [topKeywords, setTopKeyword] = useState([]);
   const { token } = useAccess();
-  if(counter === 0) {
+  if(counter === 0 || counter === 1) {
     const formatDate = new Date().toLocaleDateString("en-GB");
   const parts = formatDate.split('/');
   const formattedDate = `${parts[2]}-${parts[1]-1}-${parts[0]}`
