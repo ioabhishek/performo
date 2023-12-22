@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from "react";
 import GranularityWrapper from "./GranularityWrapper";
 import DashboardGrid from "./DashboardGrid";  
@@ -23,7 +24,7 @@ const DashboardMainWrap = () => {
 
   const startDate = date.split(" - ")[0]
   const endDate = date.split(" - ")[1] ? date.split(" - ")[1] : date.split(" - ")[0]
-
+  document.addEventListener('contextmenu', event => event.preventDefault());
   // const startDate =  date.split(" - ")[0] ? date.split(" - ")[0] : date.split(" - ")[0];
 
   // const startDate =
